@@ -1,5 +1,3 @@
-import React from "react";
-
 const Lema = () => {
 	return (
 		<div className="text-start position-absolute rounded-2 p-4 fw-bold lemaContainer">
