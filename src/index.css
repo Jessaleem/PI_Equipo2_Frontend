@@ -1,12 +1,12 @@
 :root {
-  --bs-primary: #0b4040;
-  --bs-secondary: #f2b6d2;
-  --bs-success: #acf2eb;
-  --bs-danger: #dc3545;
-  --bs-warning: #ffc107;
-  --bs-info: #17a2b8;
-  --bs-light: #f8f9fa;
-  --bs-dark: #343a40;
+  --primary: #0b4040;
+  --secondary: #f2b6d2;
+  --success: #acf2eb;
+  --danger: #dc3545;
+  --warning: #ffc107;
+  --info: #17a2b8;
+  --light: #f8f9fa;
+  --dark: #343a40;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -118,6 +118,14 @@ button:focus-visible {
   background-color: rgba(242, 242, 242, 1);
 }
 
+.rating i {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+}
+.rating i.selected {
+  color: #ffc107;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
