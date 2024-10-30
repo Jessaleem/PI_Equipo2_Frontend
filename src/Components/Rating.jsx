@@ -25,7 +25,6 @@ const Rating = () => {
           data-value='5'
         ></i>
       </div>
-      <p id='rating-value'>Puntuación: 0</p>
     </div>
   );
 };

@@ -123,8 +123,42 @@ button:focus-visible {
   color: #ccc;
   cursor: pointer;
 }
+
+.atras-btn {
+  background-color: #f2b6d2 !important;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+}
+.imagen-container {
+  width: 50%;
+}
 .rating i.selected {
   color: #ffc107;
+}
+.detail-title-section {
+  background-color: #a7f2cf75;
+}
+.detail-title {
+  color: black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+.detail-img {
+  width: 500px !important;
+}
+.detail-description {
+  max-width: 600px;
+  text-align: justify;
+}
+.reservar-btn {
+  width: 200px;
+  background-color: #acf2eb;
+  color: #0b4040;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px;
 }
 @media (prefers-color-scheme: light) {
   :root {

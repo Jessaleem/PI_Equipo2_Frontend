@@ -4,7 +4,7 @@ import TourDetailSection from '../../Components/TourDetailSection';
 const TourDetail = () => {
   const { id } = useParams();
   return (
-    <div className='container'>
+    <div className=''>
       <TourDetailSection id={id} />
     </div>
   );

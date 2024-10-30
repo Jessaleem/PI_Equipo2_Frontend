@@ -12,6 +12,7 @@ const ToursDestacados = () => {
               key={tour.id}
               imagen={tour.imagen}
               nombre={tour.nombre}
+              id={tour.id}
             />
           );
         })}

@@ -2,23 +2,22 @@ import amazonas from '../tours-img/amazonas.png';
 import laRioja from '../tours-img/la-rioja.png';
 import machuPicchu from '../tours-img/Machu-Picchu.png';
 import serengeti from '../tours-img/tanzania-serengeti.png';
-import castilloloira from '../tours-img/castillos-loira.png';
-import murallaChina from '../tours-img/muralla-china.png';
-import krugerPark from '../tours-img/kruger-park';
-import niagara from '../tours-img/cataratas-niagara.png';
-import libertad from '../tours-img/estatua-libertad.png';
-import galapagos from '../tours-img/isla-galapagos.png';
-import eiffel from '../tours-img/torre-Eiffel.png';
-import tajMahal from '../tours-img/Taj-mahal.png';
-import versalles from '../tours-img/palacio-versailles.png';
-import peritoMoreno from '../tours-img/perito-moreno.png';
-import montanasRocosas from '../tours-img/montañas-rocosaas.png';
-import gizah from '../tours-img/piramides-gizah.png';
-import teotihuacan from '../tours-img/Teotihuacan.png';
-import chichenItza  from '../tours-img/Chichén-Itzá.png';
-import ciudadPerdida  from '../tours-img/ciudad-perdida.png';
-import Zipaquira from '../tours-img/Sal-Zipaquira'
-
+import castilloloira from '@assets/tours-img/castillos-loira.png';
+import murallaChina from '@assets/tours-img/muralla-china.png';
+import krugerPark from '@assets/tours-img/kruger-park.png';
+import niagara from '@assets/tours-img/cataratas-niagara.png';
+import libertad from '@assets/tours-img/estatua-libertad.png';
+import galapagos from '@assets/tours-img/isla-galapagos.png';
+import eiffel from '@assets/tours-img/torre-Eiffel.png';
+import tajMahal from '@assets/tours-img/Taj-mahal.png';
+import versalles from '@assets/tours-img/palacio-versailles.png';
+import peritoMoreno from '@assets/tours-img/perito-moreno.png';
+import montanasRocosas from '@assets/tours-img/montañas-rocosas.png';
+import gizah from '@assets/tours-img/piramides-gizah.png';
+import teotihuacan from '@assets/tours-img/Teotihuacan.png';
+import chichenItza from '@assets/tours-img/Chichén-Itzá.png';
+import ciudadPerdida from '@assets/tours-img/ciudad-perdida.png';
+import Zipaquira from '@assets/tours-img/Sal-Zipaquira.png';
 
 export const dummyData = [
   {
@@ -59,7 +58,7 @@ export const dummyData = [
     id_tour: 3,
     nombre: 'Excursión al Machu Picchu',
     descripcion:
-      "Un tour guiado para descubrir la ciudadela inca y su impresionante historia. Machu Picchu (en quechua, Machu Pikchu 'monte o pico viejo', pronunciado [ˈmɐt͡ʃʊ ˈpɪkt͡ʃʊ]) es el nombre contemporáneo que se da a una llacta (antiguo poblado incaico) construida antes del siglo XV, en la cordillera Oriental del sur del Perú, en la cadena montañosa de los Andes a 2,430 metros sobre el nivel del mar.3​4​ Está en el departamento del Cusco (provincia de Urubamba, distrito de Machupichu) sobre el Valle Sagrado de los Incas,​ a 80 kilómetros al noroeste del Cusco, ciudad del Perú y por donde fluye el río Urubamba, río que atraviesa la cordillera y origina un cañón con clima de montaña tropical. Forma parte de un área de conservación arqueológica y ecológica del mismo nombre. Según muchos estudios, su nombre original habría sido Llaqtapata​ o Patallaqta."​,
+      "Un tour guiado para descubrir la ciudadela inca y su impresionante historia. Machu Picchu (en quechua, Machu Pikchu 'monte o pico viejo', es el nombre contemporáneo que se da a una llacta (antiguo poblado incaico) construida antes del siglo XV, en la cordillera Oriental del sur del Perú, en la cadena montañosa de los Andes a 2,430 metros sobre el nivel del mar. Está en el departamento del Cusco (provincia de Urubamba, distrito de Machupichu) sobre el Valle Sagrado de los Incas, a 80 kilómetros al noroeste del Cusco, ciudad del Perú y por donde fluye el río Urubamba, río que atraviesa la cordillera y origina un cañón con clima de montaña tropical. Forma parte de un área de conservación arqueológica y ecológica del mismo nombre. Según muchos estudios, su nombre original habría sido Llaqtapata o Patallaqta.",
     recomendaciones: 'Llevar ropa de abrigo y cámara fotográfica.',
     imagen: machuPicchu,
     tiempo_estimado: '06:00:00',
@@ -92,7 +91,8 @@ export const dummyData = [
   {
     id_tour: 5,
     nombre: 'Recorrido por los Castillos del Loira',
-    descripcion: 'Explora los castillos más emblemáticos del Valle del Loira. La denominación «castillos del Loira» (en francés: Châteaux de la Loire) agrupa bajo una misma apelación turística a un conjunto de castillos situados en el valle del Loira, en el curso medio y bajo del Loira, en la Francia central. Se encuentran en la región Centro-Valle de Loira (las antiguas provincias de Turena, Blésois, Orléanais y Berry) y en el País del Loira (la antigua provincia de Anjou). Buena parte de los castillos tienen su origen en la Edad Media, en un momento en que la región, entonces el condado de Tours, era duramente disputada entre los siglos X y XI por la casa feudal de Blois y la casa de Anjou; esa guerra será el origen de los primeros castillos del valle del Loira cuya finalidad defensiva aún puede apreciarse en las importantes trazas arquitectónicas.',
+    descripcion:
+      'Explora los castillos más emblemáticos del Valle del Loira. La denominación «castillos del Loira» (en francés: Châteaux de la Loire) agrupa bajo una misma apelación turística a un conjunto de castillos situados en el valle del Loira, en el curso medio y bajo del Loira, en la Francia central. Se encuentran en la región Centro-Valle de Loira (las antiguas provincias de Turena, Blésois, Orléanais y Berry) y en el País del Loira (la antigua provincia de Anjou). Buena parte de los castillos tienen su origen en la Edad Media, en un momento en que la región, entonces el condado de Tours, era duramente disputada entre los siglos X y XI por la casa feudal de Blois y la casa de Anjou; esa guerra será el origen de los primeros castillos del valle del Loira cuya finalidad defensiva aún puede apreciarse en las importantes trazas arquitectónicas.',
     recomendaciones: 'Llevar ropa cómoda y cámara para fotos.',
     imagen: castilloloira,
     tiempo_estimado: '08:00:00',
@@ -142,7 +142,8 @@ export const dummyData = [
   {
     id_tour: 8,
     nombre: 'Excursión a las Cataratas del Niágara',
-    descripcion: 'Vive la emoción de estar junto a las famosas cataratas. Las cataratas del Niágara (Niagara Falls en inglés, Chutes du Niagara en francés) son un conjunto de cascadas situadas en el río Niágara, en la zona noreste de América del Norte, entre Canadá y Estados Unidos. Situadas a unos 236 metros sobre el nivel del mar, su caída es de aproximadamente 51 metros. Comprenden tres cataratas: la «catarata canadiense» (Ontario), la «catarata estadounidense» (Nueva York) y la «catarata Velo de Novia», más pequeña. Aunque no tienen una gran altura, son muy amplias y son las más voluminosas de América del Norte, ya que por ellas pasa toda el agua de los Grandes Lagos. Entre las cataratas canadienses y las estadounidenses se encuentra la Isla de la Cabra.',
+    descripcion:
+      'Vive la emoción de estar junto a las famosas cataratas. Las cataratas del Niágara (Niagara Falls en inglés, Chutes du Niagara en francés) son un conjunto de cascadas situadas en el río Niágara, en la zona noreste de América del Norte, entre Canadá y Estados Unidos. Situadas a unos 236 metros sobre el nivel del mar, su caída es de aproximadamente 51 metros. Comprenden tres cataratas: la «catarata canadiense» (Ontario), la «catarata estadounidense» (Nueva York) y la «catarata Velo de Novia», más pequeña. Aunque no tienen una gran altura, son muy amplias y son las más voluminosas de América del Norte, ya que por ellas pasa toda el agua de los Grandes Lagos. Entre las cataratas canadienses y las estadounidenses se encuentra la Isla de la Cabra.',
     recomendaciones: 'Llevar impermeable y cámara fotográfica.',
     imagen: niagara,
     tiempo_estimado: '02:00:00',
@@ -175,7 +176,8 @@ export const dummyData = [
   {
     id_tour: 10,
     nombre: 'Excursión a las Islas Galápagos',
-    descripcion: 'Explora la increíble biodiversidad de las Islas Galápagos. Las islas Galápagos (también islas de las Galápagos y oficialmente conocidas como archipiélago de Colón o archipiélago de Galápagos) constituyen un archipiélago del océano Pacífico ubicado a 972 km de la costa de Ecuador. Fueron descubiertas en 1535 por la tripulación del barco del fray Tomás de Berlanga. Está conformado por trece islas grandes con una superficie mayor a 10 km², nueve islas medianas con una superficie de 1 km² a 10 km² y otros 107 islotes de tamaño pequeño, además de promontorios rocosos de pocos metros cuadrados, distribuidos alrededor de la línea ecuatorial, que conjuntamente con el Archipiélago Malayo, son los únicos archipiélagos del planeta que tienen territorio tanto en el hemisferio norte como en el hemisferio sur.',
+    descripcion:
+      'Explora la increíble biodiversidad de las Islas Galápagos. Las islas Galápagos (también islas de las Galápagos y oficialmente conocidas como archipiélago de Colón o archipiélago de Galápagos) constituyen un archipiélago del océano Pacífico ubicado a 972 km de la costa de Ecuador. Fueron descubiertas en 1535 por la tripulación del barco del fray Tomás de Berlanga. Está conformado por trece islas grandes con una superficie mayor a 10 km², nueve islas medianas con una superficie de 1 km² a 10 km² y otros 107 islotes de tamaño pequeño, además de promontorios rocosos de pocos metros cuadrados, distribuidos alrededor de la línea ecuatorial, que conjuntamente con el Archipiélago Malayo, son los únicos archipiélagos del planeta que tienen territorio tanto en el hemisferio norte como en el hemisferio sur.',
     recomendaciones: 'Llevar ropa ligera y equipo de snorkel.',
     imagen: galapagos,
     tiempo_estimado: '06:00:00',
@@ -309,66 +311,70 @@ export const dummyData = [
   },
   {
     id_tour: 18,
-    nombre: "Tour por las Pirámides de Teotihuacán",
-    descripcion: "Explora las antiguas pirámides de Teotihuacán, incluyendo la Pirámide del Sol y la Pirámide de la Luna. eotihuacan o Teotihuacán (del náhuatl: Teōtīhuacān o Teotiwakanb 'lugar donde los hombres se convierten en dioses; lugar de los dioses), y según nuevas investigaciones, también pudo haber sido conocida como Teohuacan 'ciudad/lugar del sol', 'lugar de los sumos sacerdotes', es el nombre que se le da al gran complejo arqueológico que fue uno de los mayores de Mesoamérica durante el clásico (c.200/250-600/650 d. C.), más precisamente entre c.100 a. C. y 600 d. C./650 d. C. El nombre propio fue empleado por los mexicas para identificar a esta urbe construida por una civilización anterior a ellos y que ya se encontraba en ruinas cuando la vieron por primera vez.3",
-    recomendaciones: "Usar protector solar, calzado cómodo y llevar agua.",
+    nombre: 'Tour por las Pirámides de Teotihuacán',
+    descripcion:
+      "Explora las antiguas pirámides de Teotihuacán, incluyendo la Pirámide del Sol y la Pirámide de la Luna. eotihuacan o Teotihuacán (del náhuatl: Teōtīhuacān o Teotiwakanb 'lugar donde los hombres se convierten en dioses; lugar de los dioses), y según nuevas investigaciones, también pudo haber sido conocida como Teohuacan 'ciudad/lugar del sol', 'lugar de los sumos sacerdotes', es el nombre que se le da al gran complejo arqueológico que fue uno de los mayores de Mesoamérica durante el clásico (c.200/250-600/650 d. C.), más precisamente entre c.100 a. C. y 600 d. C./650 d. C. El nombre propio fue empleado por los mexicas para identificar a esta urbe construida por una civilización anterior a ellos y que ya se encontraba en ruinas cuando la vieron por primera vez.3",
+    recomendaciones: 'Usar protector solar, calzado cómodo y llevar agua.',
     imagen: teotihuacan,
-    tiempo_estimado: "05:00:00",
-    pais: "México",
-    ciudad: "Teotihuacán",
+    tiempo_estimado: '05:00:00',
+    pais: 'México',
+    ciudad: 'Teotihuacán',
     apto_para_ninos: true,
-    fecha_experiencia: "2024-11-12",
-    horario_inicio: "09:00:00",
-    horario_fin: "14:00:00",
-    valor: 75.00,
-    cupos: 30
+    fecha_experiencia: '2024-11-12',
+    horario_inicio: '09:00:00',
+    horario_fin: '14:00:00',
+    valor: 75.0,
+    cupos: 30,
   },
   {
     id_tour: 19,
-    nombre: "Recorrido por Chichén Itzá",
-    descripcion: "Visita una de las maravillas del mundo y descubre la historia de los mayas en Chichén Itzá.Fue inscrita como Patrimonio de la Humanidad por la Unesco en 1988. El 7 de julio de 2007, el Templo de Kukulcán, ubicado en Chichén Itzá, fue reconocido como una de las nuevas siete maravillas del mundo moderno, por una iniciativa privada sin el apoyo de la Unesco, pero con el reconocimiento de millones de votantes alrededor del mundo. La arquitectura monumental que ha llegado hasta nuestros días, que es emblemática del yacimiento, tiene una clara influencia tolteca. El dios que preside el sitio, según la mitología maya, es Kukulcán, representación maya de Quetzalcóatl, dios tomado del panteón de la cultura tolteca.",
-    recomendaciones: "Llevar sombrero, agua y cámara.",
+    nombre: 'Recorrido por Chichén Itzá',
+    descripcion:
+      'Visita una de las maravillas del mundo y descubre la historia de los mayas en Chichén Itzá.Fue inscrita como Patrimonio de la Humanidad por la Unesco en 1988. El 7 de julio de 2007, el Templo de Kukulcán, ubicado en Chichén Itzá, fue reconocido como una de las nuevas siete maravillas del mundo moderno, por una iniciativa privada sin el apoyo de la Unesco, pero con el reconocimiento de millones de votantes alrededor del mundo. La arquitectura monumental que ha llegado hasta nuestros días, que es emblemática del yacimiento, tiene una clara influencia tolteca. El dios que preside el sitio, según la mitología maya, es Kukulcán, representación maya de Quetzalcóatl, dios tomado del panteón de la cultura tolteca.',
+    recomendaciones: 'Llevar sombrero, agua y cámara.',
     imagen: chichenItza,
-    tiempo_estimado: "04:00:00",
-    pais: "México",
-    ciudad: "Yucatán",
+    tiempo_estimado: '04:00:00',
+    pais: 'México',
+    ciudad: 'Yucatán',
     apto_para_ninos: true,
-    fecha_experiencia: "2024-12-05",
-    horario_inicio: "10:00:00",
-    horario_fin: "14:00:00",
-    valor: 90.00,
-    cupos: 40
+    fecha_experiencia: '2024-12-05',
+    horario_inicio: '10:00:00',
+    horario_fin: '14:00:00',
+    valor: 90.0,
+    cupos: 40,
   },
   {
-  id_tour: 20,
-  nombre: "Tour de la Ciudad Perdida",
-  descripcion: "Explora la Ciudad Perdida de los antiguos taironas, un recorrido de varios días a través de la selva. Ciudad Perdida, también conocida como Teyuna o Buritaca-200, es uno de los principales sitios arqueológicos de Colombia. Fue un antiguo poblado indígena tayrona construido alrededor del siglo VIII de nuestra era. Hace parte de uno de los más de 250 poblados antiguos de los cuatro grupos indígenas encontrados en las caras norte y suroeste de la Sierra Nevada de Santa Marta, departamento del Magdalena, jurisdicción de Santa Marta, en el norte de Colombia.",
-  recomendaciones: "Llevar repelente de insectos, agua y equipo de acampar.",
-  imagen: ciudadPerdida,
-  tiempo_estimado: "72:00:00",
-  pais: "Colombia",
-  ciudad: "Santa Marta",
-  apto_para_ninos: false,
-  fecha_experiencia: "2024-12-01",
-  horario_inicio: "06:00:00",
-  horario_fin: "06:00:00",
-  valor: 400.00,
-  cupos: 15
-},
-{
-  id_tour: 21,
-  nombre: "Excursión a la Catedral de Sal de Zipaquirá",
-  descripcion: "Visita una impresionante catedral subterránea construida en una mina de sal. El diseño arquitectónico y artístico de la nueva Catedral de Sal, es propio del arquitecto bogotano Roswell Garavito Pearl, el cual salió aprobado tras la elección del proyecto que contenía un total de 44 propuestas en un concurso convocado por la Sociedad Colombiana de Arquitectos en 1990; mientras que la dirección técnica de ingeniería fue ejecutada por el ingeniero bogotano Jorge Enrique Castelblanco Reyes. En su interior se encuentra una rica colección artística, especialmente de esculturas de sal y mármol en un ambiente lleno de un profundo sentido religioso que atrae a turistas.",
-  recomendaciones: "Llevar ropa de abrigo.",
-  imagen: Zipaquira,
-  tiempo_estimado: "02:30:00",
-  pais: "Colombia",
-  ciudad: "Zipaquirá",
-  apto_para_ninos: true,
-  fecha_experiencia: "2024-11-18",
-  horario_inicio: "09:30:00",
-  horario_fin: "12:00:00",
-  valor: 35.00,
-  cupos: 40
-},
-]
+    id_tour: 20,
+    nombre: 'Tour de la Ciudad Perdida',
+    descripcion:
+      'Explora la Ciudad Perdida de los antiguos taironas, un recorrido de varios días a través de la selva. Ciudad Perdida, también conocida como Teyuna o Buritaca-200, es uno de los principales sitios arqueológicos de Colombia. Fue un antiguo poblado indígena tayrona construido alrededor del siglo VIII de nuestra era. Hace parte de uno de los más de 250 poblados antiguos de los cuatro grupos indígenas encontrados en las caras norte y suroeste de la Sierra Nevada de Santa Marta, departamento del Magdalena, jurisdicción de Santa Marta, en el norte de Colombia.',
+    recomendaciones: 'Llevar repelente de insectos, agua y equipo de acampar.',
+    imagen: ciudadPerdida,
+    tiempo_estimado: '72:00:00',
+    pais: 'Colombia',
+    ciudad: 'Santa Marta',
+    apto_para_ninos: false,
+    fecha_experiencia: '2024-12-01',
+    horario_inicio: '06:00:00',
+    horario_fin: '06:00:00',
+    valor: 400.0,
+    cupos: 15,
+  },
+  {
+    id_tour: 21,
+    nombre: 'Excursión a la Catedral de Sal de Zipaquirá',
+    descripcion:
+      'Visita una impresionante catedral subterránea construida en una mina de sal. El diseño arquitectónico y artístico de la nueva Catedral de Sal, es propio del arquitecto bogotano Roswell Garavito Pearl, el cual salió aprobado tras la elección del proyecto que contenía un total de 44 propuestas en un concurso convocado por la Sociedad Colombiana de Arquitectos en 1990; mientras que la dirección técnica de ingeniería fue ejecutada por el ingeniero bogotano Jorge Enrique Castelblanco Reyes. En su interior se encuentra una rica colección artística, especialmente de esculturas de sal y mármol en un ambiente lleno de un profundo sentido religioso que atrae a turistas.',
+    recomendaciones: 'Llevar ropa de abrigo.',
+    imagen: Zipaquira,
+    tiempo_estimado: '02:30:00',
+    pais: 'Colombia',
+    ciudad: 'Zipaquirá',
+    apto_para_ninos: true,
+    fecha_experiencia: '2024-11-18',
+    horario_inicio: '09:30:00',
+    horario_fin: '12:00:00',
+    valor: 35.0,
+    cupos: 40,
+  },
+];
