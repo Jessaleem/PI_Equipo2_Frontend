@@ -61,26 +61,28 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.w-max-1280 {
+.w-max-1280  {
   max-width: 1280px;
   margin: 0 auto;
 }
 
-.form-control::placeholder {
+.form-control::placeholder  {
   color: #999 !important;
 }
 
-.max-width-100vw {
+.max-width-100vw  {
   max-width: 100vw;
 }
 
 .search {
-  background-image: url('@assets/search.svg');
+  background-image: url("@assets/search.svg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  background-position: center;
   background-color: rgba(242, 182, 210, 1) !important;
 }
 
+.lemaContainer {
 .lemaContainer {
   display: flex;
   flex-direction: column;
@@ -92,6 +94,7 @@ button:focus-visible {
 }
 
 .bienvenida {
+.bienvenida {
   color: #136060;
   font-family: 'Jomhuria', sans-serif;
   font-size: 58px;
@@ -99,23 +102,111 @@ button:focus-visible {
 }
 
 .ver-mas-btn {
+.ver-mas-btn {
   background-color: rgba(172, 242, 235, 1) !important;
   color: rgba(11, 64, 64, 1) !important;
 }
 
 .ver-tourCard-btn-colors {
   background-color: #f2b6d2 !important;
+.ver-tourCard-btn-colors {
+  background-color: #f2b6d2 !important;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  color: #0b4040;
   color: #0b4040;
 }
 
 .footer-tourCard-colors {
   background-color: #d9d9d9c2;
   color: #0b4040;
+.footer-tourCard-colors {
+  background-color: #d9d9d9c2;
+  color: #0b4040;
 }
 
 .bg-body {
+.bg-body {
   background-color: rgba(242, 242, 242, 1);
+}
+
+.bg-categorias {
+  background-color: #f2b6d22e;
+}
+
+.shadow-card-categoria {
+  box-shadow: 0px 10px 20px 0px rgb(131, 131, 131);
+}
+
+.review-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.shadow-review {
+  box-shadow: 0 5px 10px 2px rgb(131, 131, 131);
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+  font-size: 25px !important;
+}
+
+.slick-next,
+.slick-prev {
+  width: 25px !important;
+  height: 25px !important;
+}
+
+.slick-next {
+  right: -30px !important;
+}
+
+.slick-prev {
+  left: -30px !important;
+}
+
+.bg-categorias {
+  background-color: #f2b6d22e;
+}
+
+.shadow-card-categoria {
+  box-shadow: 0px 10px 20px 0px rgb(131, 131, 131);
+}
+
+.review-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.shadow-review {
+  box-shadow: 0 5px 10px 2px rgb(131, 131, 131);
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+  font-size: 25px !important;
+}
+
+.slick-next,
+.slick-prev {
+  width: 25px !important;
+  height: 25px !important;
+}
+
+.slick-next {
+  right: -30px !important;
+}
+
+.slick-prev {
+  left: -30px !important;
 }
 
 .rating i {
@@ -170,5 +261,11 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media (min-width: 992px) {
+  .filtro-busqueda {
+    top: 50px;
   }
 }
