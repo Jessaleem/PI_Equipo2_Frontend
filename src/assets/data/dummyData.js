@@ -1,11 +1,33 @@
+import amazonas from '../tours-img/amazonas.png';
+import laRioja from '../tours-img/la-rioja.png';
+import machuPicchu from '../tours-img/Machu-Picchu.png';
+import serengeti from '../tours-img/tanzania-serengeti.png';
+import castilloloira from '../tours-img/castillos-loira.png';
+import murallaChina from '../tours-img/muralla-china.png';
+import krugerPark from '../tours-img/kruger-park';
+import niagara from '../tours-img/cataratas-niagara.png';
+import libertad from '../tours-img/estatua-libertad.png';
+import galapagos from '../tours-img/isla-galapagos.png';
+import eiffel from '../tours-img/torre-Eiffel.png';
+import tajMahal from '../tours-img/Taj-mahal.png';
+import versalles from '../tours-img/palacio-versailles.png';
+import peritoMoreno from '../tours-img/perito-moreno.png';
+import montanasRocosas from '../tours-img/montañas-rocosaas.png';
+import gizah from '../tours-img/piramides-gizah.png';
+import teotihuacan from '../tours-img/Teotihuacan.png';
+import chichenItza  from '../tours-img/Chichén-Itzá.png';
+import ciudadPerdida  from '../tours-img/ciudad-perdida.png';
+import Zipaquira from '../tours-img/Sal-Zipaquira'
+
+
 export const dummyData = [
   {
     id_tour: 1,
     nombre: 'Tour por el Coliseo Romano',
     descripcion:
-      'Explora la majestuosidad del Coliseo Romano y conoce su historia y arquitectura antigua.',
+      'Explora la majestuosidad del Coliseo Romano y conoce su historia y arquitectura antigua. El Coliseo o Anfiteatro Flavio (en latín Colosseum, en italiano Colosseo) es un anfiteatro de la época del Imperio romano, construido en el siglo I. Está ubicado en el este del Foro Romano y fue el más grande de los que se construyeron en el Imperio romano. Conocido originalmente como Anfiteatro Flavio (Amphitheatrum Flavium) pasó a ser llamado Coliseo (Colosseum) porque a su lado había una gran estatua, el Coloso de Nerón, un monumento dedicado al emperador Nerón que posteriormente sufrió transformaciones y llegó a desaparecer.​',
     recomendaciones: 'Lleva zapatos cómodos y protector solar.',
-    imagen: null,
+    imagen: amazonas,
     tiempo_estimado: '02:00:00',
     pais: 'Italia',
     ciudad: 'Roma',
@@ -20,9 +42,9 @@ export const dummyData = [
     id_tour: 2,
     nombre: 'Ruta del Vino en La Rioja',
     descripcion:
-      'Disfruta de una experiencia vinícola única recorriendo bodegas y viñedos de La Rioja.',
+      'Disfruta de una experiencia vinícola única recorriendo bodegas y viñedos de La Rioja. La ruta del vino en la provincia de La Rioja regala senderos que cautivan por sus bellezas naturales como por toda su riqueza cultural e histórica. Desde la hermosa costa riojana de pequeños poblados y frondosa vegetación hasta las sierras nevadas de Famatina se esconden viñedos y bodegas productoras de excelentes vinos de calidad reconocidos internacionalmente, entre ellos el Malbec Riojano. La Rioja cuenta con tres valles productivos: Valle de la Costa Riojana, Valle del Bermejo y Valle de Famatina y Chilecito convirtiéndose en la tercera productora vitivinícola a nivel nacional. Con un creciente turismo enológico, la provincia se posiciona cada vez más como destino elegido en la Ruta del Vino Nacional.',
     recomendaciones: 'No apto para menores de edad.',
-    imagen: null,
+    imagen: laRioja,
     tiempo_estimado: '04:00:00',
     pais: 'España',
     ciudad: 'La Rioja',
@@ -37,9 +59,9 @@ export const dummyData = [
     id_tour: 3,
     nombre: 'Excursión al Machu Picchu',
     descripcion:
-      'Un tour guiado para descubrir la ciudadela inca y su impresionante historia.',
+      "Un tour guiado para descubrir la ciudadela inca y su impresionante historia. Machu Picchu (en quechua, Machu Pikchu 'monte o pico viejo', pronunciado [ˈmɐt͡ʃʊ ˈpɪkt͡ʃʊ]) es el nombre contemporáneo que se da a una llacta (antiguo poblado incaico) construida antes del siglo XV, en la cordillera Oriental del sur del Perú, en la cadena montañosa de los Andes a 2,430 metros sobre el nivel del mar.3​4​ Está en el departamento del Cusco (provincia de Urubamba, distrito de Machupichu) sobre el Valle Sagrado de los Incas,​ a 80 kilómetros al noroeste del Cusco, ciudad del Perú y por donde fluye el río Urubamba, río que atraviesa la cordillera y origina un cañón con clima de montaña tropical. Forma parte de un área de conservación arqueológica y ecológica del mismo nombre. Según muchos estudios, su nombre original habría sido Llaqtapata​ o Patallaqta."​,
     recomendaciones: 'Llevar ropa de abrigo y cámara fotográfica.',
-    imagen: null,
+    imagen: machuPicchu,
     tiempo_estimado: '06:00:00',
     pais: 'Perú',
     ciudad: 'Cusco',
@@ -54,9 +76,9 @@ export const dummyData = [
     id_tour: 4,
     nombre: 'Safari en el Serengeti',
     descripcion:
-      'Aventúrate en un safari para ver animales salvajes en su hábitat natural.',
+      'Aventúrate en un safari para ver animales salvajes en su hábitat natural.Parque Nacional Serengueti, es el hogar de más de 1,5 millones de ñus, 300.000 cebras y 500.000 gacelas; más de 1.000 leopardos, 500 guepardos, 400 especies de aves y enormes manadas de elefantes, impalas, antílopes de agua, jirafas y avestruces. Arroyos delicadamente poblados por cocodrilos e hipopótamos, experiencias, estilos de safaris y escenas panorámicas únicas, y a tu alcance.',
     recomendaciones: 'Usar ropa de colores neutros y llevar binoculares.',
-    imagen: null,
+    imagen: serengeti,
     tiempo_estimado: '05:00:00',
     pais: 'Tanzania',
     ciudad: 'Serengeti',
@@ -70,9 +92,9 @@ export const dummyData = [
   {
     id_tour: 5,
     nombre: 'Recorrido por los Castillos del Loira',
-    descripcion: 'Explora los castillos más emblemáticos del Valle del Loira.',
+    descripcion: 'Explora los castillos más emblemáticos del Valle del Loira. La denominación «castillos del Loira» (en francés: Châteaux de la Loire) agrupa bajo una misma apelación turística a un conjunto de castillos situados en el valle del Loira, en el curso medio y bajo del Loira, en la Francia central. Se encuentran en la región Centro-Valle de Loira (las antiguas provincias de Turena, Blésois, Orléanais y Berry) y en el País del Loira (la antigua provincia de Anjou). Buena parte de los castillos tienen su origen en la Edad Media, en un momento en que la región, entonces el condado de Tours, era duramente disputada entre los siglos X y XI por la casa feudal de Blois y la casa de Anjou; esa guerra será el origen de los primeros castillos del valle del Loira cuya finalidad defensiva aún puede apreciarse en las importantes trazas arquitectónicas.',
     recomendaciones: 'Llevar ropa cómoda y cámara para fotos.',
-    imagen: null,
+    imagen: castilloloira,
     tiempo_estimado: '08:00:00',
     pais: 'Francia',
     ciudad: 'Valle del Loira',
@@ -87,9 +109,9 @@ export const dummyData = [
     id_tour: 6,
     nombre: 'Tour de la Gran Muralla China',
     descripcion:
-      'Camina sobre una de las maravillas del mundo y disfruta de vistas espectaculares.',
+      'Camina sobre una de las maravillas del mundo y disfruta de vistas espectaculares. La Gran Muralla China es una antigua fortificación china, construida y reconstruida entre el siglo V a. C. y el siglo XVI para proteger la frontera norte del Imperio chino durante las sucesivas dinastías imperiales de los ataques de los nómadas xiongnu de Mongolia y Manchuria.',
     recomendaciones: 'Llevar agua y protector solar.',
-    imagen: null,
+    imagen: murallaChina,
     tiempo_estimado: '03:00:00',
     pais: 'China',
     ciudad: 'Beijing',
@@ -104,9 +126,9 @@ export const dummyData = [
     id_tour: 7,
     nombre: 'Safari por el Parque Kruger',
     descripcion:
-      'Explora la fauna africana en el parque más famoso de Sudáfrica.',
+      'Explora la fauna africana en el parque más famoso de Sudáfrica. 2.000.000 hectáreas rebosantes de lujo salvaje, impresionante vida silvestre y zonas de conservación de fauna, la escapada perfecta a una de las legendarias reservas naturales y privadas de toda África. Aproximadamente del mismo tamaño que el conjunto de Israel, un poco más pequeño que Bélgica y básicamente un tercio del tamaño de Irlanda.',
     recomendaciones: 'Usar sombrero y ropa cómoda.',
-    imagen: null,
+    imagen: krugerPark,
     tiempo_estimado: '04:30:00',
     pais: 'Sudáfrica',
     ciudad: 'Parque Kruger',
@@ -120,9 +142,9 @@ export const dummyData = [
   {
     id_tour: 8,
     nombre: 'Excursión a las Cataratas del Niágara',
-    descripcion: 'Vive la emoción de estar junto a las famosas cataratas.',
+    descripcion: 'Vive la emoción de estar junto a las famosas cataratas. Las cataratas del Niágara (Niagara Falls en inglés, Chutes du Niagara en francés) son un conjunto de cascadas situadas en el río Niágara, en la zona noreste de América del Norte, entre Canadá y Estados Unidos. Situadas a unos 236 metros sobre el nivel del mar, su caída es de aproximadamente 51 metros. Comprenden tres cataratas: la «catarata canadiense» (Ontario), la «catarata estadounidense» (Nueva York) y la «catarata Velo de Novia», más pequeña. Aunque no tienen una gran altura, son muy amplias y son las más voluminosas de América del Norte, ya que por ellas pasa toda el agua de los Grandes Lagos. Entre las cataratas canadienses y las estadounidenses se encuentra la Isla de la Cabra.',
     recomendaciones: 'Llevar impermeable y cámara fotográfica.',
-    imagen: null,
+    imagen: niagara,
     tiempo_estimado: '02:00:00',
     pais: 'Estados Unidos',
     ciudad: 'Niagara Falls',
@@ -137,9 +159,9 @@ export const dummyData = [
     id_tour: 9,
     nombre: 'Tour de la Estatua de la Libertad',
     descripcion:
-      'Conoce la historia y significado de la Estatua de la Libertad en Nueva York.',
+      'Conoce la historia y significado de la Estatua de la Libertad en Nueva York. La Libertad iluminando el mundo (en inglés: Liberty Enlightening the World; en francés: La Liberté éclairant le monde), más conocida como la Estatua de la Libertad, es uno de los monumentos más famosos de Nueva York, de los Estados Unidos y de todo el mundo. Se encuentra en la isla de la Libertad al sur de la isla de Manhattan, junto a la desembocadura del río Hudson y cerca de la isla Ellis. La Estatua de la Libertad fue un regalo del pueblo francés al pueblo estadounidense en 1886 para conmemorar el centenario de la Declaración de Independencia de los Estados Unidos y como un signo de amistad entre las dos naciones. Fue inaugurada el 28 de octubre de 1886 en presencia del presidente estadounidense de la época, Grover Cleveland.',
     recomendaciones: 'Llevar identificación y protector solar.',
-    imagen: null,
+    imagen: libertad,
     tiempo_estimado: '01:30:00',
     pais: 'Estados Unidos',
     ciudad: 'Nueva York',
@@ -153,9 +175,9 @@ export const dummyData = [
   {
     id_tour: 10,
     nombre: 'Excursión a las Islas Galápagos',
-    descripcion: 'Explora la increíble biodiversidad de las Islas Galápagos.',
+    descripcion: 'Explora la increíble biodiversidad de las Islas Galápagos. Las islas Galápagos (también islas de las Galápagos y oficialmente conocidas como archipiélago de Colón o archipiélago de Galápagos) constituyen un archipiélago del océano Pacífico ubicado a 972 km de la costa de Ecuador. Fueron descubiertas en 1535 por la tripulación del barco del fray Tomás de Berlanga. Está conformado por trece islas grandes con una superficie mayor a 10 km², nueve islas medianas con una superficie de 1 km² a 10 km² y otros 107 islotes de tamaño pequeño, además de promontorios rocosos de pocos metros cuadrados, distribuidos alrededor de la línea ecuatorial, que conjuntamente con el Archipiélago Malayo, son los únicos archipiélagos del planeta que tienen territorio tanto en el hemisferio norte como en el hemisferio sur.',
     recomendaciones: 'Llevar ropa ligera y equipo de snorkel.',
-    imagen: null,
+    imagen: galapagos,
     tiempo_estimado: '06:00:00',
     pais: 'Ecuador',
     ciudad: 'Galápagos',
@@ -170,9 +192,9 @@ export const dummyData = [
     id_tour: 11,
     nombre: 'Tour de la Torre Eiffel',
     descripcion:
-      'Visita la icónica Torre Eiffel y disfruta de una vista panorámica de París.',
+      'Visita la icónica Torre Eiffel y disfruta de una vista panorámica de París. Ubicada en el extremo del Campo de Marte a la orilla del río Sena, este monumento parisino, símbolo de Francia y de su capital, es la estructura más alta de la ciudad y el monumento turístico más visitado del mundo, con 7,1 millones de turistas cada año. Con una altura de 300 metros, prolongada más tarde con una antena hasta los 324 metros, la torre Eiffel fue la estructura más elevada del mundo durante cuarenta y un años. Es el monumento de pago más visitado del mundo.',
     recomendaciones: 'Llevar cámara y ropa abrigada.',
-    imagen: null,
+    imagen: eiffel,
     tiempo_estimado: '01:00:00',
     pais: 'Francia',
     ciudad: 'París',
@@ -187,9 +209,9 @@ export const dummyData = [
     id_tour: 12,
     nombre: 'Aventura en el Amazonas',
     descripcion:
-      'Explora la selva amazónica y descubre su increíble flora y fauna.',
+      'Explora la selva amazónica y descubre su increíble flora y fauna. Esta selva amazónica es el bosque tropical más extenso del mundo. Se considera que su extensión llega a los 7 000 000 km², repartidos entre nueve países, de los cuales Brasil y Perú poseen la mayor extensión, seguidos por Colombia, Bolivia, Venezuela, Ecuador, Guyana, Surinam y Guayana Francesa (colectividad territorial francesa). La Amazonia se destaca por ser una de las ecorregiones con mayor biodiversidad en el planeta. Además, la Amazonia contribuye a la regulación del ciclo de carbono y del cambio climático. ',
     recomendaciones: 'Llevar repelente de insectos y botas.',
-    imagen: null,
+    imagen: amazonas,
     tiempo_estimado: '05:00:00',
     pais: 'Brasil',
     ciudad: 'Manaos',
@@ -204,9 +226,9 @@ export const dummyData = [
     id_tour: 13,
     nombre: 'Tour por el Taj Mahal',
     descripcion:
-      'Descubre la belleza y la historia de una de las maravillas del mundo.',
+      'Descubre la belleza y la historia de una de las maravillas del mundo. El Taj Mahal es considerado el más bello ejemplo de palacio, estilo que combina elementos de las arquitecturas islámica, persa, india e incluso turca. Este monumento ha logrado especial notoriedad por el carácter romántico de su inspiración. Aunque el mausoleo cubierto por la cúpula de mármol blanco es la parte más conocida, el Taj Mahal es un conjunto amurallado de edificios que ocupa 17 hectáreas y que también incluye una gran mezquita, una casa de invitados y jardines.',
     recomendaciones: 'Llevar sombrero y agua.',
-    imagen: null,
+    imagen: tajMahal,
     tiempo_estimado: '02:30:00',
     pais: 'India',
     ciudad: 'Agra',
@@ -221,9 +243,9 @@ export const dummyData = [
     id_tour: 14,
     nombre: 'Visita al Palacio de Versalles',
     descripcion:
-      'Explora los magníficos jardines y salones del Palacio de Versalles.',
+      'Explora los magníficos jardines y salones del Palacio de Versalles.El Palacio de Versalles (en francés: château de Versailles) es una antigua residencia real construida por el rey Luis XIV situada en Versalles, a unos 19 kilómetros al oeste de París (Francia). El palacio es propiedad de la República Francesa y desde 1995 está gestionado, bajo la dirección del Ministerio de Cultura francés, por el Establecimiento Público del Palacio, Museo y Dominio Nacional de Versalles. Alrededor de 15 millones de personas visitan cada año el palacio, el parque o los jardines de Versalles, lo que lo convierte en una de las atracciones turísticas más populares del mundo.',
     recomendaciones: 'Llevar calzado cómodo y agua.',
-    imagen: null,
+    imagen: versalles,
     tiempo_estimado: '03:00:00',
     pais: 'Francia',
     ciudad: 'Versalles',
@@ -238,9 +260,9 @@ export const dummyData = [
     id_tour: 15,
     nombre: 'Tour en el Glaciar Perito Moreno',
     descripcion:
-      'Descubre la majestuosidad del glaciar en una caminata guiada.',
+      "Descubre la majestuosidad del glaciar en una caminata guiada.Este glaciar se origina en el campo de hielo Patagónico Sur teniendo parte de su origen en la región de Magallanes y de la Antártica Chilena de Chile, integrando el Parque nacional Bernardo O'Higgins con el límite demarcado con el Acuerdo de 1998. En su descenso, alcanza el brazo Sur del lago Argentino, con un frente de 5 km de longitud, aflorando sobre el agua con una altura de unos 60 m.",
     recomendaciones: 'Llevar abrigo y calzado resistente.',
-    imagen: null,
+    imagen: peritoMoreno,
     tiempo_estimado: '04:00:00',
     pais: 'Argentina',
     ciudad: 'Santa Cruz',
@@ -255,9 +277,9 @@ export const dummyData = [
     id_tour: 16,
     nombre: 'Caminata en las Montañas Rocosas',
     descripcion:
-      'Explora las impresionantes vistas y senderos de las Montañas Rocosas.',
+      'Explora las impresionantes vistas y senderos de las Montañas Rocosas. Las Montañas Rocosas canadienses (en inglés, Canadian Rockies; en francés, Rocheuses canadiennes) es una cordillera localizada en Norteamérica, el sector de las Montañas Rocosas que se encuentra en Canadá, discurriendo por las provincias de Alberta y Columbia Británica. Una parte de este sector también corre por la parte norte de los estados de Idaho y Montana. El extremo norte de las Rocosas canadienses está en la llanura del río Liard, en la Columbia Británica.',
     recomendaciones: 'Llevar ropa de abrigo y calzado de trekking.',
-    imagen: null,
+    imagen: montanasRocosas,
     tiempo_estimado: '05:30:00',
     pais: 'Canadá',
     ciudad: 'Alberta',
@@ -272,9 +294,9 @@ export const dummyData = [
     id_tour: 17,
     nombre: 'Tour en la Gran Pirámide de Giza',
     descripcion:
-      'Explora la antigüedad y los secretos de la pirámide más grande de Egipto.',
+      'Explora la antigüedad y los secretos de la pirámide más grande de Egipto. La Gran Pirámide de Guiza (también conocida como pirámide de Keops o de Jufu) es, además de la mayor de las pirámides de Egipto, la más antigua de las siete maravillas del mundo antiguo y la única que todavía perdura. Fue ordenada a construir por el faraón Keops de la cuarta dinastía del Antiguo Egipto. Acerca del arquitecto de dicha obra, algunos estudiosos nombran a Hemiunu, pero no está comprobado.',
     recomendaciones: 'Llevar agua y protector solar.',
-    imagen: null,
+    imagen: gizah,
     tiempo_estimado: '02:00:00',
     pais: 'Egipto',
     ciudad: 'Giza',
@@ -287,19 +309,66 @@ export const dummyData = [
   },
   {
     id_tour: 18,
-    nombre: 'Excursión a Machu Picchu',
-    descripcion:
-      'Descubre la antigua ciudad inca de Machu Picchu con un guía experto.',
-    recomendaciones: 'Llevar ropa ligera y sombrero.',
-    imagen: null,
-    tiempo_estimado: '04:00:00',
-    pais: 'Perú',
-    ciudad: 'Cusco',
-    apto_para_ninos: false,
-    fecha_experiencia: '2024-12-20',
-    horario_inicio: '08:00:00',
-    horario_fin: '12:00:00',
-    valor: 250.0,
-    cupos: 15,
+    nombre: "Tour por las Pirámides de Teotihuacán",
+    descripcion: "Explora las antiguas pirámides de Teotihuacán, incluyendo la Pirámide del Sol y la Pirámide de la Luna. eotihuacan o Teotihuacán (del náhuatl: Teōtīhuacān o Teotiwakanb 'lugar donde los hombres se convierten en dioses; lugar de los dioses), y según nuevas investigaciones, también pudo haber sido conocida como Teohuacan 'ciudad/lugar del sol', 'lugar de los sumos sacerdotes', es el nombre que se le da al gran complejo arqueológico que fue uno de los mayores de Mesoamérica durante el clásico (c.200/250-600/650 d. C.), más precisamente entre c.100 a. C. y 600 d. C./650 d. C. El nombre propio fue empleado por los mexicas para identificar a esta urbe construida por una civilización anterior a ellos y que ya se encontraba en ruinas cuando la vieron por primera vez.3",
+    recomendaciones: "Usar protector solar, calzado cómodo y llevar agua.",
+    imagen: teotihuacan,
+    tiempo_estimado: "05:00:00",
+    pais: "México",
+    ciudad: "Teotihuacán",
+    apto_para_ninos: true,
+    fecha_experiencia: "2024-11-12",
+    horario_inicio: "09:00:00",
+    horario_fin: "14:00:00",
+    valor: 75.00,
+    cupos: 30
   },
-];
+  {
+    id_tour: 19,
+    nombre: "Recorrido por Chichén Itzá",
+    descripcion: "Visita una de las maravillas del mundo y descubre la historia de los mayas en Chichén Itzá.Fue inscrita como Patrimonio de la Humanidad por la Unesco en 1988. El 7 de julio de 2007, el Templo de Kukulcán, ubicado en Chichén Itzá, fue reconocido como una de las nuevas siete maravillas del mundo moderno, por una iniciativa privada sin el apoyo de la Unesco, pero con el reconocimiento de millones de votantes alrededor del mundo. La arquitectura monumental que ha llegado hasta nuestros días, que es emblemática del yacimiento, tiene una clara influencia tolteca. El dios que preside el sitio, según la mitología maya, es Kukulcán, representación maya de Quetzalcóatl, dios tomado del panteón de la cultura tolteca.",
+    recomendaciones: "Llevar sombrero, agua y cámara.",
+    imagen: chichenItza,
+    tiempo_estimado: "04:00:00",
+    pais: "México",
+    ciudad: "Yucatán",
+    apto_para_ninos: true,
+    fecha_experiencia: "2024-12-05",
+    horario_inicio: "10:00:00",
+    horario_fin: "14:00:00",
+    valor: 90.00,
+    cupos: 40
+  },
+  {
+  id_tour: 20,
+  nombre: "Tour de la Ciudad Perdida",
+  descripcion: "Explora la Ciudad Perdida de los antiguos taironas, un recorrido de varios días a través de la selva. Ciudad Perdida, también conocida como Teyuna o Buritaca-200, es uno de los principales sitios arqueológicos de Colombia. Fue un antiguo poblado indígena tayrona construido alrededor del siglo VIII de nuestra era. Hace parte de uno de los más de 250 poblados antiguos de los cuatro grupos indígenas encontrados en las caras norte y suroeste de la Sierra Nevada de Santa Marta, departamento del Magdalena, jurisdicción de Santa Marta, en el norte de Colombia.",
+  recomendaciones: "Llevar repelente de insectos, agua y equipo de acampar.",
+  imagen: ciudadPerdida,
+  tiempo_estimado: "72:00:00",
+  pais: "Colombia",
+  ciudad: "Santa Marta",
+  apto_para_ninos: false,
+  fecha_experiencia: "2024-12-01",
+  horario_inicio: "06:00:00",
+  horario_fin: "06:00:00",
+  valor: 400.00,
+  cupos: 15
+},
+{
+  id_tour: 21,
+  nombre: "Excursión a la Catedral de Sal de Zipaquirá",
+  descripcion: "Visita una impresionante catedral subterránea construida en una mina de sal. El diseño arquitectónico y artístico de la nueva Catedral de Sal, es propio del arquitecto bogotano Roswell Garavito Pearl, el cual salió aprobado tras la elección del proyecto que contenía un total de 44 propuestas en un concurso convocado por la Sociedad Colombiana de Arquitectos en 1990; mientras que la dirección técnica de ingeniería fue ejecutada por el ingeniero bogotano Jorge Enrique Castelblanco Reyes. En su interior se encuentra una rica colección artística, especialmente de esculturas de sal y mármol en un ambiente lleno de un profundo sentido religioso que atrae a turistas.",
+  recomendaciones: "Llevar ropa de abrigo.",
+  imagen: Zipaquira,
+  tiempo_estimado: "02:30:00",
+  pais: "Colombia",
+  ciudad: "Zipaquirá",
+  apto_para_ninos: true,
+  fecha_experiencia: "2024-11-18",
+  horario_inicio: "09:30:00",
+  horario_fin: "12:00:00",
+  valor: 35.00,
+  cupos: 40
+},
+]
