@@ -10,17 +10,19 @@ function App() {
   return (
     <>
       <Header />
-      <Routes>
-        <Route
-          path='/'
-          element={<Home />}
-        />
-        <Route
-          path='/tour/:id'
-          element={<TourDetail />}
-        />
-      </Routes>
-      <Footer />
+      <div style={{ marginTop: '100px' }}>
+        <Routes>
+          <Route
+            path='/'
+            element={<Home />}
+          />
+          <Route
+            path='/tour/:id'
+            element={<TourDetail />}
+          />
+        </Routes>
+        <Footer />
+      </div>
     </>
   );
 }
