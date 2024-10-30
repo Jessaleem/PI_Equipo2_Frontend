@@ -1,4 +1,13 @@
 :root {
+  --primary: #0b4040;
+  --secondary: #f2b6d2;
+  --success: #acf2eb;
+  --danger: #dc3545;
+  --warning: #ffc107;
+  --info: #17a2b8;
+  --light: #f8f9fa;
+  --dark: #343a40;
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -66,7 +75,7 @@ button:focus-visible {
 }
 
 .search {
-  background-image: url("@assets/search.svg");
+  background-image: url('@assets/search.svg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -85,7 +94,7 @@ button:focus-visible {
 
 .bienvenida {
   color: #136060;
-  font-family: "Jomhuria", sans-serif;
+  font-family: 'Jomhuria', sans-serif;
   font-size: 58px;
   margin-bottom: -25px;
 }
@@ -96,9 +105,10 @@ button:focus-visible {
 }
 
 .ver-tourCard-btn-colors {
+  min-width: 200px;
   background-color: #f2b6d2 !important;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  color: #0b4040;
+  color: #0b4040 !important;
 }
 
 .footer-tourCard-colors {
@@ -150,6 +160,90 @@ button:focus-visible {
   left: -30px !important;
 }
 
+.bg-categorias {
+  background-color: #f2b6d22e;
+}
+
+.shadow-card-categoria {
+  box-shadow: 0px 10px 20px 0px rgb(131, 131, 131);
+}
+
+.review-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.shadow-review {
+  box-shadow: 0 5px 10px 2px rgb(131, 131, 131);
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+  font-size: 25px !important;
+}
+
+.slick-next,
+.slick-prev {
+  width: 25px !important;
+  height: 25px !important;
+}
+
+.slick-next {
+  right: -30px !important;
+}
+
+.slick-prev {
+  left: -30px !important;
+}
+
+.rating i {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.atras-btn {
+  background-color: #f2b6d2 !important;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  color: black !important;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.imagen-container {
+  width: 50%;
+}
+.rating i.selected {
+  color: #ffc107;
+}
+.detail-title-section {
+  background-color: #a7f2cf75;
+}
+.detail-title {
+  color: black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+.detail-img {
+  width: 500px !important;
+}
+.detail-description {
+  max-width: 600px;
+  text-align: justify;
+}
+.reservar-btn {
+  width: 200px;
+  background-color: #acf2eb;
+  color: #0b4040;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
