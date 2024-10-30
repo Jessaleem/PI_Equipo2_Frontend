@@ -244,6 +244,9 @@ button:focus-visible {
   font-weight: bold;
   padding: 5px;
 }
+.body-content {
+  margin-top: 100px;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -260,5 +263,17 @@ button:focus-visible {
 @media (min-width: 992px) {
   .filtro-busqueda {
     top: 50px;
+  }
+}
+
+@media (max-width: 565px) {
+  .body-content {
+    padding-top: 60px;
+  }
+}
+
+@media (max-width: 360px) {
+  .body-content {
+    padding-top: 100px;
   }
 }
