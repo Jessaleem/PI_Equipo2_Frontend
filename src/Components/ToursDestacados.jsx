@@ -1,4 +1,3 @@
-import React from 'react';
 import { tours } from '../utils/tours';
 import TourCard from './TourCard';
 
@@ -11,8 +10,8 @@ const ToursDestacados = () => {
           return (
             <TourCard
               key={tour.id}
+              imagen={tour.imagen}
               nombre={tour.nombre}
-              id={tour.id}
             />
           );
         })}

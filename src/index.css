@@ -75,7 +75,7 @@ button:focus-visible {
 }
 
 .search {
-  background-image: url('/src/assets/search.svg');
+  background-image: url('@assets/search.svg');
   background-repeat: no-repeat;
   background-size: cover;
   background-color: rgba(242, 182, 210, 1) !important;
