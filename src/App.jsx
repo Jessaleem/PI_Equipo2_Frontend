@@ -5,6 +5,7 @@ import Home from './Pages/Home/Home';
 import Footer from './Components/Footer';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import TourDetail from './Pages/TourDetail/TourDetail';
 function App() {
   return (
     <>
