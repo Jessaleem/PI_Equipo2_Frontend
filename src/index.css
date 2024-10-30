@@ -105,9 +105,10 @@ button:focus-visible {
 }
 
 .ver-tourCard-btn-colors {
+  min-width: 200px;
   background-color: #f2b6d2 !important;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  color: #0b4040;
+  color: #0b4040 !important;
 }
 
 .footer-tourCard-colors {
@@ -208,11 +209,11 @@ button:focus-visible {
 .atras-btn {
   background-color: #f2b6d2 !important;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  background-color: #f2b6d2 !important;
-  color: black;
+  color: black !important;
   font-weight: bold;
   font-size: 20px;
 }
+
 .imagen-container {
   width: 50%;
 }
