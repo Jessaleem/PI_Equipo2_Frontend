@@ -244,6 +244,9 @@ button:focus-visible {
   font-weight: bold;
   padding: 5px;
 }
+.body-content {
+  margin-top: 100px;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -260,6 +263,46 @@ button:focus-visible {
 @media (min-width: 992px) {
   .filtro-busqueda {
     top: 50px;
+  }
+}
+
+.tour-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Configura 2 columnas */
+  grid-auto-rows: minmax(200px, auto); /* Ajusta la altura mínima */
+  gap: 20px; /* Espacio entre tarjetas */
+  justify-content: center; /* Centra las tarjetas en el contenedor */
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.tour-card {
+  width: 100%;
+  max-width: 300px; /* Ajusta el tamaño máximo en pantallas grandes */
+  min-height: 350px;
+  margin: 0 auto; /* Centra las tarjetas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para mejor visual */
+  border-radius: 8px;
+  transition: transform 0.3s ease; /* Animación para hover */
+}
+
+.tour-card:hover {
+  transform: scale(1.05); /* Efecto de escala al hacer hover */
+}
+
+.footer-tourCard-colors {
+  background-color: rgba(217, 217, 217, 0.8);
+  text-align: center;
+}
+@media (max-width: 565px) {
+  .body-content {
+    padding-top: 60px;
+  }
+}
+
+@media (max-width: 360px) {
+  .body-content {
+    padding-top: 100px;
   }
 }
 

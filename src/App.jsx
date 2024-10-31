@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Header />
-      <div style={{ marginTop: '100px' }}>
+      <div className='body-content'>
         <Routes>
           <Route
             path='/'
