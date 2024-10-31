@@ -262,3 +262,12 @@ button:focus-visible {
     top: 50px;
   }
 }
+
+.tour-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  grid-template-rows: repeat(5, auto); /* 5 filas */
+  gap: 20px; /* Espacio entre tarjetas, ajusta según prefieras */
+  max-width: 1280px;
+  margin: 0 auto;
+}
