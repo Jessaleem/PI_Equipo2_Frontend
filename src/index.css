@@ -265,9 +265,29 @@ button:focus-visible {
 
 .tour-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columnas */
-  grid-template-rows: repeat(5, auto); /* 5 filas */
-  gap: 20px; /* Espacio entre tarjetas, ajusta según prefieras */
+  grid-template-columns: repeat(2, 1fr); /* Configura 2 columnas */
+  grid-auto-rows: minmax(200px, auto); /* Ajusta la altura mínima */
+  gap: 20px; /* Espacio entre tarjetas */
+  justify-content: center; /* Centra las tarjetas en el contenedor */
   max-width: 1280px;
   margin: 0 auto;
+}
+
+.tour-card {
+  width: 100%;
+  max-width: 300px; /* Ajusta el tamaño máximo en pantallas grandes */
+  min-height: 350px;
+  margin: 0 auto; /* Centra las tarjetas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para mejor visual */
+  border-radius: 8px;
+  transition: transform 0.3s ease; /* Animación para hover */
+}
+
+.tour-card:hover {
+  transform: scale(1.05); /* Efecto de escala al hacer hover */
+}
+
+.footer-tourCard-colors {
+  background-color: rgba(217, 217, 217, 0.8);
+  text-align: center;
 }
