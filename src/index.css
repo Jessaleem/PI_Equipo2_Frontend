@@ -376,6 +376,7 @@ border-radius: 8px;
 box-shadow: 0px 2px 10px --dark ; 
 width: 300px;
 margin:50px;
+color:var(--primary);
 
 }
 
@@ -396,6 +397,7 @@ border: 1px solid var(--primary);
 border-radius: 4px; 
   box-shadow: 2px 2px 10px --danger ;
   background-color: var(--light);
+  color:var(--info);
 
 }
 
