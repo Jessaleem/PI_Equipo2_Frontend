@@ -349,3 +349,118 @@ button:focus-visible {
   background-color: rgba(217, 217, 217, 0.8);
   text-align: center;
 }
+
+/* ----------------------------------------- Estilos formulario------------------------------------*/
+
+body {
+font-family:Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+background-color: white; 
+display: flex; 
+justify-content: center; 
+align-items: center; 
+height: 100vh; 
+margin: 0; 
+}
+
+#titulo-registro{
+text-align: center;
+margin:10%
+}
+
+.form-container {
+position: relative; 
+background-color:var(--light); 
+padding: 20px; 
+border-radius: 8px; 
+box-shadow: 0px 2px 10px --dark ; 
+width: 300px;
+margin:50px;
+
+}
+
+
+form {
+display: flex; 
+flex-direction: column; 
+}
+
+
+label {
+margin-bottom: 5px; 
+
+}
+
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"] {
+padding: 10px; 
+margin-bottom: 15px; 
+border: 1px solid var(--primary);
+border-radius: 4px; 
+  box-shadow: 2px 2px 10px --danger ;
+  background-color: var(--light);
+
+}
+
+input[type="submit"] {
+background-color: var(--success); 
+color: var(--primary);
+border: none; 
+padding: 10px; 
+border-radius: 4px; 
+box-shadow: var(--dark);
+font-weight:bolder;
+margin-top: 10%;
+
+}
+
+
+input[type="submit"]:hover {
+background-color: var(--primary); 
+color: var(--light);
+
+}
+
+
+.close-button {
+position: absolute; 
+top: 10px; 
+right: 10px; 
+color:var(--primary); 
+font-size: 20px;
+font-weight: bold; 
+cursor: pointer; 
+}
+
+
+@media (max-width: 600px) {
+
+  body {
+  padding: 10px; 
+}
+
+.form-container {
+  padding: 15px;
+  width: 100%;
+  max-width:max-content;
+  margin:0px;
+}
+
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="password"] {
+  font-size: 14px; 
+  } 
+
+  input[type="submit"] {
+  font-size: 16px;
+  padding: 12px;
+  }
+
+.close-button {
+font-size: 18px; 
+}
+}
