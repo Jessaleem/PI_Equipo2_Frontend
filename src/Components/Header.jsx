@@ -16,10 +16,12 @@ const Header = () => (
           />
         </Link>
         <section>
+       <Link to={"/register"}>
           <Button
             backgroundColor='#ACF2EB'
             value='Registrarse'
-          />
+           
+          /> </Link>
           <Button
             backgroundColor='#A7F2CF'
             value='Iniciar Sesión'
