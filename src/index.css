@@ -97,6 +97,11 @@ button:focus-visible {
   background-color: rgba(242, 182, 210, 1) !important;
 }
 
+.search-input {
+  display: flex;
+  flex: 1;
+}
+
 .lemaContainer {
   display: flex;
   flex-direction: column;

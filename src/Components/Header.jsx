@@ -1,6 +1,18 @@
+
 import { Link } from 'react-router-dom';
 import { Button } from './Button';
-const Header = () => (
+import { useGeneralContext } from '../context/useGeneralContext';
+
+const Header = () =>{ 
+  const { dispatch, setAbrirModal} = useGeneralContext();
+
+  const openLoginModal = () => {
+    dispatch({ type: 'OPEN_LOGIN_MODAL' })
+    setAbrirModal(true);
+  }
+
+   
+  return (
   <header className='fixed-top'>
     <nav
       className='navbar navbar-light px-5'
@@ -19,15 +31,18 @@ const Header = () => (
           <Button
             backgroundColor='#ACF2EB'
             value='Registrarse'
+            data-bs-toggle="modal" data-bs-target="#loginModal"
           />
-          <Button
+          {/* <Button
             backgroundColor='#A7F2CF'
             value='Iniciar Sesión'
-          />
+            onClick={abrirModal}
+          /> */}
+          <button onClick={openLoginModal}>Iniciar Sesión</button>
         </section>
       </div>
     </nav>
   </header>
-);
+)};
 
 export default Header;
