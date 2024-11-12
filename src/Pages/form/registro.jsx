@@ -1,74 +1,138 @@
-// src/pages/Register.jsx
-import React from "react";
+import React, { useState } from "react";
 
 const Register = () => {
-	return (
-		<div>
-			<div class="form-container">
-				<h2 id="titulo-registro">Registro de Usuario</h2>
-				<form action="/..." method="POST">
-					<label for="nombre">Nombre:</label>
-					<input
-						type="text"
-						id="nombre"
-						name="nombre"
-						required
-						placeholder="ingrese su nombre"
-					/>
+  const [show, setShow] = useState(false);
+  const [error, setError] = useState({});
+  const [contacto, setContacto] = useState({
+    nombre: "",
+    apellido: "",
+    email: "",
+    contrasena: "",
+    confirmContrasena: "",
+  });
 
-					<label for="apellido">Apellido:</label>
-					<input
-						type="text"
-						id="apellido"
-						name="apellido"
-						required
-						placeholder="ingrese su apellido"
-					/>
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setContacto({ ...contacto, [name]: value });
+    setError({ ...error, [name]: "" });
+  };
 
-					<label for="telefono">Número de Teléfono:</label>
-					<input
-						type="tel"
-						id="telefono"
-						name="telefono"
-						required
-						pattern="[0-9]{10}"
-						placeholder="ingrese su numero telefono"
-					/>
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordPattern = /^(?=.*\d)(?=.*[A-Z])(?=.*\W).{8,}$/;
 
-					<label for="email">Correo Electrónico:</label>
-					<input
-						type="email"
-						id="email"
-						name="email"
-						required
-						placeholder="ingrese su correo electronico"
-					/>
+  const validateForm = () => {
+    let errors = {};
 
-					<label for="contraseña">Contraseña:</label>
-					<input
-						type="password"
-						id="contraseña"
-						name="contraseña"
-						required
-						placeholder="ingrese su contraseña"
-					/>
+    if (!contacto.nombre || /[^a-zA-Z\s]/.test(contacto.nombre)) {
+      errors.nombre = "Nombre inválido, solo letras son permitidas.";
+    }
+    if (!contacto.apellido || /[^a-zA-Z\s]/.test(contacto.apellido)) {
+      errors.apellido = "Apellido inválido, solo letras son permitidas.";
+    }
+    if (!emailPattern.test(contacto.email)) {
+      errors.email = "Correo electrónico inválido.";
+    }
+    if (!passwordPattern.test(contacto.contrasena)) {
+      errors.contrasena =
+        "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.";
+    }
+    if (contacto.contrasena !== contacto.confirmContrasena) {
+      errors.confirmContrasena = "Las contraseñas no coinciden.";
+    }
 
-					<label for="confirmar-contraseña">Confirmar Contraseña:</label>
-					<input
-						type="password"
-						id="confirmar-contraseña"
-						name="confirmar-contraseña"
-						required
-						placeholder="confirme su contraseña"
-					/>
+    setError(errors);
+    return Object.keys(errors).length === 0;
+  };
 
-					<input type="submit" value="Registrarse" />
-				</form>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+  };
 
-				
-			</div>
-		</div>
-	);
+  return (
+    <div>
+      <div className="form-container">
+        <h2 id="titulo-registro">Registro de Usuario</h2>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="nombre">Nombre:</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            value={contacto.nombre}
+            onChange={handleChange}
+            required
+            placeholder="Ingrese su nombre"
+          />
+          {error.nombre && <p style={{ color: "red" }}>{error.nombre}</p>}
+
+          <label htmlFor="apellido">Apellido:</label>
+          <input
+            type="text"
+            id="apellido"
+            name="apellido"
+            value={contacto.apellido}
+            onChange={handleChange}
+            required
+            placeholder="Ingrese su apellido"
+          />
+          {error.apellido && <p style={{ color: "red" }}>{error.apellido}</p>}
+
+          <label htmlFor="email">Correo Electrónico:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="Ingrese su correo electrónico"
+            value={contacto.email}
+            onChange={handleChange}
+          />
+          {error.email && <p style={{ color: "red" }}>{error.email}</p>}
+
+          <label htmlFor="contrasena">Contraseña:</label>
+          <input
+            type="password"
+            id="contrasena"
+            name="contrasena"
+            value={contacto.contrasena}
+            onChange={handleChange}
+            required
+            placeholder="Ingrese su contraseña"
+          />
+          {error.contrasena && (
+            <p style={{ color: "red" }}>{error.contrasena}</p>
+          )}
+
+          <label htmlFor="confirmContrasena">Confirmar Contraseña:</label>
+          <input
+            type="password"
+            id="confirmContrasena"
+            name="confirmContrasena"
+            required
+            placeholder="Confirme su contraseña"
+            value={contacto.confirmContrasena}
+            onChange={handleChange}
+          />
+          {error.confirmContrasena && (
+            <p style={{ color: "red" }}>{error.confirmContrasena}</p>
+          )}
+
+          <input type="submit" value="Registrarse" />
+        </form>
+      </div>
+
+      {show && (
+        <h4 style={{ color: "green" }}>
+          Gracias {contacto.nombre}, por registrarte
+        </h4>
+      )}
+    </div>
+  );
 };
 
 export default Register;
