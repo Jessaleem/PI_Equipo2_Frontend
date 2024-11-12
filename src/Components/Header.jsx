@@ -33,12 +33,12 @@ const Header = () =>{
             value='Registrarse'
             data-bs-toggle="modal" data-bs-target="#loginModal"
           />
-          {/* <Button
+          <Button
             backgroundColor='#A7F2CF'
             value='Iniciar Sesión'
-            onClick={abrirModal}
-          /> */}
-          <button onClick={openLoginModal}>Iniciar Sesión</button>
+            onClick={openLoginModal}
+          />
+          <button className='btn btn-primary' onClick={openLoginModal}>Iniciar Sesión</button>
         </section>
       </div>
     </nav>
