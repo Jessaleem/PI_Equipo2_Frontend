@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 import { Button } from './Button';
 import { useGeneralContext } from '../context/useGeneralContext';
 import logo from '@assets/logo_with_text.svg'
@@ -10,10 +10,15 @@ const Header = () =>{
   const { dispatch, setAbrirModal, state} = useGeneralContext();
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const loggedUser = state.isLoggedIn;
+  const navigate = useNavigate();
 
   const openLoginModal = () => {
     dispatch({ type: 'OPEN_LOGIN_MODAL' })
     setAbrirModal(true);
+  }
+
+  const linkRegistro=()=>{
+    navigate('/register'); 
   }
 
   const userInformation = state.userData;
@@ -68,6 +73,7 @@ const Header = () =>{
           <Button
             backgroundColor='#ACF2EB'
             value='Registrarse'
+            onClick={linkRegistro}
             data-bs-toggle="modal" data-bs-target="#loginModal"
           />
           <Button
