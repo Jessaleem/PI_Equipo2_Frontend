@@ -7,10 +7,14 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import TourDetail from './Pages/TourDetail/TourDetail';
 import Register from './Pages/form/registro';
+import { GeneralProvider } from './context/generalContext';
+import LoginModal from './Pages/Log-in/Login';
+
 function App() {
   return (
-    <>
+    <GeneralProvider >
       <Header />
+      <LoginModal />
       <div className='body-content'>
         <Routes>
           <Route
@@ -27,7 +31,7 @@ function App() {
         </Routes>
         <Footer />
       </div>
-    </>
+    </GeneralProvider>
   );
 }
 

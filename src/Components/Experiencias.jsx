@@ -1,4 +1,3 @@
-import React from "react";
 import { reviews } from "../utils/reviews";
 import ExperienciaCard from "./ExperienciaCard";
 import Slider from "react-slick";
