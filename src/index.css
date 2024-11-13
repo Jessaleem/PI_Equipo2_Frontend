@@ -31,12 +31,12 @@ a:hover {
   color: #535bf2;
 }
 
-body,html {
+body,
+html {
   margin: 0;
-    padding: 0;
+  padding: 0;
   overflow-x: hidden;
 }
-
 
 h1 {
   font-size: 3.2em;
@@ -74,12 +74,10 @@ button:focus-visible {
 .footer-img {
   max-height: 7vh;
   width: auto;
-
 }
 
 .footer-left {
   align-items: center;
-
 }
 
 .footer-right {
@@ -88,28 +86,22 @@ button:focus-visible {
   padding: 0vh 5vh 0vw 5vw;
 }
 
-.footer{
+.footer {
   background-color: #0b4040;
-  color:white;
+  color: white;
   display: flex;
-  
+
   justify-content: space-between;
   align-items: center;
   padding: 2vh 10vw;
-
- 
 }
 
-.footer-section{
+.footer-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-
-
 }
-
-
 
 .search {
   background-image: url('@assets/search.svg');
@@ -384,108 +376,94 @@ button:focus-visible {
 
 /* ----------------------------------------- Estilos formulario------------------------------------*/
 
-
-
-#titulo-registro{
-text-align: center;
-margin:10%
+#titulo-registro {
+  text-align: center;
+  margin: 10px;
 }
 
-.registro
-{
+.registro {
   position: relative;
-  font-family:Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-background-color: white; 
-display: flex; 
-justify-content: space-between; 
-align-items: center; 
-flex-direction: column;
-margin:0px;
-padding-bottom: 1vh;
-padding: 5vw 0 5vw 0;
-
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  margin: 0px;
+  padding-bottom: 1vh;
+  padding: 5vw 0 5vw 0;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-.registro{
-
-  min-height: 81vh;
-  position:relative;
-  margin-bottom: 0;
-}
+  .registro {
+    min-height: 81vh;
+    position: relative;
+    margin-bottom: 0;
+  }
 }
 
 .form-container {
   position: relative;
-background-color:var(--light); 
-border-radius: 8px; 
-box-shadow: 0px 2px 10px --dark ; 
-color:var(--primary);
-text-align: center;
-display: flex;
-flex-direction: column;
-align-self: center;
-justify-content: center; 
-align-items: center; 
-padding: 5vw;
-margin-bottom: auto;
-margin-top: auto;
+  background-color: var(--light);
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px --dark;
+  color: var(--primary);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  padding: 5vw;
+  margin-bottom: auto;
+  margin-top: auto;
 }
 
 form {
-display: flex; 
-flex-direction: column; 
+  display: flex;
+  flex-direction: column;
 }
 
-
-input[type="text"],
-input[type="tel"],
-input[type="email"],
-input[type="password"] {
-padding: 10px; 
-margin-bottom: 15px; 
-border: 1px solid var(--primary);
-border-radius: 4px; 
-  box-shadow: 2px 2px 10px --danger ;
+input[type='text'],
+input[type='tel'],
+input[type='email'],
+input[type='password'] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  box-shadow: 2px 2px 10px --danger;
   background-color: var(--light);
-  color:var(--info);
-
+  color: var(--info);
 }
 
-input[type="submit"] {
-background-color: var(--success); 
-color: var(--primary);
-border: none; 
-padding: 10px; 
-border-radius: 4px; 
-box-shadow: var(--dark);
-font-weight:bolder;
-margin-top: 10%;
-
+input[type='submit'] {
+  background-color: var(--success);
+  color: var(--primary);
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: var(--dark);
+  font-weight: bolder;
+  margin-top: 10%;
 }
 
-
-input[type="submit"]:hover {
-background-color: var(--primary); 
-color: var(--light);
-
+input[type='submit']:hover {
+  background-color: var(--primary);
+  color: var(--light);
 }
 
+input[type='text'],
+input[type='tel'],
+input[type='email'],
+input[type='password'] {
+  font-size: 14px;
+}
 
-
-
-  input[type="text"],
-  input[type="tel"],
-  input[type="email"],
-  input[type="password"] {
-  font-size: 14px; 
-  } 
-
-  input[type="submit"] {
+input[type='submit'] {
   font-size: 16px;
   padding: 12px;
-  }
-
+}
 
 .header-logged-user {
   display: flex;

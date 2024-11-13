@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import { register } from '../../services/auth';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-
+const initailState = {
+  nombre: '',
+  apellido: '',
+  email: '',
+  contrasena: '',
+  confirmContrasena: '',
+};
 const Register = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [error, setError] = useState({});
-  const [contacto, setContacto] = useState({
-    nombre: '',
-    apellido: '',
-    email: '',
-    contrasena: '',
-    confirmContrasena: '',
-  });
+  const [contacto, setContacto] = useState(initailState);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -54,9 +54,9 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      setShow(true);
       mutation.mutate(contacto);
-      navigate('/');
+      setShow(true);
+      setContacto(initailState);
     } else {
       setShow(false);
     }
@@ -64,7 +64,7 @@ const Register = () => {
 
   return (
     <div>
-      <div className='form-container'>
+      <div className='form-container p-0 min-vh-100'>
         <h2 id='titulo-registro'>Registro de Usuario</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor='nombre'>Nombre:</label>
@@ -140,7 +140,7 @@ const Register = () => {
 
       {show && (
         <h4 style={{ color: 'green' }}>
-          Gracias {contacto.nombre}, por registrarte
+          Gracias {mutation.data?.name}, por registrarte
         </h4>
       )}
     </div>
