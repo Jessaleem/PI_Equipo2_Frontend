@@ -96,14 +96,13 @@ button:focus-visible {
   justify-content: space-evenly;
   align-items: center;
   padding: 4vh 15vw ;
-
+  width: 100vw;
 }
 
 .footer-section{
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   width: 100%;
 
 }
