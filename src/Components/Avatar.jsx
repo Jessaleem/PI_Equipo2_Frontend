@@ -23,7 +23,7 @@ const Avatar = ({props}) => {
 			{src ? (
 				<img src={src} alt={alt} style={{ width: '40px', height: '40px' }} />
 			) : (
-				<span>{initials.toUpperCase()}</span>
+				<span>{initials?.toUpperCase()}</span>
 			)}
 		</div>
 	)

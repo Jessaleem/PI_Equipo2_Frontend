@@ -4,7 +4,7 @@ export const initialState = {
     userData: {
      firstName: '',
      password: '',
-     role: 3
+     role: 0,
     }
 }
 
@@ -30,6 +30,7 @@ export const reducer = (state, action) => {
 					return {
 						...state,
 						isLoggedIn: false,
+						userData: {...initialState.userData}
 					}
 		case 'USER_DATA':
 			return {

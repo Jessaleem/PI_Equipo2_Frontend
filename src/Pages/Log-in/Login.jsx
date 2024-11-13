@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { useGeneralContext } from '@context/useGeneralContext';
 import { login } from '@services/auth';
 import useFetchLogin from './hooks/useFetchLogin';
+import Avatar from '../../Components/Avatar';
+import avatar from '@assets/avatar.svg';
 
 const LoginModal = () => {
   const { abrirModal, dispatch, state } = useGeneralContext();
@@ -32,13 +34,26 @@ const LoginModal = () => {
     }
   };
 
+  const avatarInfo = {
+    image: avatar,
+    name: 'Avatar'
+  }
+
 
   return (
     <>
     <div
       className={`modal fade ${abrirModal && state.isLoginModalOpen ? 'show' : ''}`}
       style={{ 
-        display: abrirModal && state.isLoginModalOpen ? 'flex' : 'none', padding: ''
+        display: abrirModal && state.isLoginModalOpen ? 'flex' : 'none',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 1050,
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
       tabIndex="-1"
       role="dialog"
@@ -61,9 +76,9 @@ const LoginModal = () => {
       ></div>
       <div className="modal-dialog" role="document">
         <div className="modal-content">
-          <div className="modal-header">
+          <div className="modal-header" style={{display: 'flex', flexDirection: 'column', }}>
             <h5 className="modal-title">Iniciar Sesión</h5>
-            <button type="button" className="btn-close" style={{width: '12px'}} onClick={handleClose}></button>
+            <Avatar props={avatarInfo}/>
           </div>
           <div className="modal-body">
             <form onSubmit={handleLoginSubmit} style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
