@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const CategoriaCard = ({ imagen, categoria }) => {
   return (
-    <div className="py-5" style={{ minHeight: "300px", maxHeight: "400px" }}>
+    <div className="py-5" style={{ minHeight: "15rem", maxHeight: "15rem" }}>
       <img
         src={imagen}
         className="rounded-circle shadow-card-categoria object-fit-cover"

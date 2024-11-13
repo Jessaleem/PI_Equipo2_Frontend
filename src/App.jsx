@@ -6,6 +6,7 @@ import Footer from './Components/Footer';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import TourDetail from './Pages/TourDetail/TourDetail';
+import Register from './Pages/form/registro';
 import { GeneralProvider } from './context/generalContext';
 import LoginModal from './Pages/Log-in/Login';
 
@@ -24,6 +25,9 @@ function App() {
             path='/tour/:id'
             element={<TourDetail />}
           />
+          <Route 
+          path='/register'
+          element={<Register/>}/>
         </Routes>
         <Footer />
       </div>

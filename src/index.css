@@ -35,7 +35,11 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  display: flex; 
+  justify-content: center; 
+align-items: center; 
 }
+
 
 h1 {
   font-size: 3.2em;
@@ -106,7 +110,7 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  max-width: 460px;
+  max-width: 60vw;
   background-color: rgba(255, 255, 255, 0.47);
   backdrop-filter: blur(4px);
   left: 10%;
@@ -324,6 +328,11 @@ button:focus-visible {
   .body-content {
     padding-top: 100px;
   }
+  .lemaContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
 .tour-grid {
@@ -354,6 +363,91 @@ button:focus-visible {
   background-color: rgba(217, 217, 217, 0.8);
   text-align: center;
 }
+
+/* ----------------------------------------- Estilos formulario------------------------------------*/
+
+
+
+#titulo-registro{
+text-align: center;
+margin:10%
+}
+
+.form-container {
+position: relative; 
+background-color:var(--light); 
+padding: 20px; 
+border-radius: 8px; 
+box-shadow: 0px 2px 10px --dark ; 
+width: 300px;
+margin:50px;
+color:var(--primary);
+
+}
+
+
+form {
+display: flex; 
+flex-direction: column; 
+}
+
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"] {
+padding: 10px; 
+margin-bottom: 15px; 
+border: 1px solid var(--primary);
+border-radius: 4px; 
+  box-shadow: 2px 2px 10px --danger ;
+  background-color: var(--light);
+  color:var(--info);
+
+}
+
+input[type="submit"] {
+background-color: var(--success); 
+color: var(--primary);
+border: none; 
+padding: 10px; 
+border-radius: 4px; 
+box-shadow: var(--dark);
+font-weight:bolder;
+margin-top: 10%;
+
+}
+
+
+input[type="submit"]:hover {
+background-color: var(--primary); 
+color: var(--light);
+
+}
+
+
+.form-container {
+  padding: 15px;
+  width: 100%;
+  max-width:max-content;
+  margin:0px;
+  justify-content: center; 
+  align-items: center; 
+}
+
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="password"] {
+  font-size: 14px; 
+  } 
+
+  input[type="submit"] {
+  font-size: 16px;
+  padding: 12px;
+  }
+
+
 
 .header-logged-user {
   display: flex;
