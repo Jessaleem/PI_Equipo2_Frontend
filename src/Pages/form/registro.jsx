@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const Register = () => {
   const [show, setShow] = useState(false);
   const [error, setError] = useState({});
   const [contacto, setContacto] = useState({
-    nombre: "",
-    apellido: "",
-    email: "",
-    contrasena: "",
-    confirmContrasena: "",
+    nombre: '',
+    apellido: '',
+    email: '',
+    contrasena: '',
+    confirmContrasena: '',
   });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setContacto({ ...contacto, [name]: value });
-    setError({ ...error, [name]: "" });
+    setError({ ...error, [name]: '' });
   };
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -24,20 +24,20 @@ const Register = () => {
     let errors = {};
 
     if (!contacto.nombre || /[^a-zA-Z\s]/.test(contacto.nombre)) {
-      errors.nombre = "Nombre inválido, solo letras son permitidas.";
+      errors.nombre = 'Nombre inválido, solo letras son permitidas.';
     }
     if (!contacto.apellido || /[^a-zA-Z\s]/.test(contacto.apellido)) {
-      errors.apellido = "Apellido inválido, solo letras son permitidas.";
+      errors.apellido = 'Apellido inválido, solo letras son permitidas.';
     }
     if (!emailPattern.test(contacto.email)) {
-      errors.email = "Correo electrónico inválido.";
+      errors.email = 'Correo electrónico inválido.';
     }
     if (!passwordPattern.test(contacto.contrasena)) {
       errors.contrasena =
-        "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.";
+        'La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.';
     }
     if (contacto.contrasena !== contacto.confirmContrasena) {
-      errors.confirmContrasena = "Las contraseñas no coinciden.";
+      errors.confirmContrasena = 'Las contraseñas no coinciden.';
     }
 
     setError(errors);
@@ -54,80 +54,83 @@ const Register = () => {
   };
 
   return (
-    <div className="registro">
-      <div className="form-container">
-        <h2 id="titulo-registro">Registro de Usuario</h2>
+    <div>
+      <div className='form-container'>
+        <h2 id='titulo-registro'>Registro de Usuario</h2>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="nombre">Nombre:</label>
+          <label htmlFor='nombre'>Nombre:</label>
           <input
-            type="text"
-            id="nombre"
-            name="nombre"
+            type='text'
+            id='nombre'
+            name='nombre'
             value={contacto.nombre}
             onChange={handleChange}
             required
-            placeholder="Ingrese su nombre"
+            placeholder='Ingrese su nombre'
           />
-          {error.nombre && <p style={{ color: "red" }}>{error.nombre}</p>}
+          {error.nombre && <p style={{ color: 'red' }}>{error.nombre}</p>}
 
-          <label htmlFor="apellido">Apellido:</label>
+          <label htmlFor='apellido'>Apellido:</label>
           <input
-            type="text"
-            id="apellido"
-            name="apellido"
+            type='text'
+            id='apellido'
+            name='apellido'
             value={contacto.apellido}
             onChange={handleChange}
             required
-            placeholder="Ingrese su apellido"
+            placeholder='Ingrese su apellido'
           />
-          {error.apellido && <p style={{ color: "red" }}>{error.apellido}</p>}
+          {error.apellido && <p style={{ color: 'red' }}>{error.apellido}</p>}
 
-          <label htmlFor="email">Correo Electrónico:</label>
+          <label htmlFor='email'>Correo Electrónico:</label>
           <input
-            type="email"
-            id="email2"
-            name="email"
+            type='email'
+            id='email'
+            name='email'
             required
-            placeholder="Ingrese su correo electrónico"
+            placeholder='Ingrese su correo electrónico'
             value={contacto.email}
             onChange={handleChange}
           />
-          {error.email && <p style={{ color: "red" }}>{error.email}</p>}
+          {error.email && <p style={{ color: 'red' }}>{error.email}</p>}
 
-          <label htmlFor="contrasena">Contraseña:</label>
+          <label htmlFor='contrasena'>Contraseña:</label>
           <input
-            type="password"
-            id="contrasena"
-            name="contrasena"
+            type='password'
+            id='contrasena'
+            name='contrasena'
             value={contacto.contrasena}
             onChange={handleChange}
             required
-            placeholder="Ingrese su contraseña"
+            placeholder='Ingrese su contraseña'
           />
           {error.contrasena && (
-            <p style={{ color: "red" }}>{error.contrasena}</p>
+            <p style={{ color: 'red' }}>{error.contrasena}</p>
           )}
 
-          <label htmlFor="confirmContrasena">Confirmar Contraseña:</label>
+          <label htmlFor='confirmContrasena'>Confirmar Contraseña:</label>
           <input
-            type="password"
-            id="confirmContrasena"
-            name="confirmContrasena"
+            type='password'
+            id='confirmContrasena'
+            name='confirmContrasena'
             required
-            placeholder="Confirme su contraseña"
+            placeholder='Confirme su contraseña'
             value={contacto.confirmContrasena}
             onChange={handleChange}
           />
           {error.confirmContrasena && (
-            <p style={{ color: "red" }}>{error.confirmContrasena}</p>
+            <p style={{ color: 'red' }}>{error.confirmContrasena}</p>
           )}
 
-          <input type="submit" value="Registrarse" />
+          <input
+            type='submit'
+            value='Registrarse'
+          />
         </form>
       </div>
 
       {show && (
-        <h4 style={{ color: "green" }}>
+        <h4 style={{ color: 'green' }}>
           Gracias {contacto.nombre}, por registrarte
         </h4>
       )}
