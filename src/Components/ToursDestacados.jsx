@@ -1,17 +1,17 @@
-import { tours } from '../utils/tours';
-import TourCard from './TourCard';
+import { tours } from "../utils/tours";
+import TourCard from "./TourCard";
 
 const ToursDestacados = () => {
-   // Función para mezclar el arreglo de tours de forma aleatoria
-   const shuffleTours = (array) => {
+  // Función para mezclar el arreglo de tours de forma aleatoria
+  const shuffleTours = (array) => {
     return array.sort(() => Math.random() - 0.5);
   };
-    // Mezclamos los tours y seleccionamos los primeros 10 (2 columnas x 5 filas)
-    const displayedTours = shuffleTours(tours).slice(0, 10);
+  // Mezclamos los tours y seleccionamos los primeros 10 (2 columnas x 5 filas)
+  const displayedTours = shuffleTours(tours).slice(0, 10);
   return (
-    <section className='bg-body-secondary px-3'>
-      <h2 className='py-5'>Tours Destacados</h2>
-      <div className='tour-grid'>
+    <section className="bg-body-secondary px-3">
+      <h2 className="py-5">Tours Destacados</h2>
+      <div className="tour-grid">
         {displayedTours.map((tour) => (
           <TourCard
             key={tour.id}
@@ -21,7 +21,7 @@ const ToursDestacados = () => {
           />
         ))}
       </div>
-      <button className='btn ver-mas-btn fw-medium fs-4 px-5 my-5'>
+      <button className="btn ver-mas-btn fw-medium fs-4 px-5 my-5">
         Ver más
       </button>
     </section>
