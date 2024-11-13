@@ -32,7 +32,7 @@ export const register = async (data) => {
     body: JSON.stringify(body),
   };
   try {
-    const response = await fetch(`http://localhost:8080/api/users`, options);
+    const response = await fetch(`http://localhost:8080/api/v1/users`, options);
     const data = await response.json();
     return data;
   } catch (error) {

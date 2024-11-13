@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { register } from '../../services/auth';
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [error, setError] = useState({});
   const [contacto, setContacto] = useState({
@@ -20,6 +24,9 @@ const Register = () => {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordPattern = /^(?=.*\d)(?=.*[A-Z])(?=.*\W).{8,}$/;
 
+  const mutation = useMutation({
+    mutationFn: register,
+  });
   const validateForm = () => {
     let errors = {};
 
@@ -48,6 +55,8 @@ const Register = () => {
     e.preventDefault();
     if (validateForm()) {
       setShow(true);
+      mutation.mutate(contacto);
+      navigate('/');
     } else {
       setShow(false);
     }
