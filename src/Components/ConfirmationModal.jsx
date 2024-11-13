@@ -1,8 +1,6 @@
 import { Button } from "./Button";
 
 const ConfirmationModal = ({  message, onConfirm, onCancel, show }) => {
-    console.log('show', show)
-    console.log('message', message)
     return (
       <div
         className={`modal fade ${show ? 'show' : ''}`}

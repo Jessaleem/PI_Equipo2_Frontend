@@ -1,5 +1,4 @@
 export async function login(auth){
-    console.log(auth)
     const options = {
         method: 'POST',
         headers: {

@@ -9,7 +9,6 @@ export const initialState = {
 }
 
 export const reducer = (state, action) => {
-    console.log('test')
     switch (action.type) {
         case 'OPEN_LOGIN_MODAL':
 					return {

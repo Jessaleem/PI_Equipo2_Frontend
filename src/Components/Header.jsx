@@ -10,7 +10,6 @@ const Header = () =>{
   const { dispatch, setAbrirModal, state} = useGeneralContext();
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const loggedUser = state.isLoggedIn;
-  console.log('state',state)
 
   const openLoginModal = () => {
     dispatch({ type: 'OPEN_LOGIN_MODAL' })
@@ -28,7 +27,6 @@ const Header = () =>{
   }
 
   const handleLogOut = () => {
-    console.log('handleLogOut')
     setShowConfirmationModal(false);
     dispatch({ type: 'USER_LOGGED_OUT' })
     dispatch({ type: 'CLOSE_LOGIN_MODAL' })

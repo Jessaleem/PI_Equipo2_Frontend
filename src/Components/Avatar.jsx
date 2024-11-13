@@ -1,6 +1,5 @@
 
 const Avatar = ({props}) => {
-	console.log('props', props)
 	const src = props.image;
 	const initials = props.name[0] + props.name[1];
 	const alt = `${props.name} avatar`;

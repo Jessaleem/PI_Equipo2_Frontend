@@ -74,15 +74,15 @@ const LoginModal = () => {
         }}
         onClick={handleBackgroundClick}
       ></div>
-      <div className="modal-dialog" role="document">
+      <div className="modal-dialog" role="document" style={{position: 'relative', width: '80%', maxWidth: '400px'}}>
         <div className="modal-content">
-          <div className="modal-header" style={{display: 'flex', flexDirection: 'column', }}>
+          <div className="modal-header" style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
             <h5 className="modal-title">Iniciar Sesión</h5>
             <Avatar props={avatarInfo}/>
           </div>
           <div className="modal-body">
             <form onSubmit={handleLoginSubmit} style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
-              <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
+              <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginLeft:'20px',  marginRight: '20px'}}>
                 <label htmlFor="email" className='form-label'>Correo Electrónico:</label>
                 <input 
                   className="form-control"
@@ -95,7 +95,7 @@ const LoginModal = () => {
                   required 
                 />
               </div>
-              <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
+              <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginLeft:'20px', marginRight: '20px'}}>
                 <label htmlFor="email" className='form-label'>Contraseña:</label>
                 <input 
                   className="form-control"
@@ -119,7 +119,7 @@ const LoginModal = () => {
                 }} 
                 className="btn btn-primary" 
                 onClick={handleClose}>
-              Iniciar Sesión
+              Ingresar
             </button>
             </form>
           </div>
