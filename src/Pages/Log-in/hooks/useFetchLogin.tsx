@@ -25,7 +25,6 @@ const useFetchLogin = () => {
     try {
       const data = await login(auth);
       if (data) {
-        console.log(data);
         if (data?.email && data?.type) {
           dispatch({ type: "USER_LOGGED_IN" });
           dispatch({ type: "USER_DATA", payload: data });
