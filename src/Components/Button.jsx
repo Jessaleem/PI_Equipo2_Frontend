@@ -6,9 +6,7 @@ export const Button = ({ backgroundColor, value, onClick }) => {
   const location = useLocation();
   return (
     <button
-      className={`btn m-2 py-2 rounded ${
-        location.pathname === '/register' && 'd-none'
-      }`}
+      className={`btn m-2 py-2 rounded `}
       style={{
         backgroundColor: backgroundColor,
         color: '#0B4040',
