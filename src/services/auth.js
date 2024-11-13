@@ -1,6 +1,5 @@
-const BASE_URL = process.env.REACT_APP_DB_URL;
-
 export async function login(auth){
+    console.log(auth)
     const options = {
         method: 'POST',
         headers: {
@@ -9,7 +8,7 @@ export async function login(auth){
         body: JSON.stringify(auth)
     }
     try {
-        const response = await fetch(`${BASE_URL}/auth/login`, options);
+        const response = await fetch(`http://localhost:8080/api/v1/auth/login`, options);
         const data = await response.json();
         return data;
     } catch (error) {

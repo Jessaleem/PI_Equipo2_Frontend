@@ -2,15 +2,22 @@
 import { Link } from 'react-router-dom';
 import { Button } from './Button';
 import { useGeneralContext } from '../context/useGeneralContext';
+import logo from '@assets/logo_with_text.svg'
 
 const Header = () =>{ 
-  const { dispatch, setAbrirModal} = useGeneralContext();
+  const { dispatch, setAbrirModal, state} = useGeneralContext();
+  const loggedUser = state.isLoggedIn;
+  console.log('state',state)
 
   const openLoginModal = () => {
     dispatch({ type: 'OPEN_LOGIN_MODAL' })
     setAbrirModal(true);
   }
 
+  const handleLogOut = () => {
+    dispatch({ type: 'USER_LOGGED_OUT' })
+    dispatch({ type: 'CLOSE_LOGIN_MODAL' })
+  } 
    
   return (
   <header className='fixed-top'>
@@ -21,13 +28,15 @@ const Header = () =>{
       <div className='container-fluid'>
         <Link to={`/`}>
           <img
-            src='https://s3-alpha-sig.figma.com/img/1027/fefe/087e522e2d2b6a6e8d1c875796b5854f?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=gA~vOqhxFrR7PWYVdJeBhC1r~BwWwKi061V2sEhKake9SLWI6533mDXaS-SA9u9wxgjmzlKAKXuJfxpz6l9JlQcRg2Dwxq~9K5lUzg3L33I~3vRc30b3x-YycYF5Xs4RcngblkuuuIudNdRNSMLTVC9U-ttmAeMQzQMLzjuLiitSkwtZYI86k~FFLINkN~T64LA9FcN0LcKcTLzvt3K2Dz1prVHQhphKI2Hawqhv-2yJvxXcG6q3sda65DZmxrfjcGQjSSoFyTmaisKfriv-8MKc8Xt-ptbcdZlJhfOJdbjXnyDEQt7kKYDQF8n~~MnLXnEJGOCivdtd9aJZz-zlTg__'
+            src={logo}
             alt='logo'
             width='180'
             height='90'
           />
         </Link>
-        <section>
+
+        {loggedUser ? <button onClick={handleLogOut}>Cerrar Sesión</button>:
+          <section>
           <Button
             backgroundColor='#ACF2EB'
             value='Registrarse'
@@ -37,9 +46,10 @@ const Header = () =>{
             backgroundColor='#A7F2CF'
             value='Iniciar Sesión'
             onClick={openLoginModal}
+            data-bs-target="#loginModal"
           />
-          <button className='btn btn-primary' onClick={openLoginModal}>Iniciar Sesión</button>
         </section>
+        }
       </div>
     </nav>
   </header>

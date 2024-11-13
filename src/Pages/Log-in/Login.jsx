@@ -1,42 +1,148 @@
+
+import { useEffect, useState } from 'react';
 import { useGeneralContext } from '@context/useGeneralContext';
+import { login } from '@services/auth';
+import useFetchLogin from './hooks/useFetchLogin';
 
 const LoginModal = () => {
-  const { abrirModal, setAbrirModal, dispatch, state } = useGeneralContext();
+  const { abrirModal, dispatch, state } = useGeneralContext();
+  const [loading, setLoading] = useState(false);
 
-  console.log(state)
+  const {  
+    handleClose, 
+    email, 
+    setEmail,
+    password, 
+    setPassword,
+    errorMessage, 
+    setErrorMessage,
+    handleLoginSubmit
+  } = useFetchLogin();
+    
+  useEffect(() => {
+    if (abrirModal && state.isLoginModalOpen) {
+      setEmail('');
+      setPassword('');
+    }
+  }, [abrirModal, state.isLoginModalOpen]);
 
-  const handleClose = () => {
-    setAbrirModal(false);
-    dispatch({ type: 'CLOSE_LOGIN_MODAL' });
+  const handleBackgroundClick = (e) => {
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
   };
 
+
   return (
+    <>
     <div
       className={`modal fade ${abrirModal && state.isLoginModalOpen ? 'show' : ''}`}
-      style={{ display: abrirModal && state.isLoginModalOpen ? 'block' : 'none' }}
+      style={{ 
+        display: abrirModal && state.isLoginModalOpen ? 'flex' : 'none',
+      }}
       tabIndex="-1"
       role="dialog"
+      id="loginModal"
+      aria-hidden="true"
+      
     >
+      <div
+        className="modal-backdrop show"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          zIndex: -1,
+        }}
+        onClick={handleBackgroundClick}
+      ></div>
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">Iniciar Sesión</h5>
-            <button type="button" className="btn-close" onClick={handleClose}></button>
+            <button type="button" className="btn-close" style={{width: '12px'}} onClick={handleClose}></button>
           </div>
           <div className="modal-body">
-            <p>Aquí van los campos de inicio de sesión...</p>
-          </div>
-          <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" onClick={handleClose}>
-              Cerrar
-            </button>
-            <button type="button" className="btn btn-primary">
+            <form onSubmit={handleLoginSubmit} style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
+              <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
+                <label htmlFor="email" className='form-label'>Correo Electrónico:</label>
+                <input 
+                  className="form-control"
+                  type="email" 
+                  name="email" 
+                  id="email" 
+                  placeholder="Correo Electrónico" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required 
+                />
+              </div>
+              <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
+                <label htmlFor="email" className='form-label'>Contraseña:</label>
+                <input 
+                  className="form-control"
+                  type="password" 
+                  name="password" 
+                  id="password" 
+                  placeholder="Contraseña" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required />
+              </div>
+              <button 
+                type="submit"  
+                style={{
+                  marginLeft: 'auto', 
+                  marginRight: 'auto', 
+                  marginTop: '15px', 
+                  backgroundColor: '#A7F2CF', 
+                  color: "#0B4040", 
+                  border: '1px solid #A7F2CF'
+                }} 
+                className="btn btn-primary" 
+                onClick={handleClose}>
               Iniciar Sesión
             </button>
+            </form>
           </div>
         </div>
       </div>
     </div>
+
+    {/* Snackbar (Toast) para mostrar error */}
+    {errorMessage && (
+        <div
+          className="toast show align-items-center text-white bg-danger border-0 position-fixed"
+          style={{ 
+            bottom: '0',
+            left: '50vw',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: '#f8d7da',
+            color: '#721c24',
+            zIndex: 1060 
+          }}
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div className="d-flex">
+            <div className="toast-body">
+              {errorMessage}
+            </div>
+            <button
+              type="button"
+              className="btn-close btn-close-white me-2 m-auto"
+              style={{ color: '#721c24' }}
+              aria-label="Close"
+              onClick={() => setErrorMessage('')}
+            ></button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
