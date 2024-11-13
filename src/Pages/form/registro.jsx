@@ -51,7 +51,7 @@ const Register = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
       mutation.mutate(contacto);
@@ -100,6 +100,7 @@ const Register = () => {
             placeholder='Ingrese su correo electrónico'
             value={contacto.email}
             onChange={handleChange}
+            required
           />
           {error.email && <p style={{ color: 'red' }}>{error.email}</p>}
 
@@ -126,6 +127,7 @@ const Register = () => {
             placeholder='Confirme su contraseña'
             value={contacto.confirmContrasena}
             onChange={handleChange}
+            required
           />
           {error.confirmContrasena && (
             <p style={{ color: 'red' }}>{error.confirmContrasena}</p>
