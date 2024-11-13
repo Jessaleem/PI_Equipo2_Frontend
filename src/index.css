@@ -393,26 +393,30 @@ margin:10%
 
 .registro
 {
+  position: relative;
   font-family:Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 background-color: white; 
 display: flex; 
-justify-content: center; 
+justify-content: space-between; 
 align-items: center; 
+flex-direction: column;
 margin:0px;
-max-width: 100%;
-padding: 5vw 0 5vw;
+padding-bottom: 1vh;
+padding: 5vw 0 5vw 0;
 
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
 .registro{
-  min-height: 100vh;
-  padding: 5vw 0 5vw 0;
+
+  min-height: 81vh;
+  position:relative;
+  margin-bottom: 0;
 }
 }
 
 .form-container {
-
+  position: relative;
 background-color:var(--light); 
 border-radius: 8px; 
 box-shadow: 0px 2px 10px --dark ; 
@@ -424,6 +428,8 @@ align-self: center;
 justify-content: center; 
 align-items: center; 
 padding: 5vw;
+margin-bottom: auto;
+margin-top: auto;
 }
 
 form {
