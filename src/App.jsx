@@ -10,9 +10,11 @@ import Register from './Pages/form/registro';
 import { GeneralProvider } from './context/generalContext';
 import LoginModal from './Pages/Log-in/Login';
 
+import UserList from './Pages/admin/userList/UserList';
+
 function App() {
   return (
-    <GeneralProvider >
+    <GeneralProvider>
       <Header />
       <LoginModal />
       <div className='body-content'>
@@ -25,9 +27,14 @@ function App() {
             path='/tour/:id'
             element={<TourDetail />}
           />
-          <Route 
-          path='/register'
-          element={<Register/>}/>
+          <Route
+            path='/register'
+            element={<Register />}
+          />
+          <Route
+            path='/admin/users'
+            element={<UserList />}
+          />
         </Routes>
         <Footer />
       </div>
