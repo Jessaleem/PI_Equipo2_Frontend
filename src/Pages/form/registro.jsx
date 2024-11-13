@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const Register = () => {
   const [show, setShow] = useState(false);
@@ -44,10 +45,30 @@ const Register = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      setShow(true);
+      try {
+        // Enviar datos al backend
+        const response = await axios.post(
+          "http://localhost:3001/api/register",
+          {
+            nombre: contacto.nombre,
+            apellido: contacto.apellido,
+            email: contacto.email,
+            contrasena: contacto.contrasena,
+          }
+        );
+
+        console.log(response.data.message);
+        setShow(true);
+      } catch (error) {
+        console.error(
+          "Error al registrar usuario:",
+          error.response?.data || error.message
+        );
+        alert("Hubo un error al registrar");
+      }
     } else {
       setShow(false);
     }
@@ -58,65 +79,55 @@ const Register = () => {
       <div className="form-container">
         <h2 id="titulo-registro">Registro de Usuario</h2>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="nombre">Nombre:</label>
+          <label>Nombre:</label>
           <input
             type="text"
-            id="nombre"
             name="nombre"
             value={contacto.nombre}
             onChange={handleChange}
             required
-            placeholder="Ingrese su nombre"
           />
           {error.nombre && <p style={{ color: "red" }}>{error.nombre}</p>}
 
-          <label htmlFor="apellido">Apellido:</label>
+          <label>Apellido:</label>
           <input
             type="text"
-            id="apellido"
             name="apellido"
             value={contacto.apellido}
             onChange={handleChange}
             required
-            placeholder="Ingrese su apellido"
           />
           {error.apellido && <p style={{ color: "red" }}>{error.apellido}</p>}
 
-          <label htmlFor="email">Correo Electrónico:</label>
+          <label>Correo Electrónico:</label>
           <input
             type="email"
-            id="email2"
             name="email"
-            required
-            placeholder="Ingrese su correo electrónico"
             value={contacto.email}
             onChange={handleChange}
+            required
           />
           {error.email && <p style={{ color: "red" }}>{error.email}</p>}
 
-          <label htmlFor="contrasena">Contraseña:</label>
+          <label>Contraseña:</label>
           <input
             type="password"
-            id="contrasena"
             name="contrasena"
             value={contacto.contrasena}
             onChange={handleChange}
             required
-            placeholder="Ingrese su contraseña"
           />
           {error.contrasena && (
             <p style={{ color: "red" }}>{error.contrasena}</p>
           )}
 
-          <label htmlFor="confirmContrasena">Confirmar Contraseña:</label>
+          <label>Confirmar Contraseña:</label>
           <input
             type="password"
-            id="confirmContrasena"
             name="confirmContrasena"
-            required
-            placeholder="Confirme su contraseña"
             value={contacto.confirmContrasena}
             onChange={handleChange}
+            required
           />
           {error.confirmContrasena && (
             <p style={{ color: "red" }}>{error.confirmContrasena}</p>
