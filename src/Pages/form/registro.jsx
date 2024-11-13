@@ -54,7 +54,7 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="registro">
       <div className="form-container">
         <h2 id="titulo-registro">Registro de Usuario</h2>
         <form onSubmit={handleSubmit}>
@@ -85,7 +85,7 @@ const Register = () => {
           <label htmlFor="email">Correo Electrónico:</label>
           <input
             type="email"
-            id="email"
+            id="email2"
             name="email"
             required
             placeholder="Ingrese su correo electrónico"

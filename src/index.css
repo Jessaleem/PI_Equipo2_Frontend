@@ -35,9 +35,6 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  display: flex; 
-  justify-content: center; 
-align-items: center; 
 }
 
 
@@ -77,6 +74,7 @@ button:focus-visible {
 .footer-img {
   max-height: 7vh;
   width: auto;
+
 }
 
 .footer-left {
@@ -87,15 +85,17 @@ button:focus-visible {
 .footer-right {
   display: flex;
   align-items: center;
+  padding: 0vh 5vh 0vw 5vw;
 }
 
 .footer{
   background-color: #0b4040;
   color:white;
   display: flex;
-  justify-content: space-evenly;
+  
+  justify-content: space-between;
   align-items: center;
-  padding: 5vh 25vw ;
+  padding: 2vh 10vw ;
 
  
 }
@@ -390,16 +390,29 @@ text-align: center;
 margin:10%
 }
 
+.registro
+{
+  font-family:Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+background-color: white; 
+display: flex; 
+justify-content: center; 
+align-items: center; 
+padding: 10vw 0 10vw;
+
+}
+
 .form-container {
-position: relative; 
+
 background-color:var(--light); 
-padding: 20px; 
 border-radius: 8px; 
 box-shadow: 0px 2px 10px --dark ; 
-width: 300px;
-margin:50px;
 color:var(--primary);
-
+text-align: center;
+display: flex;
+flex-direction: column;
+align-self: center;
+justify-content: center; 
+align-items: center; 
 }
 
 

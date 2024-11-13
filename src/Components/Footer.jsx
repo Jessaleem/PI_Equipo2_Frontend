@@ -7,9 +7,7 @@ const Footer = () => {
   
   return (
     <div
-      className={`footer  ${
-        location.pathname === "/register" ? "d-none" : ""
-      }`}
+      className={`footer  `}
     >
       <section className="footer-section">
         <div >
