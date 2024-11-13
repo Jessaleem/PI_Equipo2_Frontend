@@ -1,11 +1,14 @@
-
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from './Button';
 import { useGeneralContext } from '../context/useGeneralContext';
 import logo from '@assets/logo_with_text.svg'
+import Avatar from './Avatar';
+import ConfirmationModal from './ConfirmationModal';
 
 const Header = () =>{ 
   const { dispatch, setAbrirModal, state} = useGeneralContext();
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const loggedUser = state.isLoggedIn;
   console.log('state',state)
 
@@ -14,7 +17,19 @@ const Header = () =>{
     setAbrirModal(true);
   }
 
+  const userInformation = state.userData;
+
+  const openConfirmationModal = () => {
+    setShowConfirmationModal(true);
+  }
+
+  const closeConfirmationModal = () => {
+    setShowConfirmationModal(false);
+  }
+
   const handleLogOut = () => {
+    console.log('handleLogOut')
+    setShowConfirmationModal(false);
     dispatch({ type: 'USER_LOGGED_OUT' })
     dispatch({ type: 'CLOSE_LOGIN_MODAL' })
   } 
@@ -35,7 +50,22 @@ const Header = () =>{
           />
         </Link>
 
-        {loggedUser ? <button onClick={handleLogOut}>Cerrar Sesión</button>:
+        {loggedUser ? 
+        <div className='header-logged-user'> 
+          <Avatar props={userInformation}/> 
+          <Button 
+          backgroundColor='#ACF2EB'
+          value='Cerrar Sesión'
+            onClick={openConfirmationModal} 
+          />
+          <ConfirmationModal 
+            message="¿Deseas salir de la sesión?"
+            onConfirm={handleLogOut}
+            onCancel={closeConfirmationModal}
+            show={showConfirmationModal}
+          />
+        </div>
+        :
           <section>
           <Button
             backgroundColor='#ACF2EB'

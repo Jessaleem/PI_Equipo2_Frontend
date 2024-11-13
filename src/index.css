@@ -354,3 +354,10 @@ button:focus-visible {
   background-color: rgba(217, 217, 217, 0.8);
   text-align: center;
 }
+
+.header-logged-user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}

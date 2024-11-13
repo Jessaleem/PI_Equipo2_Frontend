@@ -38,7 +38,7 @@ const LoginModal = () => {
     <div
       className={`modal fade ${abrirModal && state.isLoginModalOpen ? 'show' : ''}`}
       style={{ 
-        display: abrirModal && state.isLoginModalOpen ? 'flex' : 'none',
+        display: abrirModal && state.isLoginModalOpen ? 'flex' : 'none', padding: ''
       }}
       tabIndex="-1"
       role="dialog"
@@ -117,7 +117,7 @@ const LoginModal = () => {
         <div
           className="toast show align-items-center text-white bg-danger border-0 position-fixed"
           style={{ 
-            bottom: '0',
+            bottom: '0vh',
             left: '50vw',
             transform: 'translate(-50%, -50%)',
             backgroundColor: '#f8d7da',
