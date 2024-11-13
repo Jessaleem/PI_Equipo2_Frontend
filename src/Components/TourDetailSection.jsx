@@ -7,7 +7,6 @@ import TourDetailCaracteristicas from "./TourDetailCaracteristicas";
 
 const TourDetailSection = ({ id }) => {
   const tour = dummyData.find((e) => e.id_tour === Number(id));
-  console.log(tour, id);
   return (
     <div className="d-flex flex-column gap-3">
       <div className="d-flex flex-column justify-content-between gap-2">
