@@ -101,6 +101,11 @@ button:focus-visible {
   background-color: rgba(242, 182, 210, 1) !important;
 }
 
+.search-input {
+  display: flex;
+  flex: 1;
+}
+
 .lemaContainer {
   display: flex;
   flex-direction: column;
@@ -442,3 +447,11 @@ color: var(--light);
   padding: 12px;
   }
 
+
+
+.header-logged-user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}

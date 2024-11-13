@@ -9,7 +9,7 @@ const ToursDestacados = () => {
     // Mezclamos los tours y seleccionamos los primeros 10 (2 columnas x 5 filas)
     const displayedTours = shuffleTours(tours).slice(0, 10);
   return (
-    <div className='bg-body-secondary'>
+    <section className='bg-body-secondary px-3'>
       <h2 className='py-5'>Tours Destacados</h2>
       <div className='tour-grid'>
         {displayedTours.map((tour) => (
@@ -24,7 +24,7 @@ const ToursDestacados = () => {
       <button className='btn ver-mas-btn fw-medium fs-4 px-5 my-5'>
         Ver más
       </button>
-    </div>
+    </section>
   );
 };
 

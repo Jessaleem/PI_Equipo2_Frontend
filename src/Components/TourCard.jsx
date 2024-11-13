@@ -9,11 +9,11 @@ const TourCard = ({ imagen, nombre, id }) => {
     >
       <img
         src={imagen}
-        className='h-100 w-100'
+        className='h-100 w-100 object-fit-cover' 
         alt={`Imagen de ${nombre}`}
       />
       <div className='position-absolute z-1 bottom-0 w-100 py-3 d-flex flex-column align-items-center gap-2 footer-tourCard-colors'>
-        <h3 className='m-0 text-center'>{nombre}</h3>
+        <p className='m-0 text-center text-red-200'>{nombre}</p>
         <Link to={`/tour/${id}`}>
           <button className='w-75 btn py-2 fs-6 fw-bold ver-tourCard-btn-colors'>
             Ver

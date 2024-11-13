@@ -1,5 +1,8 @@
+import PropTypes from 'prop-types';
+// eslint-disable-next-line react/prop-types
 import { useLocation } from 'react-router-dom';
-export const Button = ({ backgroundColor, value }) => {
+
+export const Button = ({ backgroundColor, value, onClick }) => {
   const location = useLocation();
   return (
     <button
@@ -12,8 +15,14 @@ export const Button = ({ backgroundColor, value }) => {
         border: 'none',
       }}
       type='button'
+      onClick={onClick}
     >
       {value}
     </button>
   );
+};
+
+Button.propTypes = {
+  backgroundColor: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
 };
