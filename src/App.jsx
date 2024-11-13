@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import TourDetail from './Pages/TourDetail/TourDetail';
 import Register from './Pages/form/registro';
+import UserList from './Pages/admin/userList/UserList';
 function App() {
   return (
     <>
@@ -21,9 +22,14 @@ function App() {
             path='/tour/:id'
             element={<TourDetail />}
           />
-          <Route 
-          path='/register'
-          element={<Register/>}/>
+          <Route
+            path='/register'
+            element={<Register />}
+          />
+          <Route
+            path='/admin/users'
+            element={<UserList />}
+          />
         </Routes>
         <Footer />
       </div>
