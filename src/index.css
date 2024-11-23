@@ -479,7 +479,7 @@ button:focus-visible {
 
 input[type='text']
 {
-  padding: 1vw ;
+  padding: 10px;
   margin-bottom: 15px;
   border: 1px solid var(--primary);
   border-radius: 4px;
