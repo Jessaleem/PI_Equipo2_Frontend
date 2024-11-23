@@ -381,6 +381,12 @@ button:focus-visible {
   margin: 10px;
 }
 
+
+.botonFormRegistro:hover {
+  background-color: var(--success);
+  color: var(--primary)
+}
+
 .registro {
   position: relative;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -392,6 +398,18 @@ button:focus-visible {
   margin: 0px;
   padding-bottom: 1vh;
   padding: 5vw 0 5vw 0;
+}
+
+.error {
+  max-width: 100%; 
+  word-wrap: break-word; /* Ajusta las palabras largas al siguiente renglón */
+  overflow: hidden; /* Evita que el texto se desborde */
+  color: red;
+  font-size: 2vh;
+  margin-top: 5px;
+  padding-top: 3vh;
+
+
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -417,18 +435,40 @@ button:focus-visible {
   padding: 5vw;
   margin-bottom: auto;
   margin-top: auto;
+  text-align: center;
+
+}
+
+.form-container label{
+  padding-left: 2vh;
+  padding-right:  2vh;;
+  font-size: 3vh;
+}
+
+.form-container h2{
+  padding-bottom: 10vh;
+  font-size: 4vh;
+
+}
+
+.form-navigation {
+  padding-top: 4vh;
+  margin-top: 20px;
+  display: flex;
+  justify-content:space-around;
 }
 
 form {
   display: flex;
   flex-direction: column;
+  width: 50vw;
 }
 
 input[type='text'],
 input[type='tel'],
 input[type='email'],
 input[type='password'] {
-  padding: 10px;
+  padding: 1vw ;
   margin-bottom: 15px;
   border: 1px solid var(--primary);
   border-radius: 4px;
@@ -437,16 +477,28 @@ input[type='password'] {
   color: var(--info);
 }
 
-input[type='submit'] {
+input[type="submit"] {
+  padding: 10px 20px;
   background-color: var(--success);
-  color: var(--primary);
+  color: var(--light);
   border: none;
-  padding: 10px;
   border-radius: 4px;
-  box-shadow: var(--dark);
-  font-weight: bolder;
-  margin-top: 10%;
+  font-weight: bold;  
+  font-size: 3vh;
+
 }
+
+.botonFormRegistro
+{
+  padding: 10px 20px;
+  background-color: var(--primary);
+  border: none;
+  color: var(--light);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 3vh;
+}
+
 
 input[type='submit']:hover {
   background-color: var(--primary);
@@ -457,12 +509,49 @@ input[type='text'],
 input[type='tel'],
 input[type='email'],
 input[type='password'] {
-  font-size: 14px;
+  font-size: 3vh;
 }
 
-input[type='submit'] {
-  font-size: 16px;
-  padding: 12px;
+
+
+
+.success-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f8fb;
+}
+
+.success-container {
+  text-align: center;
+  padding: 20px 40px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 50vw;
+}
+
+.success-icon {
+  font-size: 5vh;
+  color: #4caf50; /* Verde de éxito */
+  margin-bottom: 20px;
+}
+
+.success-container h2 {
+  font-size: 4vh;
+  color: #333333;
+  margin-bottom: 10px;
+}
+
+.success-container p {
+  font-size: 2vh;
+  color: #555555;
+  line-height: 1.5;
+}
+
+.success-container strong {
+  color: #4caf50;
 }
 
 .header-logged-user {
