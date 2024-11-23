@@ -25,6 +25,7 @@ const LoginModal = () => {
     if (abrirModal && state.isLoginModalOpen) {
       setEmail('');
       setPassword('');
+      document.getElementById("email").focus();
     }
   }, [abrirModal, state.isLoginModalOpen]);
 
@@ -58,7 +59,7 @@ const LoginModal = () => {
       tabIndex="-1"
       role="dialog"
       id="loginModal"
-      aria-hidden="true"
+      aria-hidden={!abrirModal || !state.isLoginModalOpen}
       
     >
       <div
