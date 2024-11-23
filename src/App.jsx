@@ -11,6 +11,7 @@ import { GeneralProvider } from './context/generalContext';
 import LoginModal from './Pages/Log-in/Login';
 
 import UserList from './Pages/admin/userList/UserList';
+import ToursList from './Pages/admin/tour/ToursList';
 
 function App() {
   return (
@@ -34,6 +35,10 @@ function App() {
           <Route
             path='/admin/users'
             element={<UserList />}
+          />
+          <Route
+            path='/admin/tours'
+            element={<ToursList />}
           />
         </Routes>
         <Footer />

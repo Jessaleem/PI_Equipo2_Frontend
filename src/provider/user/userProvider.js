@@ -1,4 +1,4 @@
-import { API } from "../api/api";
+import { API } from '../api/api';
 
 export const getAllUser = async () => {
   const response = await fetch(`${API}/users`);
@@ -7,14 +7,15 @@ export const getAllUser = async () => {
 };
 
 export const updateUserType = async ({ userId, type }) => {
-  const user = await fetch(`${API}/users/${userId}`, {
-    method: "PATCH",
+  const response = await fetch(`${API}/users/${userId}`, {
+    method: 'PATCH',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       type: Number(type),
     }),
   });
-  return JSON.parse(user);
+  const user = await response.json();
+  return user;
 };

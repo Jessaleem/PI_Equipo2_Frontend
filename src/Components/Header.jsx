@@ -102,6 +102,14 @@ const Header = () => {
                 />
               </Link>
             </div>
+            <div>
+              <Link to='/admin/tours'>
+                <Button
+                  backgroundColor='#136060'
+                  value='Lista de Tours'
+                />
+              </Link>
+            </div>
           </nav>
         </div>
       )}
