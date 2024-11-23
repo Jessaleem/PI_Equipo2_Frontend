@@ -458,13 +458,13 @@ button:focus-visible {
   justify-content:space-around;
 }
 
-form {
+.form-container form {
   display: flex;
   flex-direction: column;
   width: 50vw;
 }
 
-input[type='text'],
+.form-container input[type='text'],
 input[type='tel'],
 input[type='email'],
 input[type='password'] {
@@ -477,7 +477,7 @@ input[type='password'] {
   color: var(--info);
 }
 
-input[type="submit"] {
+.form-container input[type="submit"] {
   padding: 10px 20px;
   background-color: var(--success);
   color: var(--light);
@@ -500,12 +500,12 @@ input[type="submit"] {
 }
 
 
-input[type='submit']:hover {
+.form-container input[type='submit']:hover {
   background-color: var(--primary);
   color: var(--light);
 }
 
-input[type='text'],
+.form-container input[type='text'],
 input[type='tel'],
 input[type='email'],
 input[type='password'] {
