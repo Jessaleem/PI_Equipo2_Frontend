@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button } from './Button';
-import { useGeneralContext } from '../context/useGeneralContext';
-import logo from '@assets/logo_with_text.svg';
-import Avatar from './Avatar';
-import ConfirmationModal from './ConfirmationModal';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "./Button";
+import { useGeneralContext } from "../context/useGeneralContext";
+import logo from "@assets/logo_with_text.svg";
+import Avatar from "./Avatar";
+import ConfirmationModal from "./ConfirmationModal";
 
 const Header = () => {
   const { dispatch, setAbrirModal, state } = useGeneralContext();
@@ -13,12 +13,12 @@ const Header = () => {
   const navigate = useNavigate();
 
   const openLoginModal = () => {
-    dispatch({ type: 'OPEN_LOGIN_MODAL' });
+    dispatch({ type: "OPEN_LOGIN_MODAL" });
     setAbrirModal(true);
   };
 
   const linkRegistro = () => {
-    navigate('/register');
+    navigate("/register");
   };
 
   const userInformation = state.userData;
@@ -33,36 +33,31 @@ const Header = () => {
 
   const handleLogOut = () => {
     setShowConfirmationModal(false);
-    dispatch({ type: 'USER_LOGGED_OUT' });
-    dispatch({ type: 'CLOSE_LOGIN_MODAL' });
+    dispatch({ type: "USER_LOGGED_OUT" });
+    dispatch({ type: "CLOSE_LOGIN_MODAL" });
   };
 
   return (
-    <header className='fixed-top'>
+    <header className="fixed-top">
       <nav
-        className='navbar navbar-light px-5'
-        style={{ backgroundColor: '#0B4040' }}
+        className="navbar navbar-light px-5"
+        style={{ backgroundColor: "#0B4040" }}
       >
-        <div className='container-fluid'>
+        <div className="container-fluid">
           <Link to={`/`}>
-            <img
-              src={logo}
-              alt='logo'
-              width='180'
-              height='90'
-            />
+            <img src={logo} alt="logo" width="180" height="90" />
           </Link>
 
           {loggedUser ? (
-            <div className='header-logged-user'>
+            <div className="header-logged-user">
               <Avatar props={userInformation} />
               <Button
-                backgroundColor='#ACF2EB'
-                value='Cerrar Sesión'
+                backgroundColor="#ACF2EB"
+                value="Cerrar Sesión"
                 onClick={openConfirmationModal}
               />
               <ConfirmationModal
-                message='¿Deseas salir de la sesión?'
+                message="¿Deseas salir de la sesión?"
                 onConfirm={handleLogOut}
                 onCancel={closeConfirmationModal}
                 show={showConfirmationModal}
@@ -71,35 +66,37 @@ const Header = () => {
           ) : (
             <section>
               <Button
-                backgroundColor='#ACF2EB'
-                value='Registrarse'
+                backgroundColor="#ACF2EB"
+                value="Registrarse"
                 onClick={linkRegistro}
-                data-bs-toggle='modal'
-                data-bs-target='#loginModal'
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
               />
               <Button
-                backgroundColor='#A7F2CF'
-                value='Iniciar Sesión'
+                backgroundColor="#A7F2CF"
+                value="Iniciar Sesión"
                 onClick={openLoginModal}
-                data-bs-target='#loginModal'
+                data-bs-target="#loginModal"
               />
             </section>
           )}
         </div>
       </nav>
-      {loggedUser && userInformation.type != '3' && (
+      {loggedUser && userInformation.type != "3" && (
         <div
-          className='d-flex gap-3 align-items-center p-2'
-          style={{ backgroundColor: ' #D9D9D9' }}
+          className="d-flex gap-3 align-items-center p-2"
+          style={{ backgroundColor: " #D9D9D9" }}
         >
           <h2>Admin Panel</h2>
-          <nav>
+          <nav className="d-flex">
             <div>
-              <Link to='/admin/users'>
-                <Button
-                  backgroundColor='#136060'
-                  value='Lista de usuarios'
-                />
+              <Link to="/admin/users">
+                <Button backgroundColor="#136060" value="Lista de usuarios" />
+              </Link>
+            </div>
+            <div>
+              <Link to="/admin/addProduct">
+                <Button backgroundColor="#136060" value="Agregar producto" />
               </Link>
             </div>
           </nav>
