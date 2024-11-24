@@ -1,147 +1,144 @@
-import React, { useState } from "react";
-import axios from "axios";
-
+import React, { useState } from 'react';
+import { register } from '../../services/auth';
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+const initailState = {
+  nombre: '',
+  apellido: '',
+  email: '',
+  contrasena: '',
+  confirmContrasena: '',
+};
 const Register = () => {
-  const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+  const [currentStep, setCurrentStep] = useState(0);
   const [error, setError] = useState({});
-  const [contacto, setContacto] = useState({
-    nombre: "",
-    apellido: "",
-    email: "",
-    contrasena: "",
-    confirmContrasena: "",
-  });
+  const [contacto, setContacto] = useState(initailState);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const fields = [
+    { name: 'nombre', label: 'Nombre', placeholder: 'Ingrese su nombre', type: 'text' },
+    { name: 'apellido', label: 'Apellido', placeholder: 'Ingrese su apellido', type: 'text' },
+    { name: 'email', label: 'Correo Electrónico', placeholder: 'Ingrese su correo electrónico', type: 'email' },
+    { name: 'contrasena', label: 'Contraseña', placeholder: 'Ingrese su contraseña', type: 'password' },
+    { name: 'confirmContrasena', label: 'Confirmar Contraseña', placeholder: 'Confirme su contraseña', type: 'password' },
+  ];
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setContacto({ ...contacto, [name]: value });
-    setError({ ...error, [name]: "" });
+    setError({ ...error, [name]: '' });
   };
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordPattern = /^(?=.*\d)(?=.*[A-Z])(?=.*\W).{8,}$/;
 
-  const validateForm = () => {
-    let errors = {};
-
-    if (!contacto.nombre || /[^a-zA-Z\s]/.test(contacto.nombre)) {
-      errors.nombre = "Nombre inválido, solo letras son permitidas.";
-    }
-    if (!contacto.apellido || /[^a-zA-Z\s]/.test(contacto.apellido)) {
-      errors.apellido = "Apellido inválido, solo letras son permitidas.";
-    }
-    if (!emailPattern.test(contacto.email)) {
-      errors.email = "Correo electrónico inválido.";
-    }
-    if (!passwordPattern.test(contacto.contrasena)) {
-      errors.contrasena =
-        "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.";
-    }
-    if (contacto.contrasena !== contacto.confirmContrasena) {
-      errors.confirmContrasena = "Las contraseñas no coinciden.";
+  const mutation = useMutation({
+    mutationFn: register,
+  });
+  const validateField  = (field) => {
+    const value = contacto[field.name];
+    let errorMessage = '';
+    if (!value) {
+      errorMessage = `${field.label} es obligatorio.`;
     }
 
-    setError(errors);
-    return Object.keys(errors).length === 0;
+    else if (field.name === 'nombre' && !contacto.nombre || /[^a-zA-Z\s]/.test(contacto.nombre)) {
+      errorMessage = 'Nombre inválido, solo letras son permitidas.';
+    }
+    else if (field.name === 'apellido' && !contacto.apellido || /[^a-zA-Z\s]/.test(contacto.apellido)) {
+      errorMessage = 'Apellido inválido, solo letras son permitidas.';
+    }
+    else if (field.name === 'email' && !emailPattern.test(contacto.email)) {
+      errorMessage = 'Correo electrónico inválido.';
+    }
+    else if (field.name === 'contrasena' && !passwordPattern.test(contacto.contrasena)) {
+      errorMessage = 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.';
+    }
+    else if (field.name === 'confirmContrasena' && contacto.contrasena !== contacto.confirmContrasena) {
+      errorMessage = 'Las contraseñas no coinciden.';
+    }
+
+    setError({ ...error, [field.name]: errorMessage });
+    return !errorMessage;
   };
 
-  const handleSubmit = async (e) => {
+  const handleNext = () => {
+    const field = fields[currentStep];
+    if (validateField(field)) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      try {
-        // Enviar datos al backend
-        const response = await axios.post(
-          "http://localhost:3001/api/register",
-          {
-            nombre: contacto.nombre,
-            apellido: contacto.apellido,
-            email: contacto.email,
-            contrasena: contacto.contrasena,
-          }
-        );
-
-        console.log(response.data.message);
-        setShow(true);
-      } catch (error) {
-        console.error(
-          "Error al registrar usuario:",
-          error.response?.data || error.message
-        );
-        alert("Hubo un error al registrar");
-      }
-    } else {
-      setShow(false);
+    if (fields.every((field) => validateField(field))) {
+      mutation.mutate(contacto, {
+        onSuccess: () => {
+          setIsSubmitted(true); // Mostrar mensaje de éxito
+          setContacto(initialState); // Reiniciar datos del formulario
+        },
+      });
     }
   };
 
-  return (
-    <div className="registro">
-      <div className="form-container">
-        <h2 id="titulo-registro">Registro de Usuario</h2>
-        <form onSubmit={handleSubmit}>
-          <label>Nombre:</label>
-          <input
-            type="text"
-            name="nombre"
-            value={contacto.nombre}
-            onChange={handleChange}
-            required
-          />
-          {error.nombre && <p style={{ color: "red" }}>{error.nombre}</p>}
-
-          <label>Apellido:</label>
-          <input
-            type="text"
-            name="apellido"
-            value={contacto.apellido}
-            onChange={handleChange}
-            required
-          />
-          {error.apellido && <p style={{ color: "red" }}>{error.apellido}</p>}
-
-          <label>Correo Electrónico:</label>
-          <input
-            type="email"
-            name="email"
-            value={contacto.email}
-            onChange={handleChange}
-            required
-          />
-          {error.email && <p style={{ color: "red" }}>{error.email}</p>}
-
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            name="contrasena"
-            value={contacto.contrasena}
-            onChange={handleChange}
-            required
-          />
-          {error.contrasena && (
-            <p style={{ color: "red" }}>{error.contrasena}</p>
-          )}
-
-          <label>Confirmar Contraseña:</label>
-          <input
-            type="password"
-            name="confirmContrasena"
-            value={contacto.confirmContrasena}
-            onChange={handleChange}
-            required
-          />
-          {error.confirmContrasena && (
-            <p style={{ color: "red" }}>{error.confirmContrasena}</p>
-          )}
-
-          <input type="submit" value="Registrarse" />
-        </form>
+  if (isSubmitted) {
+    return (
+      <div className="success-message">
+        <div className="success-container">
+          <div className="success-icon">
+            ✅
+          </div>
+          <h2>¡Registro Exitoso!</h2>
+          <p>Gracias por registrarte, <strong>{contacto.nombre}</strong>. Tu cuenta ha sido creada con éxito.</p>
+          <p>
+            Ahora puedes iniciar sesión y disfrutar de nuestros servicios. 
+            Si tienes alguna pregunta, no dudes en contactarnos.
+          </p>
+        </div>
       </div>
-
-      {show && (
-        <h4 style={{ color: "green" }}>
-          Gracias {contacto.nombre}, por registrarte
-        </h4>
-      )}
+    );
+  }
+  return (
+    <div className="form-container p-0 min-vh-100">
+      <h2 id="titulo-registro">Registro de Usuario</h2>
+      <form onSubmit={handleSubmit}>
+        {fields.map((field, index) => (
+          <div
+            key={field.name}
+            style={{ display: index === currentStep ? 'block' : 'none' }}
+          >
+            <label htmlFor={field.name}>{field.label}:</label>
+            <input
+              type={field.type}
+              id={field.name}
+              name={field.name}
+              value={contacto[field.name]}
+              onChange={handleChange}
+              placeholder={field.placeholder}
+            />
+            <div className="error">{error[field.name]}</div>
+          </div>
+        ))}
+        <div className="form-navigation">
+          {currentStep > 0 && (
+            <button className="botonFormRegistro"
+              type="button"
+              onClick={() => setCurrentStep(currentStep - 1)}
+            >
+              Anterior
+            </button>
+          )}
+          {currentStep < fields.length - 1 && (
+            <button className="botonFormRegistro" type="button" onClick={handleNext}>
+              Siguiente
+            </button>
+          )}
+          {currentStep === fields.length - 1 && (
+            <input type="submit" value="Registrarse" />
+          )}
+        </div>
+      </form>
     </div>
   );
 };

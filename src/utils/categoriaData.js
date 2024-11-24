@@ -6,22 +6,22 @@ import categoriaNaturaleza from "@assets/categoriaNaturaleza.png";
 export let categoriaData = [
   {
     id: 1,
-    categoria: "gastronomia",
+    categoria: "Gastronomia",
     imagen: categoriaGastronomia,
   },
   {
     id: 2,
-    categoria: "cultura",
+    categoria: "Cultura",
     imagen: categoriaCultura,
   },
   {
     id: 3,
-    categoria: "arte",
+    categoria: "Arte",
     imagen: categoriaArte,
   },
   {
     id: 4,
-    categoria: "naturaleza",
+    categoria: "Naturaleza",
     imagen: categoriaNaturaleza,
   },
 ];

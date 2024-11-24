@@ -11,25 +11,25 @@ import { GeneralProvider } from "./context/generalContext";
 import LoginModal from "./Pages/Log-in/Login";
 
 import UserList from "./Pages/admin/userList/UserList";
-import AddProduct from "./Components/Admin/AddProduct";
+import AddProduct from "./Pages/admin/addProduct/AddProduct";
 
 function App() {
-  return (
-    <GeneralProvider>
-      <Header />
-      <LoginModal />
-      <div className="body-content" style={{ paddingTop: "100px" }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/tour/:id" element={<TourDetail />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/admin/users" element={<UserList />} />
-          <Route path="/admin/addProduct" element={<AddProduct />} />
-        </Routes>
-        <Footer />
-      </div>
-    </GeneralProvider>
-  );
+	return (
+		<GeneralProvider>
+			<Header />
+			<LoginModal />
+			<div className="body-content" style={{ paddingTop: "100px" }}>
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/tour/:id" element={<TourDetail />} />
+					<Route path="/register" element={<Register />} />
+					<Route path="/admin/users" element={<UserList />} />
+					<Route path="/admin/addProduct" element={<AddProduct />} />
+				</Routes>
+				<Footer />
+			</div>
+		</GeneralProvider>
+	);
 }
 
 export default App;
