@@ -3,8 +3,37 @@ import Swal from "sweetalert2";
 import { postTour } from "../../provider/category/categoryProvider";
 import { getAllTours } from "../../provider/tours/toursProvider";
 import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 
 const AddProductForm = ({ dataCategory }) => {
+	
+	// const images = [
+	// 	{ file: File, previewUrl: 'data:image/jpeg;base64,...' }
+	// ];
+	const [selectedImages, setSelectedImages] = useState([]); // [{ file, previewUrl }]
+
+	const handleImageChange = (event) => {
+    const files = Array.from(event.target.files);
+
+    const imagesWithPreviews = files.map((file) => ({
+    file,
+      previewUrl: URL.createObjectURL(file), // Genera una URL para previsualización
+    }));
+
+    setSelectedImages((prevImages) => [...prevImages, ...imagesWithPreviews]);
+    };
+
+	const handleRemoveImage = (index) => {
+		setSelectedImages((prevImages) =>
+		  prevImages.filter((_, i) => i !== index) // Elimina la imagen seleccionada
+		);
+	};
+
+	useEffect(() => {
+		return () => {selectedImages.forEach((img) => URL.revokeObjectURL(img.previewUrl));
+		};
+	}, [selectedImages]);
+	
 	const {
 		register,
 		handleSubmit,
@@ -29,14 +58,13 @@ const AddProductForm = ({ dataCategory }) => {
 	};
 
 	const onSubmit = async (formData) => {
-		try {
-			const newTourName = formData.name.trim().toLowerCase();
-
+	try {
+		console.log ("Datos a enviar",formData)
+		const newTourName = formData.name.trim().toLowerCase();
 			// Verificar si el tour ya existe en la lista (ignorando mayúsculas y espacios)
 			const existingTour = data.some(
 				(tour) => tour.name.trim().toLowerCase() === newTourName
 			);
-
 			if (existingTour) {
 				Swal.fire({
 					icon: "error",
@@ -47,56 +75,124 @@ const AddProductForm = ({ dataCategory }) => {
 				return;
 			}
 
-			// Convertir experienceDate a formato ISO
-			const baseDate = new Date(formData.experienceDate);
-
-			// Crear fechas completas para startTime y endTime
-			const startDateTime = new Date(baseDate);
-			const [startHours, startMinutes] = formData.startTime.split(":");
-			startDateTime.setHours(parseInt(startHours), parseInt(startMinutes), 0);
-
-			const endDateTime = new Date(baseDate);
-			const [endHours, endMinutes] = formData.endTime.split(":");
-			endDateTime.setHours(parseInt(endHours), parseInt(endMinutes), 0);
-
-			const tourData = {
-				name: formData.name.trim(),
-				description: formData.description.trim(),
-				recommendations: formData.recommendations.trim(),
-				image: formData.image.trim(),
-				estimatedTime: parseInt(formData.estimatedTime),
-				country: formData.country.trim(),
-				city: formData.city.trim(),
-				suitableForChildren: formData.suitableForChildren === "si",
-				experienceDate: baseDate.toISOString().split("T")[0],
-				startTime: startDateTime.toISOString(),
-				endTime: endDateTime.toISOString(),
-				price: parseFloat(formData.price),
-				slots: parseInt(formData.slots, 10),
-				categoryId: parseInt(formData.category_id, 10),
-			};
-
-			await postTour(tourData);
-
-			Swal.fire({
-				icon: "success",
-				title: "¡Tour creado exitosamente!",
-				text: "El tour ha sido añadido correctamente.",
-				confirmButtonText: "Aceptar",
-			});
-
-			reset();
-		} catch (error) {
-			console.error("Error al agregar el tour:", error.response?.data || error);
-
-			Swal.fire({
-				icon: "error",
-				title: "Error",
-				text: "Hubo un problema al crear el tour. Por favor intente nuevamente.",
-				confirmButtonText: "Aceptar",
-			});
+		const formDataToSend = new FormData();
+		// Agregar datos del tour al FormData
+		
+		formDataToSend.append("name", formData.name.trim());
+		formDataToSend.append("description", formData.description.trim());
+		formDataToSend.append("recommendations", formData.recommendations.trim());
+		formDataToSend.append("estimatedTime", formData.estimatedTime);
+		formDataToSend.append("country", formData.country.trim());
+		formDataToSend.append("city", formData.city.trim());
+		formDataToSend.append(
+		"suitableForChildren",
+		formData.suitableForChildren === "si"
+		);
+		formDataToSend.append("experienceDate", formData.experienceDate);
+		formDataToSend.append("startTime", formData.startTime);
+		formDataToSend.append("endTime", formData.endTime);
+		formDataToSend.append("price", formData.price);
+		formDataToSend.append("slots", formData.slots);
+		formDataToSend.append("categoryId", formData.category_id);
+	
+		// Agregar imágenes al FormData
+		selectedImages.forEach((image, index) => {
+		formDataToSend.append(`images`, image.file);
+		});
+	
+		// Enviar la solicitud al backend
+		await postTour(formDataToSend);
+	
+		Swal.fire({
+		icon: "success",
+		title: "¡Tour creado exitosamente!",
+		text: "El tour ha sido añadido correctamente.",
+		confirmButtonText: "Aceptar",
+		});
+	
+		reset();
+		setSelectedImages([]); // Limpiar las imágenes seleccionadas
+	} catch (error) {
+		console.error("Error al agregar el tour:", error);
+	
+		Swal.fire({
+		icon: "error",
+		title: "Error",
+		text: "Hubo un problema al crear el tour. Por favor intente nuevamente.",
+		confirmButtonText: "Aceptar",
+		});
 		}
-	};
+    };
+
+	// const onSubmit = async (formData) => {
+	// 	try {
+	// 		const newTourName = formData.name.trim().toLowerCase();
+
+	// 		// Verificar si el tour ya existe en la lista (ignorando mayúsculas y espacios)
+	// 		const existingTour = data.some(
+	// 			(tour) => tour.name.trim().toLowerCase() === newTourName
+	// 		);
+
+	// 		if (existingTour) {
+	// 			Swal.fire({
+	// 				icon: "error",
+	// 				title: "Error",
+	// 				text: "El tour ya existe. Por favor, elija otro nombre.",
+	// 				confirmButtonText: "Aceptar",
+	// 			});
+	// 			return;
+	// 		}
+
+	// 		// Convertir experienceDate a formato ISO
+	// 		const baseDate = new Date(formData.experienceDate);
+
+	// 		// Crear fechas completas para startTime y endTime
+	// 		const startDateTime = new Date(baseDate);
+	// 		const [startHours, startMinutes] = formData.startTime.split(":");
+	// 		startDateTime.setHours(parseInt(startHours), parseInt(startMinutes), 0);
+
+	// 		const endDateTime = new Date(baseDate);
+	// 		const [endHours, endMinutes] = formData.endTime.split(":");
+	// 		endDateTime.setHours(parseInt(endHours), parseInt(endMinutes), 0);
+
+	// 		const tourData = {
+	// 			name: formData.name.trim(),
+	// 			description: formData.description.trim(),
+	// 			recommendations: formData.recommendations.trim(),
+	// 			image: formData.image.trim(),
+	// 			estimatedTime: parseInt(formData.estimatedTime),
+	// 			country: formData.country.trim(),
+	// 			city: formData.city.trim(),
+	// 			suitableForChildren: formData.suitableForChildren === "si",
+	// 			experienceDate: baseDate.toISOString().split("T")[0],
+	// 			startTime: startDateTime.toISOString(),
+	// 			endTime: endDateTime.toISOString(),
+	// 			price: parseFloat(formData.price),
+	// 			slots: parseInt(formData.slots, 10),
+	// 			categoryId: parseInt(formData.category_id, 10),
+	// 		};
+
+	// 		await postTour(tourData);
+
+	// 		Swal.fire({
+	// 			icon: "success",
+	// 			title: "¡Tour creado exitosamente!",
+	// 			text: "El tour ha sido añadido correctamente.",
+	// 			confirmButtonText: "Aceptar",
+	// 		});
+
+	// 		reset();
+	// 	} catch (error) {
+	// 		console.error("Error al agregar el tour:", error.response?.data || error);
+
+	// 		Swal.fire({
+	// 			icon: "error",
+	// 			title: "Error",
+	// 			text: "Hubo un problema al crear el tour. Por favor intente nuevamente.",
+	// 			confirmButtonText: "Aceptar",
+	// 		});
+	// 	}
+	// };
 
 	return (
 		<div className="w-100 d-flex justify-content-center">
@@ -147,23 +243,92 @@ const AddProductForm = ({ dataCategory }) => {
 						<p className="text-danger">{errors.recommendations.message}</p>
 					)}
 				</div>
+				
+				<div className="mb-3">
+				{/* Botón para seleccionar imágenes */}
+				<label className="form-label fs-5" htmlFor="images">
+					Imágenes:
+				</label>
+				<input
+					type="file"
+					id="images"
+					accept="image/*"
+					multiple
+					onChange={handleImageChange} // Maneja la selección de imágenes
+					className="form-control"
+				/>
 
+				{/* Contenedor para las previsualizaciones */}
+				{selectedImages.length > 0 && (
+					<div className="mt-3">
+					<h5>Previsualización de imágenes:</h5>
+					<div className="d-flex flex-wrap">
+						{selectedImages.map((img, index) => (
+						<div
+							key={index}
+							className="image-preview"
+							style={{
+							marginRight: "10px",
+							position: "relative",
+							display: "inline-block",
+							}}
+						>
+							{/* Imagen previsualizada */}
+							<img
+							src={img.previewUrl}
+							alt={`Preview ${index}`}
+							style={{ width: "150px", height: "150px", objectFit: "cover" }}
+							/>
+
+							{/* Botón para eliminar la imagen */}
+							<button
+							type="button"
+							onClick={() => handleRemoveImage(index)}
+							style={{
+								position: "absolute",
+								top: "5px",
+								right: "5px",
+								background: "white",
+								color: "white",
+								border: "1px, solid, gray",
+								borderRadius: "50%",
+								width: "20px",
+								height: "20px",
+								cursor: "pointer",
+								color: "black",
+								padding: "0px",
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "flex-end",
+							}}
+							>
+							x
+							</button>
+						</div>
+						))}
+					</div>
+					</div>
+				)}
+				</div>
+
+{/*
 				<div className="mb-3">
 					<label className="form-label fs-5" htmlFor="imagen">
 						Imagen:
 					</label>
 					<input
-						type="text"
+						type="file"
 						id="imagen"
-						{...register("image", {
-							required: "La URL de la imagen es obligatoria",
-						})}
+						// {...register("image", {
+						// 	required: "La URL de la imagen es obligatoria",
+						// })}
 						className="form-control"
 					/>
-					{errors.image && (
+					{/* {errors.image && (
 						<p className="text-danger">{errors.image.message}</p>
-					)}
+					)} 
 				</div>
+*/}
 
 				<div className="mb-3">
 					<label className="form-label fs-5" htmlFor="duracion">

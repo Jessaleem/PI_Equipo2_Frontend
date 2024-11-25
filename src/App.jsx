@@ -12,6 +12,7 @@ import LoginModal from "./Pages/Log-in/Login";
 
 import UserList from "./Pages/admin/userList/UserList";
 import AddProduct from "./Pages/admin/addProduct/AddProduct";
+import AddImage from "./Pages/addImage";
 
 function App() {
 	return (
@@ -25,6 +26,7 @@ function App() {
 					<Route path="/register" element={<Register />} />
 					<Route path="/admin/users" element={<UserList />} />
 					<Route path="/admin/addProduct" element={<AddProduct />} />
+					<Route path="/addImage" element={<AddImage />} />
 				</Routes>
 				<Footer />
 			</div>
