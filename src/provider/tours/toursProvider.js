@@ -16,8 +16,8 @@ export const getTourById = async ({ tourId }) => {
  */
 export const getAllTours = async (filters) => {
   const filterQuery = new URLSearchParams(filters).toString();
-  console.log(`${API}/tour?${filterQuery}`)
-  // const response = await fetch(`${API}/tour?${filterQuery}`);
-  // const tour = await response.json();
-  // return tour;
+  console.log(`${API}/tour?${filterQuery}`);
+  const response = await fetch(`${API}/tour?${filterQuery}`);
+  const tour = await response.json();
+  return tour;
 };

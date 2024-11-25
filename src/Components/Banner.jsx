@@ -1,6 +1,7 @@
 import Lema from './LemaTextContainer';
 import bannerImg from '@assets/banner.png';
-import Calendar from './search/Calendar';
+import Calendar from './search/Calendar.jsx';
+import SearchBar from './search/SearchBar.jsx';
 
 const Banner = () => {
   return (
@@ -16,12 +17,8 @@ const Banner = () => {
           <Calendar />
         </div>
         <div className='d-flex gap-2'>
-          <input
-            className='shadow form-control py-2 pe-4 pe-md-0 search-input'
-            type='text'
-            placeholder='Buscar'
-          />
-          <button className='btn search py-2 pe-4' />
+          <SearchBar />
+          {/* <button className='btn search py-2 pe-4' /> */}
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 const Calendar = () => {
   const [rangeStart, setRangeStart] = useState(new Date());
   const defaultEndDate = new Date();
-  defaultEndDate.setDate(defaultEndDate.getDate() + 7);
+  defaultEndDate.setDate(defaultEndDate.getDate() + 2);
   const [rangeEnd, setRangeEnd] = useState(defaultEndDate);
   const today = new Date();
 
