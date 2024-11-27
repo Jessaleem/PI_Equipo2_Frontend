@@ -9,6 +9,7 @@ import ConfirmationModal from "./ConfirmationModal";
 const Header = () => {
   const { dispatch, setAbrirModal, state } = useGeneralContext();
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [showAdminDropdown, setShowAdminDropdown] = useState(false);
   const loggedUser = state.isLoggedIn;
   const navigate = useNavigate();
 
