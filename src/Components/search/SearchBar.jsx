@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SearchBar = ({ setSearchTerm, data, searchTerm }) => {
   const handleChange = (e) => {
@@ -22,17 +23,23 @@ const SearchBar = ({ setSearchTerm, data, searchTerm }) => {
       )}
       {data && (
         <ul
-          className='border'
+          className='border z-2'
           style={{ backgroundColor: 'white', listStyleType: 'none' }}
         >
           {searchTerm &&
             dataToShow?.map((result) => (
-              <li
+              <Link
                 key={result.id}
-                className='p-2 border-b'
+                to={`/tour/${result.id}`}
+                style={{ textDecoration: 'none', color: '#0b4040' }}
               >
-                {`${result.name}-${result.country}`}
-              </li>
+                <li
+                  key={result.id}
+                  className='p-2 border-b'
+                >
+                  {`${result.name}-${result.country}`}
+                </li>
+              </Link>
             ))}
         </ul>
       )}
