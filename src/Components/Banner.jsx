@@ -3,7 +3,7 @@ import bannerImg from "@assets/banner.png";
 
 const Banner = () => {
   return (
-    <div className="max-width-100vw position-relative overflow-hidden d-flex flex-column justify-content-center align-items-center align-items-md-end">
+    <div className="max-width-100vw position-relative overflow-hidden d-flex flex-column justify-content-center align-items-center align-items-md-end banner-busqueda">
       <img src={bannerImg} className="w-100" />
       <Lema />
       {/* <div className="position-absolute m-auto end-sm-0 top-sm-0 d-flex align-items-stretch-asdas m-lg-5 gap-4 flex-colum align-content-center"> */}
