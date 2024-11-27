@@ -1,0 +1,12 @@
+.react-datepicker__month-container {
+  background-color: white;
+}
+
+.react-datepicker {
+  border: none;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  background-color: #a7f2cf75;
+  padding-bottom: 24px;
+}

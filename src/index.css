@@ -565,3 +565,82 @@ button:focus-visible {
   align-items: center;
   gap: 10px;
 }
+
+.admin-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.admin-dropdown-button {
+  background-color: #136060;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.admin-dropdown-button:hover {
+  background-color: #0b4040;
+}
+
+.admin-dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #d9d9d9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-width: 200px;
+  z-index: 1000;
+}
+
+.admin-dropdown-menu a {
+  text-decoration: none;
+  color: #0b4040;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease;
+}
+
+.admin-dropdown-menu a:hover {
+  background-color: #136060;
+  color: white;
+}
+
+.banner-busqueda {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.banner-busqueda {
+  overflow: hidden;
+}
+
+.bienvenida,
+.lemaContainer p {
+  margin: 0;
+}
+.calendar-container-title {
+  background-color: #a7f2cf75;
+  padding: 24px 0px 28px 0px;
+  margin-bottom: 0px;
+  color: var(--primary);
+  margin-top: 30px;
+}
