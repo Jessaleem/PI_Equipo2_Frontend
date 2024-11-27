@@ -278,9 +278,7 @@ button:focus-visible {
   font-weight: bold;
   padding: 5px;
 }
-.body-content {
-  margin-top: 100px;
-}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
