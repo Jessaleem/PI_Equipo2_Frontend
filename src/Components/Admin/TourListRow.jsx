@@ -20,8 +20,6 @@ const TourListRow = ({ tour }) => {
     mutationFn: updateTourCategory,
   });
 
-  console.log("categoria data", tour);
-
   return (
     <tr key={tour.id}>
       <td scope="row">{tour.name}</td>
