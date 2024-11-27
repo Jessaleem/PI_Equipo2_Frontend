@@ -4,6 +4,7 @@ import Calendar from './search/Calendar.jsx';
 import SearchBar from './search/SearchBar.jsx';
 
 const Banner = () => {
+  const handleSearch = () => {};
   return (
     <div className='max-width-100vw position-relative overflow-hidden d-flex flex-column justify-content-center align-items-center align-items-md-end'>
       <img

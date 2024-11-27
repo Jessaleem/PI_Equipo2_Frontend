@@ -4,7 +4,7 @@ import { getAllTours } from '../../provider/tours/toursProvider';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isError, error } = useQuery({
     queryKey: ['tours', searchTerm],
     queryFn: () => getAllTours({ search: searchTerm }),
     enabled: !!searchTerm,
@@ -14,7 +14,7 @@ const SearchBar = () => {
     e.preventDefault();
     setSearchTerm(e.target.value);
   };
-
+  const dataToShow = data?.slice(0, 7);
   return (
     <div className='search-input d-flex flex-column'>
       <input
@@ -34,9 +34,9 @@ const SearchBar = () => {
           className='border'
           style={{ backgroundColor: 'white' }}
         >
-          {data?.map((result, index) => (
+          {dataToShow?.map((result) => (
             <li
-              key={index}
+              key={result.id}
               className='p-2 border-b'
             >
               {`${result.name}-${result.country}`}
