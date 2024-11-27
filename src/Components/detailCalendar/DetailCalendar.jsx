@@ -12,6 +12,15 @@ const DetailCalendar = () => {
     setEndDate(end);
   };
 
+  const disabledDates = [
+    new Date('2024-11-29'),
+    new Date('2024-12-03'),
+    new Date('2024-12-06'),
+    new Date('2024-12-07'),
+    new Date('2024-12-22'),
+    new Date('2024-12-25'),
+  ]
+
   return (
     <DatePicker 
       selected={startDate}
@@ -22,6 +31,7 @@ const DetailCalendar = () => {
       inline
       monthsShown={2}
       minDate={new Date()}
+      excludeDates={disabledDates}
     />
   )
 }
