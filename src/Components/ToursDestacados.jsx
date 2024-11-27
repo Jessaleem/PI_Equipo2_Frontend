@@ -1,22 +1,34 @@
-import { tours } from "../utils/tours";
 import TourCard from "./TourCard";
-
+import { useQuery } from "@tanstack/react-query";
+import { getAllTours } from "../provider/tours/toursProvider";
+import { useState, useEffect } from "react";
 const ToursDestacados = () => {
-  // Función para mezclar el arreglo de tours de forma aleatoria
-  const shuffleTours = (array) => {
-    return array.sort(() => Math.random() - 0.5);
-  };
-  // Mezclamos los tours y seleccionamos los primeros 10 (2 columnas x 5 filas)
-  const displayedTours = shuffleTours(tours).slice(0, 10);
+  const { data } = useQuery({
+    queryKey: ["tour"],
+    queryFn: () => getAllTours(),
+    staleTime: Infinity,
+    cacheTime: Infinity,
+  });
+
+  // Estado para almacenar los tours mezclados
+  const [displayedTours, setDisplayedTours] = useState([]);
+
+  useEffect(() => {
+    if (data) {
+      // Mezclar los tours solo al montar el componente o cuando 'data' cambia
+      const shuffleTours = (array) => array?.sort(() => Math.random() - 0.5);
+      setDisplayedTours(shuffleTours(data)?.slice(0, 10));
+    }
+  }, [data]);
   return (
     <section className="bg-body-secondary px-3">
       <h2 className="py-5">Tours Destacados</h2>
       <div className="tour-grid">
-        {displayedTours.map((tour) => (
+        {displayedTours?.map((tour) => (
           <TourCard
             key={tour.id}
-            imagen={tour.imagen}
-            nombre={tour.nombre}
+            imagen={tour.image}
+            nombre={tour.name}
             id={tour.id}
           />
         ))}

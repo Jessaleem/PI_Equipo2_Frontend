@@ -11,9 +11,18 @@ const initailState = {
 };
 const Register = () => {
   const navigate = useNavigate();
-  const [show, setShow] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
   const [error, setError] = useState({});
   const [contacto, setContacto] = useState(initailState);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const fields = [
+    { name: 'nombre', label: 'Nombre', placeholder: 'Ingrese su nombre', type: 'text' },
+    { name: 'apellido', label: 'Apellido', placeholder: 'Ingrese su apellido', type: 'text' },
+    { name: 'email', label: 'Correo Electrónico', placeholder: 'Ingrese su correo electrónico', type: 'email' },
+    { name: 'contrasena', label: 'Contraseña', placeholder: 'Ingrese su contraseña', type: 'password' },
+    { name: 'confirmContrasena', label: 'Confirmar Contraseña', placeholder: 'Confirme su contraseña', type: 'password' },
+  ];
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -27,122 +36,109 @@ const Register = () => {
   const mutation = useMutation({
     mutationFn: register,
   });
-  const validateForm = () => {
-    let errors = {};
-
-    if (!contacto.nombre || /[^a-zA-Z\s]/.test(contacto.nombre)) {
-      errors.nombre = 'Nombre inválido, solo letras son permitidas.';
-    }
-    if (!contacto.apellido || /[^a-zA-Z\s]/.test(contacto.apellido)) {
-      errors.apellido = 'Apellido inválido, solo letras son permitidas.';
-    }
-    if (!emailPattern.test(contacto.email)) {
-      errors.email = 'Correo electrónico inválido.';
-    }
-    if (!passwordPattern.test(contacto.contrasena)) {
-      errors.contrasena =
-        'La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.';
-    }
-    if (contacto.contrasena !== contacto.confirmContrasena) {
-      errors.confirmContrasena = 'Las contraseñas no coinciden.';
+  const validateField  = (field) => {
+    const value = contacto[field.name];
+    let errorMessage = '';
+    if (!value) {
+      errorMessage = `${field.label} es obligatorio.`;
     }
 
-    setError(errors);
-    return Object.keys(errors).length === 0;
+    else if (field.name === 'nombre' && !contacto.nombre || /[^a-zA-Z\s]/.test(contacto.nombre)) {
+      errorMessage = 'Nombre inválido, solo letras son permitidas.';
+    }
+    else if (field.name === 'apellido' && !contacto.apellido || /[^a-zA-Z\s]/.test(contacto.apellido)) {
+      errorMessage = 'Apellido inválido, solo letras son permitidas.';
+    }
+    else if (field.name === 'email' && !emailPattern.test(contacto.email)) {
+      errorMessage = 'Correo electrónico inválido.';
+    }
+    else if (field.name === 'contrasena' && !passwordPattern.test(contacto.contrasena)) {
+      errorMessage = 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.';
+    }
+    else if (field.name === 'confirmContrasena' && contacto.contrasena !== contacto.confirmContrasena) {
+      errorMessage = 'Las contraseñas no coinciden.';
+    }
+
+    setError({ ...error, [field.name]: errorMessage });
+    return !errorMessage;
   };
 
-  const handleSubmit = async (e) => {
+  const handleNext = () => {
+    const field = fields[currentStep];
+    if (validateField(field)) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      mutation.mutate(contacto);
-      setShow(true);
-      setContacto(initailState);
-    } else {
-      setShow(false);
+    if (fields.every((field) => validateField(field))) {
+      mutation.mutate(contacto, {
+        onSuccess: () => {
+          setIsSubmitted(true); // Mostrar mensaje de éxito
+          setContacto(initialState); // Reiniciar datos del formulario
+        },
+      });
     }
   };
 
-  return (
-    <div>
-      <div className='form-container p-0 min-vh-100'>
-        <h2 id='titulo-registro'>Registro de Usuario</h2>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor='nombre'>Nombre:</label>
-          <input
-            type='text'
-            id='nombre'
-            name='nombre'
-            value={contacto.nombre}
-            onChange={handleChange}
-            required
-            placeholder='Ingrese su nombre'
-          />
-          {error.nombre && <p style={{ color: 'red' }}>{error.nombre}</p>}
-
-          <label htmlFor='apellido'>Apellido:</label>
-          <input
-            type='text'
-            id='apellido'
-            name='apellido'
-            value={contacto.apellido}
-            onChange={handleChange}
-            required
-            placeholder='Ingrese su apellido'
-          />
-          {error.apellido && <p style={{ color: 'red' }}>{error.apellido}</p>}
-
-          <label htmlFor='email'>Correo Electrónico:</label>
-          <input
-            type='email'
-            id='email'
-            name='email'
-            required
-            placeholder='Ingrese su correo electrónico'
-            value={contacto.email}
-            onChange={handleChange}
-          />
-          {error.email && <p style={{ color: 'red' }}>{error.email}</p>}
-
-          <label htmlFor='contrasena'>Contraseña:</label>
-          <input
-            type='password'
-            id='contrasena'
-            name='contrasena'
-            value={contacto.contrasena}
-            onChange={handleChange}
-            required
-            placeholder='Ingrese su contraseña'
-          />
-          {error.contrasena && (
-            <p style={{ color: 'red' }}>{error.contrasena}</p>
-          )}
-
-          <label htmlFor='confirmContrasena'>Confirmar Contraseña:</label>
-          <input
-            type='password'
-            id='confirmContrasena'
-            name='confirmContrasena'
-            required
-            placeholder='Confirme su contraseña'
-            value={contacto.confirmContrasena}
-            onChange={handleChange}
-          />
-          {error.confirmContrasena && (
-            <p style={{ color: 'red' }}>{error.confirmContrasena}</p>
-          )}
-
-          <input
-            type='submit'
-            value='Registrarse'
-          />
-        </form>
+  if (isSubmitted) {
+    return (
+      <div className="success-message">
+        <div className="success-container">
+          <div className="success-icon">
+            ✅
+          </div>
+          <h2>¡Registro Exitoso!</h2>
+          <p>Gracias por registrarte, <strong>{contacto.nombre}</strong>. Tu cuenta ha sido creada con éxito.</p>
+          <p>
+            Ahora puedes iniciar sesión y disfrutar de nuestros servicios. 
+            Si tienes alguna pregunta, no dudes en contactarnos.
+          </p>
+        </div>
       </div>
-
-      {show && (
-        <h4 style={{ color: 'green' }}>
-          Gracias {mutation.data?.name}, por registrarte
-        </h4>
-      )}
+    );
+  }
+  return (
+    <div className="form-container p-0 min-vh-100">
+      <h2 id="titulo-registro">Registro de Usuario</h2>
+      <form onSubmit={handleSubmit}>
+        {fields.map((field, index) => (
+          <div
+            key={field.name}
+            style={{ display: index === currentStep ? 'block' : 'none' }}
+          >
+            <label htmlFor={field.name}>{field.label}:</label>
+            <input
+              type={field.type}
+              id={field.name}
+              name={field.name}
+              value={contacto[field.name]}
+              onChange={handleChange}
+              placeholder={field.placeholder}
+            />
+            <div className="error">{error[field.name]}</div>
+          </div>
+        ))}
+        <div className="form-navigation">
+          {currentStep > 0 && (
+            <button className="botonFormRegistro"
+              type="button"
+              onClick={() => setCurrentStep(currentStep - 1)}
+            >
+              Anterior
+            </button>
+          )}
+          {currentStep < fields.length - 1 && (
+            <button className="botonFormRegistro" type="button" onClick={handleNext}>
+              Siguiente
+            </button>
+          )}
+          {currentStep === fields.length - 1 && (
+            <input type="submit" value="Registrarse" />
+          )}
+        </div>
+      </form>
     </div>
   );
 };

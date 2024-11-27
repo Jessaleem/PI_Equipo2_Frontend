@@ -4,7 +4,7 @@ const Lema = () => {
       <h3 className="bienvenida">Bienvenidos a Vive Vibes,</h3>
       <p className="m-0 fs-4">
         <i>
-          donde cada tour y experiencia unica
+          Donde cada tour y experiencia unica
           <br />
           te invita a explorar el mundo con
           <br /> todos tus sentidos.

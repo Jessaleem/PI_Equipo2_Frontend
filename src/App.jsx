@@ -11,6 +11,7 @@ import { GeneralProvider } from './context/generalContext';
 import LoginModal from './Pages/Log-in/Login';
 
 import UserList from './Pages/admin/userList/UserList';
+import AddProduct from './Pages/admin/addProduct/AddProduct';
 import ToursList from './Pages/admin/tour/ToursList';
 
 function App() {
@@ -18,7 +19,10 @@ function App() {
     <GeneralProvider>
       <Header />
       <LoginModal />
-      <div className='body-content'>
+      <div
+        className='body-content'
+        style={{ paddingTop: '100px' }}
+      >
         <Routes>
           <Route
             path='/'
@@ -35,6 +39,10 @@ function App() {
           <Route
             path='/admin/users'
             element={<UserList />}
+          />
+          <Route
+            path='/admin/addProduct'
+            element={<AddProduct />}
           />
           <Route
             path='/admin/tours'
