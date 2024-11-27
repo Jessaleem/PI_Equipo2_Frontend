@@ -1,25 +1,82 @@
-import Lema from "./LemaTextContainer";
-import bannerImg from "@assets/banner.png";
+import Lema from './LemaTextContainer';
+import bannerImg from '@assets/banner.png';
+import Calendar from './search/Calendar.jsx';
+import SearchBar from './search/SearchBar.jsx';
+import { useState } from 'react';
+import { useGeneralContext } from '../context/useGeneralContext.jsx';
+import { useQuery } from '@tanstack/react-query';
+import { getAllTours } from '../provider/tours/toursProvider.js';
 
+const parseDate = (date) => {
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  const formattedDate = `${year}-${month}-${day}`;
+  return formattedDate;
+};
 const Banner = () => {
+  const { dispatch } = useGeneralContext();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [rangeStart, setRangeStart] = useState(null);
+
+  const [rangeEnd, setRangeEnd] = useState(null);
+
+  const { data, isError } = useQuery({
+    queryKey: ['tours', searchTerm],
+    queryFn: () =>
+      getAllTours({
+        ...(searchTerm.length > 0 && { search: searchTerm }),
+        ...(rangeStart !== null && { startDate: parseDate(rangeStart) }),
+        ...(rangeEnd !== null && { endDate: parseDate(rangeEnd) }),
+      }),
+    enabled: !!searchTerm || rangeStart !== null || rangeEnd !== null,
+  });
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (Array.isArray(data)) {
+      dispatch({ type: 'TOUR_DATA', payload: data });
+    } else {
+      dispatch({ type: 'TOUR_DATA', payload: [] });
+    }
+    setSearchTerm('');
+    setRangeStart(null);
+    setRangeEnd(null);
+  };
+
   return (
-    <div className="max-width-100vw position-relative overflow-hidden d-flex flex-column justify-content-center align-items-center align-items-md-end banner-busqueda">
-      <img src={bannerImg} className="w-100" />
+    <div
+      className='d-flex flex-column justify-content-center align-items-center gap-4'
+      style={{
+        backgroundImage: `url(${bannerImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        height: '400px',
+      }}
+    >
       <Lema />
       {/* <div className="position-absolute m-auto end-sm-0 top-sm-0 d-flex align-items-stretch-asdas m-lg-5 gap-4 flex-colum align-content-center"> */}
-      <div className="d-flex flex-column flex-lg-row position-absolute gap-4 me-md-5 filtro-busqueda me-lg-5">
-        <input
-          className="shadow form-control py-2 pe-5 pe-md-0 search-input"
-          type="text"
-          placeholder="Filtrar por categoria"
-        />
-        <div className="d-flex gap-2">
-          <input
-            className="shadow form-control py-2 pe-4 pe-md-0 search-input"
-            type="text"
-            placeholder="Buscar"
+      <div className='d-flex flex-column flex-lg-row gap-4 me-md-5  me-lg-5'>
+        <div>
+          <Calendar
+            rangeEnd={rangeEnd}
+            rangeStart={rangeStart}
+            setRangeEnd={setRangeEnd}
+            setRangeStart={setRangeStart}
           />
-          <button className="btn search py-2 pe-4" />
+        </div>
+        <div className='d-flex gap-2'>
+          <SearchBar
+            setSearchTerm={setSearchTerm}
+            searchTerm={searchTerm}
+            data={data}
+            isError={isError}
+          />
+          <button
+            style={{ height: '40px', width: '50px' }}
+            onClick={handleSearch}
+            className='btn search py-2 pe-4'
+          />
         </div>
       </div>
     </div>

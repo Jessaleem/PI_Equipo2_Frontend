@@ -6,6 +6,7 @@ import App from './App.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const queryClient = new QueryClient();
 createRoot(document.getElementById('root')).render(
