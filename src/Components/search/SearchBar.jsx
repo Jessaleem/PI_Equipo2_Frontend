@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getAllTours } from '../../provider/tours/toursProvider';
 
-const SearchBar = () => {
+const SearchBar = ({ setFilterData }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const { data, isError, error } = useQuery({
+  const { data, isError, error, isLoading } = useQuery({
     queryKey: ['tours', searchTerm],
     queryFn: () => getAllTours({ search: searchTerm }),
     enabled: !!searchTerm,
@@ -15,6 +15,12 @@ const SearchBar = () => {
     setSearchTerm(e.target.value);
   };
   const dataToShow = data?.slice(0, 7);
+
+  useEffect(() => {
+    if (data && !isLoading) {
+      setFilterData(data);
+    }
+  }, [data]);
   return (
     <div className='search-input d-flex flex-column'>
       <input

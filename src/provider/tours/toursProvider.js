@@ -15,9 +15,11 @@ export const getTourById = async ({ tourId }) => {
  * @returns {Promise<Object[]>} - Una promesa que resuelve con la lista de tours.
  */
 export const getAllTours = async (filters) => {
-  const filterQuery = new URLSearchParams(filters).toString();
-  console.log(`${API}/tour?${filterQuery}`);
-  const response = await fetch(`${API}/tour?${filterQuery}`);
+  let filterQuery;
+  if (filters) {
+    filterQuery = new URLSearchParams(filters).toString();
+  }
+  const response = await fetch(`${API}/tour?${filters ? filterQuery : ''}`);
   const tour = await response.json();
   return tour;
 };

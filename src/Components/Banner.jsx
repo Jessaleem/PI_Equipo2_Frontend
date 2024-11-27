@@ -2,9 +2,17 @@ import Lema from './LemaTextContainer';
 import bannerImg from '@assets/banner.png';
 import Calendar from './search/Calendar.jsx';
 import SearchBar from './search/SearchBar.jsx';
+import { useState } from 'react';
+import { useGeneralContext } from '../context/useGeneralContext.jsx';
 
 const Banner = () => {
-  const handleSearch = () => {};
+  const { dispatch } = useGeneralContext();
+  const [filterData, setFilterData] = useState();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch({ type: 'TOUR_DATA', payload: filterData });
+  };
   return (
     <div className='max-width-100vw position-relative overflow-hidden d-flex flex-column justify-content-center align-items-center align-items-md-end'>
       <img
@@ -18,8 +26,11 @@ const Banner = () => {
           <Calendar />
         </div>
         <div className='d-flex gap-2'>
-          <SearchBar />
-          {/* <button className='btn search py-2 pe-4' /> */}
+          <SearchBar setFilterData={setFilterData} />
+          <button
+            onClick={handleSearch}
+            className='btn search py-2 pe-4'
+          />
         </div>
       </div>
     </div>
