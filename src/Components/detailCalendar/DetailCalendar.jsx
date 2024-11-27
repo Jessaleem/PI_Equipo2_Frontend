@@ -4,7 +4,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./detailCalendar.css";
 
 const DetailCalendar = () => {
-
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const onChange = (dates) => {
@@ -24,11 +23,7 @@ const DetailCalendar = () => {
       monthsShown={2}
       minDate={new Date()}
     />
-
   )
-
-
-
 }
 
 export default DetailCalendar;

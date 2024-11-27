@@ -1,9 +1,6 @@
 import DetailCalendar from "./DetailCalendar"
 
-
 const CalendarContainer = () => {
-
-
   return (
     <section>
       <h2 
@@ -11,8 +8,6 @@ const CalendarContainer = () => {
       >Ver Disponibilidad:</h2>
       <DetailCalendar />
     </section>
-        
-
   )
 }
 
