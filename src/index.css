@@ -278,9 +278,9 @@ button:focus-visible {
   font-weight: bold;
   padding: 5px;
 }
-.body-content {
+/* .body-content {
   margin-top: 100px;
-}
+} */
 
 .react-datepicker__input-container input {
   height: 42px !important;
