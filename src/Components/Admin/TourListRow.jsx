@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { updateTourCategory } from '../../provider/tours/toursProvider';
-import { getAllCategory } from '../../provider/category/categoryProvider';
+import { getCategory } from '../../provider/category/categoryProvider';
 
 const TourListRow = ({ tour }) => {
   const [tourId, setTourId] = useState();
@@ -14,7 +14,7 @@ const TourListRow = ({ tour }) => {
 
   const { data: categoryData } = useQuery({
     queryKey: ['category'],
-    queryFn: getAllCategory,
+    queryFn: getCategory,
   });
   const mutation = useMutation({
     mutationFn: updateTourCategory,

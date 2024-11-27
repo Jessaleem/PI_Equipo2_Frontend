@@ -68,6 +68,7 @@ const Header = () => {
                     <div className='admin-dropdown-menu'>
                       <Link to='/admin/users'>Lista de usuarios</Link>
                       <Link to='/admin/addProduct'>Agregar producto</Link>
+                      <Link to='/admin/tours'>Lista de productos</Link>
                     </div>
                   )}
                 </div>

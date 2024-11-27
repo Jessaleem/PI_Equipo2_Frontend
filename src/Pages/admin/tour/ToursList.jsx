@@ -11,19 +11,19 @@ const ToursList = () => {
   const loggedUser = state.isLoggedIn;
   const userInformation = state.userData;
   const { data } = useQuery({ queryKey: ['tours'], queryFn: getAllTours });
-  // useEffect(() => {
-  //   if (!loggedUser) {
-  //     navigate('/');
-  //   } else if (userInformation.type === 3) {
-  //     navigate('/');
-  //   }
-  // }, [userInformation, loggedUser]);
+  useEffect(() => {
+    if (!loggedUser) {
+      navigate('/');
+    } else if (userInformation.type === 3) {
+      navigate('/');
+    }
+  }, [userInformation, loggedUser]);
 
   return (
     <div className='min-vh-100 p-2'>
       <div
         className='container'
-        style={{ marginTop: 150 }}
+        style={{ marginTop: 50 }}
       >
         <table
           className='table table-bordered'
