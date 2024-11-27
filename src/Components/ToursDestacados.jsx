@@ -19,19 +19,27 @@ const ToursDestacados = () => {
 
   return (
     <section className='bg-body-secondary px-3'>
-      <div className='tour-grid'>
-        {displayedTours?.map((tour) => (
-          <TourCard
-            key={tour.id}
-            imagen={tour.image}
-            nombre={tour.name}
-            id={tour.id}
-          />
-        ))}
-      </div>
-      <button className='btn ver-mas-btn fw-medium fs-4 px-5 my-5'>
-        Ver más
-      </button>
+      {tourData.length > 0 ? (
+        <div>
+          <div className='tour-grid'>
+            {displayedTours?.map((tour) => (
+              <TourCard
+                key={tour.id}
+                imagen={tour.image}
+                nombre={tour.name}
+                id={tour.id}
+              />
+            ))}
+          </div>
+          <button className='btn ver-mas-btn fw-medium fs-4 px-5 my-5'>
+            Ver más
+          </button>
+        </div>
+      ) : (
+        <p style={{ padding: 10, color: 'red', fontSize: '20px' }}>
+          No se encontraron resultados
+        </p>
+      )}
     </section>
   );
 };

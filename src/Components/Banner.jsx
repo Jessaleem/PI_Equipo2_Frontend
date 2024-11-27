@@ -33,7 +33,11 @@ const Banner = () => {
   });
   const handleSearch = (e) => {
     e.preventDefault();
-    if (Array.isArray(data)) dispatch({ type: 'TOUR_DATA', payload: data });
+    if (Array.isArray(data)) {
+      dispatch({ type: 'TOUR_DATA', payload: data });
+    } else {
+      dispatch({ type: 'TOUR_DATA', payload: [] });
+    }
     setSearchTerm('');
     setRangeStart(null);
     setRangeEnd(null);
