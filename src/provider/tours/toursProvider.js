@@ -17,6 +17,7 @@ export const getTourById = async ({ tourId }) => {
  */
 export const getAllTours = async (filters) => {
   let filterQuery;
+
   if (filters) {
     filterQuery = new URLSearchParams(filters).toString();
   }
