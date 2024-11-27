@@ -7,20 +7,36 @@ import { useGeneralContext } from '../context/useGeneralContext.jsx';
 import { useQuery } from '@tanstack/react-query';
 import { getAllTours } from '../provider/tours/toursProvider.js';
 
+const parseDate = (date) => {
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  const formattedDate = `${year}-${month}-${day}`;
+  return formattedDate;
+};
 const Banner = () => {
   const { dispatch } = useGeneralContext();
-  const [filterData, setFilterData] = useState();
   const [searchTerm, setSearchTerm] = useState('');
+  const [rangeStart, setRangeStart] = useState(null);
+
+  const [rangeEnd, setRangeEnd] = useState(null);
 
   const { data, isError } = useQuery({
     queryKey: ['tours', searchTerm],
-    queryFn: () => getAllTours({ search: searchTerm }),
-    enabled: !!searchTerm,
+    queryFn: () =>
+      getAllTours({
+        ...(searchTerm.length > 0 && { search: searchTerm }),
+        ...(rangeStart !== null && { startDate: parseDate(rangeStart) }),
+        ...(rangeEnd !== null && { endDate: parseDate(rangeEnd) }),
+      }),
+    enabled: !!searchTerm || rangeStart !== null || rangeEnd !== null,
   });
   const handleSearch = (e) => {
     e.preventDefault();
     if (Array.isArray(data)) dispatch({ type: 'TOUR_DATA', payload: data });
     setSearchTerm('');
+    setRangeStart(null);
+    setRangeEnd(null);
   };
 
   return (
@@ -28,9 +44,9 @@ const Banner = () => {
       className='d-flex flex-column justify-content-center align-items-center gap-4'
       style={{
         backgroundImage: `url(${bannerImg})`,
-        backgroundSize: 'cover', // Ajusta la imagen para cubrir el contenedor
-        backgroundPosition: 'center', // Centra la imagen
-        backgroundRepeat: 'no-repeat', // Evita que la imagen se repita
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
         height: '400px',
       }}
     >
@@ -38,7 +54,12 @@ const Banner = () => {
       {/* <div className="position-absolute m-auto end-sm-0 top-sm-0 d-flex align-items-stretch-asdas m-lg-5 gap-4 flex-colum align-content-center"> */}
       <div className='d-flex flex-column flex-lg-row gap-4 me-md-5  me-lg-5'>
         <div>
-          <Calendar />
+          <Calendar
+            rangeEnd={rangeEnd}
+            rangeStart={rangeStart}
+            setRangeEnd={setRangeEnd}
+            setRangeStart={setRangeStart}
+          />
         </div>
         <div className='d-flex gap-2'>
           <SearchBar

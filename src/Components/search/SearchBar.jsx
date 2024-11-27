@@ -25,14 +25,15 @@ const SearchBar = ({ setSearchTerm, data, searchTerm }) => {
           className='border'
           style={{ backgroundColor: 'white', listStyleType: 'none' }}
         >
-          {dataToShow?.map((result) => (
-            <li
-              key={result.id}
-              className='p-2 border-b'
-            >
-              {`${result.name}-${result.country}`}
-            </li>
-          ))}
+          {searchTerm &&
+            dataToShow?.map((result) => (
+              <li
+                key={result.id}
+                className='p-2 border-b'
+              >
+                {`${result.name}-${result.country}`}
+              </li>
+            ))}
         </ul>
       )}
     </div>

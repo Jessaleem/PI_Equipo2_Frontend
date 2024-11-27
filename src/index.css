@@ -283,9 +283,10 @@ button:focus-visible {
 }
 
 .react-datepicker__input-container input {
-  height: 40px !important;
+  height: 42px !important;
   background-color: white;
   color: black;
+  width: 200px;
 }
 .react-datepicker__week .react-datepicker__day--selected {
   background-color: #0b4040;
