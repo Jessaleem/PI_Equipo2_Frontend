@@ -11,10 +11,10 @@ export const postTour = async (tourData) => {
   try {
     const response = await fetch(`${API}/tour`, {
       method: "POST",
+      body: JSON.stringify(tourData),
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json", // Asegúrate de enviar los datos en formato JSON
       },
-      body: JSON.stringify(tourData), // Asegúrate de enviar los datos como JSON
     });
 
     if (!response.ok) {
