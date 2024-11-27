@@ -72,7 +72,7 @@ const Banner = () => {
             tenemos el tour perfecto para ti
           </p>
         </div>
-        <div className='d-flex flex-column flex-lg-row gap-4 me-md-5  me-lg-5'>
+        <div className='d-flex flex-column flex-lg-row gap-4 me-md-5 me-lg-5 align-items-center justify-content-center full-height'>
           <div>
             <Calendar
               rangeEnd={rangeEnd}
@@ -81,18 +81,23 @@ const Banner = () => {
               setRangeStart={setRangeStart}
             />
           </div>
-          <div className='d-flex gap-2'>
-            <SearchBar
-              setSearchTerm={setSearchTerm}
-              searchTerm={searchTerm}
-              data={data}
-              isError={isError}
-            />
-            <button
-              style={{ height: '40px', width: '50px' }}
-              onClick={handleSearch}
-              className='btn search py-2 pe-4'
-            />
+          <div
+            className='d-flex flex-column justify-content-end'
+            style={{ height: '100%' }}
+          >
+            <div className='d-flex gap-2 align-items-end'>
+              <SearchBar
+                setSearchTerm={setSearchTerm}
+                searchTerm={searchTerm}
+                data={data}
+                isError={isError}
+              />
+              <button
+                style={{ height: '40px', width: '50px' }}
+                onClick={handleSearch}
+                className='btn search py-2 pe-4'
+              />
+            </div>
           </div>
         </div>
       </div>

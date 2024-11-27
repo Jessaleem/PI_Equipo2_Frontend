@@ -30,7 +30,7 @@ const TourListRow = ({ tour }) => {
           className="form-select"
           aria-label="Select Category"
           id={tour.id}
-          value={tour.categoryId}
+          value={categoryId ?? tour.categoryId}
           onChange={(e) => handleTypeChange(tour.id, e.target.value)}
         >
           {categoryData?.map((category) => (
