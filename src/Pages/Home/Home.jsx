@@ -9,7 +9,7 @@ import { getAllTours } from '../../provider/tours/toursProvider';
 
 const Home = () => {
   const { dispatch } = useGeneralContext();
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ['tour'],
     queryFn: () => getAllTours(),
     staleTime: Infinity,
@@ -22,6 +22,10 @@ const Home = () => {
     }
   }, [dispatch, data]);
 
+  const handleTourDestacado = (e) => {
+    e.preventDefault();
+    refetch();
+  };
   return (
     <section>
       <meta
@@ -29,7 +33,20 @@ const Home = () => {
         content='width=device-width, initial-scale=1.0'
       ></meta>
       <Banner />
-      <ToursDestacados />
+      <div className='bg-body-secondary p-3 mb-2 z-1'>
+        <button
+          onClick={handleTourDestacado}
+          className='px-2 fs-2 fw-bold  bg-transparent'
+          style={{
+            color: '#0b4040',
+            border: '2px solid #0b4040',
+            borderRadius: '10px',
+          }}
+        >
+          Tours Destacados
+        </button>
+        <ToursDestacados />
+      </div>
       <Categorias />
       <Experiencias />
     </section>

@@ -111,10 +111,10 @@ button:focus-visible {
   background-color: rgba(242, 182, 210, 1) !important;
 }
 
-.search-input {
+/* .search-input {
   display: flex;
   flex: 1;
-}
+} */
 
 .lemaContainer {
   display: flex;
@@ -281,6 +281,19 @@ button:focus-visible {
 .body-content {
   margin-top: 100px;
 }
+
+.react-datepicker__input-container input {
+  height: 40px !important;
+  background-color: white;
+  color: black;
+}
+.react-datepicker__week .react-datepicker__day--selected {
+  background-color: #0b4040;
+}
+
+.custom-datepicker-container {
+  position: relative;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -381,10 +394,9 @@ button:focus-visible {
   margin: 10px;
 }
 
-
 .botonFormRegistro:hover {
   background-color: var(--success);
-  color: var(--primary)
+  color: var(--primary);
 }
 
 .registro {
@@ -401,15 +413,13 @@ button:focus-visible {
 }
 
 .error {
-  max-width: 100%; 
+  max-width: 100%;
   word-wrap: break-word; /* Ajusta las palabras largas al siguiente renglón */
   overflow: hidden; /* Evita que el texto se desborde */
   color: red;
   font-size: 2vh;
   margin-top: 5px;
   padding-top: 3vh;
-
-
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -436,26 +446,24 @@ button:focus-visible {
   margin-bottom: auto;
   margin-top: auto;
   text-align: center;
-
 }
 
-.form-container label{
+.form-container label {
   padding-left: 2vh;
-  padding-right:  2vh;;
+  padding-right: 2vh;
   font-size: 3vh;
 }
 
-.form-container h2{
+.form-container h2 {
   padding-bottom: 10vh;
   font-size: 4vh;
-
 }
 
 .form-navigation {
   padding-top: 4vh;
   margin-top: 20px;
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
 }
 
 .form-container form {
@@ -468,7 +476,7 @@ button:focus-visible {
 .form-container input[type='tel'],
 .form-container input[type='email'],
 .form-container input[type='password'] {
-  padding: 1vw ;
+  padding: 1vw;
   margin-bottom: 15px;
   border: 1px solid var(--primary);
   border-radius: 4px;
@@ -477,29 +485,23 @@ button:focus-visible {
   color: var(--info);
 }
 
-
-.form-container input[type="submit"] {
+.form-container input[type='submit'] {
   padding: 10px 20px;
   background-color: var(--success);
   color: var(--light);
   border: none;
   border-radius: 4px;
-  font-weight: bold;  
-
-
+  font-weight: bold;
 }
 
-.botonFormRegistro
-{
+.botonFormRegistro {
   padding: 10px 20px;
   background-color: var(--primary);
   border: none;
   color: var(--light);
   border-radius: 4px;
   cursor: pointer;
-
 }
-
 
 .form-container input[type='submit']:hover {
   background-color: var(--primary);
@@ -513,14 +515,9 @@ button:focus-visible {
   font-size: 1rem;
 }
 
-
-.filtro-busqueda input[type='text']
-{
+.filtro-busqueda input[type='text'] {
   font-size: 0.85rem;
 }
-
-
-
 
 .success-message {
   display: flex;

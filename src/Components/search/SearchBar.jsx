@@ -1,44 +1,29 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
-import { getAllTours } from '../../provider/tours/toursProvider';
+import React from 'react';
 
-const SearchBar = ({ setFilterData }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const { data, isError, error, isLoading } = useQuery({
-    queryKey: ['tours', searchTerm],
-    queryFn: () => getAllTours({ search: searchTerm }),
-    enabled: !!searchTerm,
-  });
-
+const SearchBar = ({ setSearchTerm, data, searchTerm }) => {
   const handleChange = (e) => {
     e.preventDefault();
     setSearchTerm(e.target.value);
   };
-  const dataToShow = data?.slice(0, 7);
+  const dataToShow = Array.isArray(data) ? data.slice(0, 7) : [];
 
-  useEffect(() => {
-    if (data && !isLoading) {
-      setFilterData(data);
-    }
-  }, [data]);
   return (
     <div className='search-input d-flex flex-column'>
       <input
+        style={{ backgroundColor: 'white', color: 'black', height: '40px' }}
         type='text'
         placeholder='Buscar'
         value={searchTerm}
         onChange={handleChange}
         className='border w-full'
       />
-      {isError && (
-        <p>
-          Error: {error instanceof Error ? error.message : 'Algo salió mal'}
-        </p>
+      {dataToShow.length === 0 && searchTerm.length != 0 && (
+        <p style={{ backgroundColor: 'white' }}>No se encontraron resultados</p>
       )}
       {data && (
         <ul
           className='border'
-          style={{ backgroundColor: 'white' }}
+          style={{ backgroundColor: 'white', listStyleType: 'none' }}
         >
           {dataToShow?.map((result) => (
             <li

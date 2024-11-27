@@ -1,6 +1,4 @@
 import TourCard from './TourCard';
-import { useQuery } from '@tanstack/react-query';
-import { getAllTours } from '../provider/tours/toursProvider';
 import { useState, useEffect } from 'react';
 import { useGeneralContext } from '../context/useGeneralContext';
 
@@ -21,7 +19,6 @@ const ToursDestacados = () => {
 
   return (
     <section className='bg-body-secondary px-3'>
-      <h2 className='py-5'>Tours Destacados</h2>
       <div className='tour-grid'>
         {displayedTours?.map((tour) => (
           <TourCard

@@ -16,7 +16,7 @@ const Calendar = () => {
     setRangeEnd(d);
   };
   return (
-    <div className='d-flex flex-row'>
+    <div className=' custom-datepicker-container d-flex flex-row z-5 gap-2'>
       <DatePicker
         selectsStart
         selected={rangeStart}
@@ -24,6 +24,7 @@ const Calendar = () => {
         startDate={rangeStart}
         endDate={rangeEnd}
         onChange={selectStartDate}
+        dateFormat={'dd/MM/yyyy'}
       />
       <DatePicker
         selectsEnd
@@ -31,6 +32,7 @@ const Calendar = () => {
         startDate={rangeStart}
         endDate={rangeEnd}
         onChange={selectEndDate}
+        dateFormat={'dd/MM/yyyy'}
       />
     </div>
   );
