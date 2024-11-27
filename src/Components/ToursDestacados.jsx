@@ -2,7 +2,6 @@ import TourCard from "./TourCard";
 import { useQuery } from "@tanstack/react-query";
 import { getAllTours } from "../provider/tours/toursProvider";
 import { useState, useEffect } from "react";
-import { getCategory } from "../provider/category/categoryProvider";
 const ToursDestacados = () => {
   const { data } = useQuery({
     queryKey: ["tour"],
