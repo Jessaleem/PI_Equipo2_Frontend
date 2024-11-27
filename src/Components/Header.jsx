@@ -50,6 +50,22 @@ const Header = () => {
 
           {loggedUser ? (
             <div className="header-logged-user">
+             {loggedUser && userInformation.type != "3" && (
+        <div className="admin-dropdown">
+        <button
+          className="admin-dropdown-button"
+          onClick={() => setShowAdminDropdown(!showAdminDropdown)}
+        >
+          Panel de Administración
+        </button>
+        {showAdminDropdown && (
+          <div className="admin-dropdown-menu">
+            <Link to="/admin/users">Lista de usuarios</Link>
+            <Link to="/admin/addProduct">Agregar producto</Link>
+          </div>
+        )}
+      </div>
+      )}
               <Avatar props={userInformation} />
               <Button
                 backgroundColor="#ACF2EB"
@@ -82,26 +98,7 @@ const Header = () => {
           )}
         </div>
       </nav>
-      {loggedUser && userInformation.type != "3" && (
-        <div
-          className="d-flex gap-3 align-items-center p-2"
-          style={{ backgroundColor: " #D9D9D9" }}
-        >
-          <h2>Admin Panel</h2>
-          <nav className="d-flex">
-            <div>
-              <Link to="/admin/users">
-                <Button backgroundColor="#136060" value="Lista de usuarios" />
-              </Link>
-            </div>
-            <div>
-              <Link to="/admin/addProduct">
-                <Button backgroundColor="#136060" value="Agregar producto" />
-              </Link>
-            </div>
-          </nav>
-        </div>
-      )}
+     
     </header>
   );
 };
