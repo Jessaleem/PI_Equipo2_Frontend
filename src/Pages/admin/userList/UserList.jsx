@@ -24,7 +24,7 @@ const UserList = () => {
       <div className='min-vh-100 p-2'>
         <div
           className='container'
-          style={{ marginTop: 150 }}
+          style={{ marginTop: 50 }}
         >
           <table
             className='table table-bordered'
