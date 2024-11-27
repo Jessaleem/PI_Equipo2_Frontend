@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import TourDetailCaracteristicas from "./TourDetailCaracteristicas";
 import { useQuery } from "@tanstack/react-query";
 import { getTourById } from "../provider/tours/toursProvider";
+import CalendarContainer from "./detailCalendar";
 
 const TourDetailSection = ({ id }) => {
   const { data } = useQuery({
@@ -44,7 +45,11 @@ const TourDetailSection = ({ id }) => {
         <button className="reservar-btn">Reservar</button>
       </div>
       <TourDetailCaracteristicas caracteristicas={data?.characteristics} />
+      <section>
+        <CalendarContainer />
+      </section>
       <Experiencias />
+      
     </div>
   );
 };

@@ -567,3 +567,11 @@ button:focus-visible {
   align-items: center;
   gap: 10px;
 }
+
+.calendar-container-title {
+  background-color: #a7f2cf75;
+  padding: 24px 0px 28px 0px;
+  margin-bottom: 0px;
+  color: var(--primary);
+  margin-top: 30px;
+}
