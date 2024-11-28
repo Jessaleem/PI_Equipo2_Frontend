@@ -12,7 +12,6 @@ const TourDetailSection = ({ id }) => {
     queryKey: ["tour", id],
     queryFn: () => getTourById({ tourId: id }),
   });
-  console.log(id)
 
   return (
     <div className="d-flex flex-column gap-3">
