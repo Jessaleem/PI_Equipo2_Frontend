@@ -46,7 +46,7 @@ const TourDetailSection = ({ id }) => {
       </div>
       <TourDetailCaracteristicas caracteristicas={data?.characteristics} />
       <section>
-        <CalendarContainer />
+        <CalendarContainer id={id} />
       </section>
       <Experiencias />
       

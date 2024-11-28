@@ -2,11 +2,12 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./detailCalendar.css";
-import { disabledDates } from "../../utils/disabledDates";
+
+import  {getDisabledDates}  from "../../utils/disabledDates";
 
 const endOfMarch = new Date(new Date().getFullYear()+1, 2, 31);
 
-const DetailCalendar = () => {
+const DetailCalendar = ({id}) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const onChange = (dates) => {
@@ -14,6 +15,7 @@ const DetailCalendar = () => {
     setStartDate(start);
     setEndDate(end);
   };
+  const disabledDates = getDisabledDates(id);
 
   return (
     <DatePicker 
