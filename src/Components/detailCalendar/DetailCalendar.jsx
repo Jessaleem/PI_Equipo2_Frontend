@@ -6,7 +6,8 @@ import { disabledDates } from "../../utils/disabledDates";
 
 const endOfMarch = new Date(new Date().getFullYear()+1, 2, 31);
 
-const DetailCalendar = () => {
+const DetailCalendar = ({id}) => {
+  console.log(id);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const onChange = (dates) => {

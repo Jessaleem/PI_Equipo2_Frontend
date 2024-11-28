@@ -12,6 +12,7 @@ const TourDetailSection = ({ id }) => {
     queryKey: ["tour", id],
     queryFn: () => getTourById({ tourId: id }),
   });
+  console.log(id)
 
   return (
     <div className="d-flex flex-column gap-3">
@@ -46,7 +47,7 @@ const TourDetailSection = ({ id }) => {
       </div>
       <TourDetailCaracteristicas caracteristicas={data?.characteristics} />
       <section>
-        <CalendarContainer />
+        <CalendarContainer id={id} />
       </section>
       <Experiencias />
       
