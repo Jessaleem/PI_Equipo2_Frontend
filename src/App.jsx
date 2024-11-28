@@ -13,6 +13,7 @@ import LoginModal from './Pages/Log-in/Login';
 import UserList from './Pages/admin/userList/UserList';
 import AddProduct from './Pages/admin/addProduct/AddProduct';
 import ToursList from './Pages/admin/tour/ToursList';
+import Favs from './Pages/favs/Favs';
 
 function App() {
   return (
@@ -47,6 +48,10 @@ function App() {
           <Route
             path='/admin/tours'
             element={<ToursList />}
+          />
+          <Route
+            path='/favorites'
+            element={<Favs />}
           />
         </Routes>
         <Footer />

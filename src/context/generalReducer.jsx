@@ -1,3 +1,4 @@
+export const lsFavs = JSON.parse(localStorage.getItem('favs')) || [];
 export const initialState = {
   isLoginModalOpen: false,
   isLoggedIn: false,
@@ -7,6 +8,8 @@ export const initialState = {
     role: 0,
   },
   tourData: [],
+  favs: lsFavs,
+  tourFavs: [],// ver si es necesario
 };
 
 export const reducer = (state, action) => {
@@ -42,6 +45,11 @@ export const reducer = (state, action) => {
         ...state,
         tourData: action.payload,
       };
+    case "ADD_FAV":
+        return {...state, favs: [...state.favs,action.payload]};
+    case "REMOVE_FAV":
+        const filteredFavs = state.favs.filter((fav) => fav.id !== action.payload.id)
+        return {...state,favs: filteredFavs};
     default:
       return state;
   }

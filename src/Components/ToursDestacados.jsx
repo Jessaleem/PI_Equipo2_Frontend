@@ -28,6 +28,7 @@ const ToursDestacados = () => {
                 imagen={tour.image}
                 nombre={tour.name}
                 id={tour.id}
+                tourC = {tour}
               />
             ))}
           </div>

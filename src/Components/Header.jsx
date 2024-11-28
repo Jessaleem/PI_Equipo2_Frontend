@@ -74,6 +74,12 @@ const Header = () => {
                 </div>
               )}
               <Avatar props={userInformation} />
+              {/* <Button
+                backgroundColor='#ACF2EB'
+                value='Favoritos'
+                onClick={openConfirmationModal}
+              /> */}
+              <Link to='/Favorites'>Favoritos</Link>
               <Button
                 backgroundColor='#ACF2EB'
                 value='Cerrar Sesión'
