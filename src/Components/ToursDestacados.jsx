@@ -18,7 +18,7 @@ const ToursDestacados = () => {
   }, [tourData]);
 
   return (
-    <section className='bg-body-secondary px-3'>
+    <section className='bg-body-secondary px-3' style={{marginTop: '1.5 rem'}}>
       {tourData.length > 0 ? (
         <div>
           <div className='tour-grid'>

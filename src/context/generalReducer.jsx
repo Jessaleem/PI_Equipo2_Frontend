@@ -50,6 +50,8 @@ export const reducer = (state, action) => {
     case "REMOVE_FAV":
         const filteredFavs = state.favs.filter((fav) => fav.id !== action.payload.id)
         return {...state,favs: filteredFavs};
+    case "REMOVE_ALL_FAV":
+        return {...state,favs:[]}
     default:
       return state;
   }
