@@ -644,3 +644,7 @@ header {
   color: var(--primary);
   margin-top: 30px;
 }
+
+.imgPreGroup{
+  margin: 15px;
+}
