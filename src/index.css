@@ -675,3 +675,11 @@ header {
   visibility: visible;
   opacity: 1;
 }
+
+.buttonFav{
+  margin: 0px 30px !important;
+}
+
+.tourDestacado{
+  margin-top: 2.5rem;
+}

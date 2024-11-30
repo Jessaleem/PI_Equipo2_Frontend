@@ -100,12 +100,16 @@ const Header = () => {
               />
             </div>
           ) : (
-            <section>
-              <Button
-                backgroundColor='#ACF2EB'
-                value='Favoritos'                
-                onClick={handleFav}
-              />
+            <section style={{display:'flex'}}>
+              <div style={{margin: '0px 30px'}}>
+                <Button
+                  backgroundColor='#ACF2EB'
+                  value='Favoritos' 
+                  // className='buttonFav'  
+                  // style = {{margin: '0px 30px'}}             
+                  onClick={handleFav}
+                />
+              </div>              
               <Button
                 backgroundColor='#ACF2EB'
                 value='Registrarse'
