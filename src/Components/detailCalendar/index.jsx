@@ -1,12 +1,12 @@
 import DetailCalendar from "./DetailCalendar"
 
-const CalendarContainer = () => {
+const CalendarContainer = ({id}) => {
   return (
     <section>
       <h2 
         className="calendar-container-title"
       >Ver Disponibilidad:</h2>
-      <DetailCalendar />
+      <DetailCalendar id={id} />
     </section>
   )
 }
