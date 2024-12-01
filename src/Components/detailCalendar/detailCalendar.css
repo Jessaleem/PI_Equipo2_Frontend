@@ -35,13 +35,13 @@
 }
 
 .react-datepicker__navigation--previous {
-  left: 10px;
+  left: -50px;
   top: 50%;
   transform: translateY(-50%);
 }
 
 .react-datepicker__navigation--next {
-  right: 10px;
+  right: -50px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -119,10 +119,10 @@
   }
 
   .react-datepicker__navigation--previous {
-    left: 5px;
+    left: -35px;
   }
   
   .react-datepicker__navigation--next {
-    right: 5px;
+    right: -35px;
   }
 }
