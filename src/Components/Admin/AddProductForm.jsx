@@ -121,20 +121,22 @@ const AddProductForm = ({ dataCategory }) => {
       const newTourName = formData.name.trim().toLowerCase();
 
       // Verificar si el tour ya existe en la lista (ignorando mayúsculas y espacios)
-      const existingTour = data.some(
-        (tour) => tour.name.trim().toLowerCase() === newTourName
-      );
+      if (data.some){
+        const existingTour = data.some(        
+          (tour) => tour.name.trim().toLowerCase() === newTourName
+        );
+        if (existingTour) {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "El tour ya existe. Por favor, elija otro nombre.",
+            confirmButtonText: "Aceptar",
+          });
+          return;
+        }  
+      }     
 
-      if (existingTour) {
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "El tour ya existe. Por favor, elija otro nombre.",
-          confirmButtonText: "Aceptar",
-        });
-        return;
-      }
-
+      
       // Convertir experienceDate a formato ISO
       const baseDate = new Date(formData.experienceDate);
 
