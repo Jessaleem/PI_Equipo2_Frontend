@@ -7,6 +7,122 @@
   display: flex;
   justify-content: center;
   gap: 16px;
-  background-color: #a7f2cf75;
+  background-color: transparent;
   padding-bottom: 24px;
+}
+
+.react-datepicker {
+  background-color: none !important;
+}
+
+.react-datepicker__navigation {
+  background-color: white !important;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.281);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  color: #0b4040 !important;
+  position: absolute;
+}
+
+.react-datepicker__navigation:hover {
+  background-color: #f0f0f0;
+}
+
+.react-datepicker__navigation--previous {
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.react-datepicker__navigation--next {
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: #0b4040;
+  border-style: solid;
+  border-width: 3px 3px 0 0;
+  content: "";
+  display: block;
+  height: 9px;
+  position: absolute;
+  top: 6px;
+  width: 9px;
+}
+
+/* General: aplicar un color de fondo consistente para fechas destacadas */
+.react-datepicker__day--highlighted {
+  background-color: rgba(0, 255, 0, 0.5);
+  color: black;
+  border-radius: 50% !important;
+}
+
+/* Estilo para el hover de cualquier fecha destacada */
+.react-datepicker__day--highlighted:hover {
+  background-color: #0b4040 !important;
+  color: white !important;
+  border-radius: 50% !important;
+}
+
+/* Estilo para la fecha seleccionada */
+.react-datepicker__day--selected {
+  background-color: #0b4040 !important;
+  color: white !important;
+  border-radius: 50% !important;
+}
+
+/* Hover de la fecha seleccionada: */
+.react-datepicker__day--selected:hover {
+  background-color: #0b4040 !important;
+  color: white !important;
+  border-radius: 50% !important;
+}
+
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  margin: 20px auto; 
+  max-width: 900px;
+}
+
+.react-datepicker {
+  width: 100%; 
+}
+
+@media (max-width: 768px) {
+  .calendar-container {
+    max-width: 100%; 
+    padding: 10px;
+  }
+
+  .react-datepicker {
+    width: 100%; 
+  }
+
+  .react-datepicker__month-container {
+    width: 100%; 
+  }
+
+  .react-datepicker__navigation {
+    width: 25px; 
+    height: 25px;
+  }
+
+  .react-datepicker__navigation--previous {
+    left: 5px;
+  }
+  
+  .react-datepicker__navigation--next {
+    right: 5px;
+  }
 }
