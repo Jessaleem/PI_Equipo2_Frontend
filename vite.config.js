@@ -10,5 +10,7 @@ export default defineConfig({
       '@context': '/src/context/',
       '@services': '/src/services/'
     }
-  }
+  },
+  base: './',
+
 })
