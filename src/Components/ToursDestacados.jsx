@@ -18,7 +18,7 @@ const ToursDestacados = () => {
   }, [tourData]);
 
   return (
-    <section className='bg-body-secondary px-3'>
+    <section className='bg-body-secondary px-3 tourDestacado'>
       {tourData.length > 0 ? (
         <div>
           <div className='tour-grid'>
@@ -28,6 +28,7 @@ const ToursDestacados = () => {
                 imagen={tour.image}
                 nombre={tour.name}
                 id={tour.id}
+                tourC = {tour}
               />
             ))}
           </div>
