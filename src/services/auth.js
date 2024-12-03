@@ -1,3 +1,4 @@
+import { API } from '../provider/api/api';
 export async function login(auth) {
   const options = {
     method: 'POST',
@@ -7,10 +8,7 @@ export async function login(auth) {
     body: JSON.stringify(auth),
   };
   try {
-    const response = await fetch(
-      `http://localhost:8080/api/v1/auth/login`,
-      options
-    );
+    const response = await fetch(`${API}/auth/login`, options);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -32,7 +30,7 @@ export const register = async (data) => {
     body: JSON.stringify(body),
   };
   try {
-    const response = await fetch(`http://localhost:8080/api/v1/users`, options);
+    const response = await fetch(`${API}/users`, options);
     const data = await response.json();
     return data;
   } catch (error) {
