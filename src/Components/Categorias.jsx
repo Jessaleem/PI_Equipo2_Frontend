@@ -1,6 +1,7 @@
 import React from "react";
 import { categoriaData } from "../utils/categoriaData";
 import CategoriaCard from "./CategoriaCard";
+import { Link } from "react-router-dom";
 
 const Categorias = () => {
   return (
@@ -12,11 +13,16 @@ const Categorias = () => {
         <div className="d-flex justify-content-around flex-wrap w-max-1280 overflow-hidden gap-4">
           {categoriaData.map((categoria) => {
             return (
-              <CategoriaCard
+              <Link
+                className="text-black categoriaLink"
                 key={categoria.id}
-                imagen={categoria.imagen}
-                categoria={categoria.categoria}
-              />
+                to={`/categoria/${categoria.categoria}`}
+              >
+                <CategoriaCard
+                  imagen={categoria.imagen}
+                  categoria={categoria.categoria}
+                />
+              </Link>
             );
           })}
         </div>

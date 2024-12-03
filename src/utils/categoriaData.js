@@ -2,7 +2,7 @@ import categoriaGastronomia from "@assets/categoriaGastronomia.png";
 import categoriaCultura from "@assets/categoriaCultura.png";
 import categoriaArte from "@assets/categoriaArte.png";
 import categoriaNaturaleza from "@assets/categoriaNaturaleza.png";
-
+import categoriaTecnologia from "@assets/categoriaTecnologia.jpg";
 export let categoriaData = [
   {
     id: 1,
@@ -23,5 +23,10 @@ export let categoriaData = [
     id: 4,
     categoria: "Naturaleza",
     imagen: categoriaNaturaleza,
+  },
+  {
+    id: 5,
+    categoria: "Tecnologia",
+    imagen: categoriaTecnologia,
   },
 ];
