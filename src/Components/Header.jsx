@@ -36,6 +36,7 @@ const Header = () => {
     setShowConfirmationModal(false);
     dispatch({ type: 'USER_LOGGED_OUT' });
     dispatch({ type: 'CLOSE_LOGIN_MODAL' });
+    localStorage.removeItem('userData');
   };
 
   return (

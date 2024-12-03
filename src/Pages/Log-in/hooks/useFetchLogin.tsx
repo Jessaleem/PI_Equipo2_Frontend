@@ -1,6 +1,7 @@
 import { useGeneralContext } from "../../../context/useGeneralContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { login } from "../../../services/auth";
+import { useNavigate } from "react-router-dom";
 
 const useFetchLogin = () => {
   const { setAbrirModal, dispatch } = useGeneralContext();
@@ -8,6 +9,16 @@ const useFetchLogin = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem("userData");
+    if (savedUser) {
+      dispatch({ type: "USER_LOGGED_IN" });
+      dispatch({ type: "USER_DATA", payload: JSON.parse(savedUser) });
+      navigate("/");
+    }
+  }, []);
 
   const handleClose = () => {
     setAbrirModal(false);
@@ -26,8 +37,10 @@ const useFetchLogin = () => {
       const data = await login(auth);
       if (data) {
         if (data?.email && data?.type) {
+          localStorage.setItem("userData", JSON.stringify(data));
           dispatch({ type: "USER_LOGGED_IN" });
           dispatch({ type: "USER_DATA", payload: data });
+          navigate("/");
         } else if (data.error) {
           if (data.statusCode === 404) {
             setErrorMessage("Usuario no encontrado");
