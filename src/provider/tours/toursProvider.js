@@ -67,3 +67,17 @@ export const updateTourCategory = async ({ tourId, categoryId }) => {
   const tour = await response.json();
   return tour;
 };
+
+export const getAvailableDatesByTourId = async (tourId) => {
+  try {
+    const response = await fetch(`${API}/tour/${tourId}/fechas-disponibles`);
+    if (!response.ok) {
+      throw new Error('Error al obtener las fechas disponibles');
+    }
+    const dates = await response.json();
+    return dates; 
+  } catch (error) {
+    console.error('Error al obtener las fechas disponibles:', error);
+    throw error;
+  }
+};
