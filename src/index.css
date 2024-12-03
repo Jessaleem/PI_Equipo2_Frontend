@@ -643,6 +643,11 @@ header {
   margin-bottom: 0px;
   color: var(--primary);
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  text-align: center;
 }
 
 
