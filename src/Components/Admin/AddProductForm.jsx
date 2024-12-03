@@ -100,18 +100,25 @@ const AddProductForm = ({ dataCategory }) => {
         categoryId: parseInt(formData.category_id, 10),
       };
       console.log("caracteristicas", characteristics.data);
-
+      Swal.fire({
+        title: "Creando tour...",
+        text: "Por favor, espere un momento.",
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
       const createdTour = await postTour(tourData);
 
       if (createdTour.id) {
         await addCharacteristicsToTour(createdTour.id, selectedCharacteristics);
       }
 
+      Swal.close();
       Swal.fire({
         icon: "success",
         title: "¡Tour creado exitosamente!",
         text: "El tour ha sido añadido correctamente.",
-        confirmButtonText: "Aceptar",
       });
 
       reset();
