@@ -318,7 +318,7 @@ button:focus-visible {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Configura 2 columnas */
   grid-auto-rows: minmax(200px, auto); /* Ajusta la altura mínima */
-  gap: 20px; /* Espacio entre tarjetas */
+  gap: 50px; /* Espacio entre tarjetas */
   justify-content: center; /* Centra las tarjetas en el contenedor */
   max-width: 1280px;
   margin: 0 auto;
@@ -363,7 +363,7 @@ button:focus-visible {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Configura 2 columnas */
   grid-auto-rows: minmax(200px, auto); /* Ajusta la altura mínima */
-  gap: 20px; /* Espacio entre tarjetas */
+  gap: 50px; /* Espacio entre tarjetas */
   justify-content: center; /* Centra las tarjetas en el contenedor */
   max-width: 1280px;
   margin: 0 auto;
@@ -643,8 +643,51 @@ header {
   margin-bottom: 0px;
   color: var(--primary);
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  text-align: center;
 }
 
+
+.icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip1 {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 100%; 
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.icon-container:hover .tooltip1 {
+  visibility: visible;
+  opacity: 1;
+}
+
+.buttonFav{
+  margin: 0px 30px !important;
+}
+
+.tourDestacado{
+  margin-top: 2.5rem;
+}
 .imgPreGroup{
   margin: 15px;
 }
