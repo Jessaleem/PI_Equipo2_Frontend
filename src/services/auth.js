@@ -12,6 +12,7 @@ export async function login(auth) {
   try {
     const response = await fetch(
       `${API}/auth/login`,
+
       options
     );
     const data = await response.json();
@@ -35,7 +36,9 @@ export const register = async (data) => {
     body: JSON.stringify(body),
   };
   try {
+
     const response = await fetch(`${API}/users`, options);
+
     const data = await response.json();
     return data;
   } catch (error) {
