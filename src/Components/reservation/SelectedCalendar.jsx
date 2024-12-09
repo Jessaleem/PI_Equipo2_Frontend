@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
+import './selectedCalendar.css';
 
 const SelectedCalendar = ({ id, selectedDate, setSelectedDate }) => {
   const { data: availableDates = [], isLoading } = useQuery({
@@ -13,7 +14,7 @@ const SelectedCalendar = ({ id, selectedDate, setSelectedDate }) => {
 
   const parsedAvailableDates = availableDates.map((dateObj) => ({
     id: dateObj.id,
-    date: new Date(dateObj.fecha),
+    date: new Date(dateObj.fechaDisponible),
   }));
 
   const handleDateChange = (date) => {

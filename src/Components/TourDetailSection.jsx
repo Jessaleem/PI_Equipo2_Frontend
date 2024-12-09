@@ -41,7 +41,6 @@ const TourDetailSection = ({ id }) => {
       });
     }
   };
-  console.log('user not logn', user);
   return (
     <div className='d-flex flex-column gap-3'>
       <div className='d-flex flex-column justify-content-between gap-2'>

@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import "./detailCalendar.css";
-import { getAvailableDatesByTourId } from "../../provider/tours/toursProvider";
-import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import './detailCalendar.css';
+import { getAvailableDatesByTourId } from '../../provider/tours/toursProvider';
+import { useQuery } from '@tanstack/react-query';
 
 const DetailCalendar = ({ id }) => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -16,15 +16,15 @@ const DetailCalendar = ({ id }) => {
       setMonthsToShow(window.innerWidth > 768 ? 2 : 1);
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   const { data: availableDates = [], isLoading } = useQuery({
-    queryKey: ["availableDates", id],
+    queryKey: ['availableDates', id],
     queryFn: () => getAvailableDatesByTourId(id),
     enabled: !!id,
   });
@@ -33,7 +33,7 @@ const DetailCalendar = ({ id }) => {
 
   const parsedAvailableDates = availableDates.map((dateObj) => ({
     id: dateObj.id,
-    date: new Date(dateObj.fecha),
+    date: new Date(dateObj.fechaDisponible),
   }));
 
   const handleDateChange = (date) => {
@@ -41,7 +41,7 @@ const DetailCalendar = ({ id }) => {
 
     const selected = parsedAvailableDates.find(
       (d) =>
-        d.date.toISOString().split("T")[0] === date.toISOString().split("T")[0]
+        d.date.toISOString().split('T')[0] === date.toISOString().split('T')[0]
     );
 
     if (selected) {
@@ -50,8 +50,11 @@ const DetailCalendar = ({ id }) => {
   };
 
   return (
-    <div className="calendar-container" style={{ textAlign: "center" }}>
-      <div style={{ display: "inline-block" }}>
+    <div
+      className='calendar-container'
+      style={{ textAlign: 'center' }}
+    >
+      <div style={{ display: 'inline-block' }}>
         <DatePicker
           selected={selectedDate}
           onChange={handleDateChange}
@@ -63,9 +66,9 @@ const DetailCalendar = ({ id }) => {
           highlightDates={parsedAvailableDates.map((d) => d.date)}
         />
       </div>
-      <div style={{ marginTop: "20px", display: "block", width: "100%" }}>
+      <div style={{ marginTop: '20px', display: 'block', width: '100%' }}>
         {availableDates.length === 0 && (
-          <p style={{ color: "red", textAlign: "center" }}>
+          <p style={{ color: 'red', textAlign: 'center' }}>
             No existen fechas disponibles para reservar.
           </p>
         )}
