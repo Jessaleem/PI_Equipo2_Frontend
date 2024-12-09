@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Rating from './Rating';
 import Experiencias from './Experiencias';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import TourDetailCaracteristicas from './TourDetailCaracteristicas';
 import { useQuery } from '@tanstack/react-query';
 import { getTourById } from '../provider/tours/toursProvider';
@@ -11,10 +11,11 @@ import Swal from 'sweetalert2';
 import ReservationModal from './reservation/ReservationModal';
 
 const TourDetailSection = ({ id }) => {
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const { state, dispatch } = useGeneralContext();
   const isFav = state.favs.find((fav) => fav.id == id);
-
+  const user = state.userData;
   const { data } = useQuery({
     queryKey: ['tour', id],
     queryFn: () => getTourById({ tourId: id }),
@@ -24,6 +25,23 @@ const TourDetailSection = ({ id }) => {
     dispatch({ type: isFav ? 'REMOVE_FAV' : 'ADD_FAV', payload: data });
   };
 
+  const handleReservationBtn = (e) => {
+    if (user.id) {
+      setShow(true);
+    } else {
+      Swal.fire({
+        icon: 'info',
+        text: 'Tienes que ser usuario registrado para realizar una reserva',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#0b4040',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/register');
+        }
+      });
+    }
+  };
+  console.log('user not logn', user);
   return (
     <div className='d-flex flex-column gap-3'>
       <div className='d-flex flex-column justify-content-between gap-2'>
@@ -99,7 +117,7 @@ const TourDetailSection = ({ id }) => {
       <div className='d-flex justify-content-center'>
         <button
           className='reservar-btn'
-          onClick={() => setShow(true)}
+          onClick={handleReservationBtn}
         >
           Reservar
         </button>
@@ -108,6 +126,7 @@ const TourDetailSection = ({ id }) => {
         id={id}
         show={show}
         setShow={setShow}
+        navigate={navigate}
       />
       <TourDetailCaracteristicas caracteristicas={data?.characteristics} />
       <section>

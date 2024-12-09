@@ -3,8 +3,10 @@ import { Button } from '../Button';
 import SelectedCalendar from './SelectedCalendar';
 import { useGeneralContext } from '../../context/useGeneralContext';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const ReservationModal = ({ show, id, setShow }) => {
+  const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const { dispatch } = useGeneralContext();
   const handleCancel = (e) => {
@@ -17,6 +19,7 @@ const ReservationModal = ({ show, id, setShow }) => {
         payload: { tourId: id, dateSelected: selectedDate },
       });
       setShow(false);
+      navigate('/reservationDetail');
     } else {
       setShow(false);
       Swal.fire({

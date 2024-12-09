@@ -14,6 +14,7 @@ import UserList from './Pages/admin/userList/UserList';
 import AddProduct from './Pages/admin/addProduct/AddProduct';
 import ToursList from './Pages/admin/tour/ToursList';
 import Favs from './Pages/favs/Favs';
+import ReservationDetail from './Pages/ReservationDetail/ReservationDetail';
 
 function App() {
   return (
@@ -52,6 +53,10 @@ function App() {
           <Route
             path='/favorites'
             element={<Favs />}
+          />
+          <Route
+            path='/reservationDetail'
+            element={<ReservationDetail />}
           />
         </Routes>
         <Footer />
