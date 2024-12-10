@@ -1,14 +1,12 @@
-import DetailCalendar from "./DetailCalendar"
+import DetailCalendar from "./DetailCalendar";
 
-const CalendarContainer = ({id}) => {
+const CalendarContainer = ({ id }) => {
   return (
-    <section>
-      <h2 
-        className="calendar-container-title"
-      >Ver Disponibilidad:</h2>
+    <section className="calendar-container-title">
+      <h2>Ver Disponibilidad:</h2>
       <DetailCalendar id={id} />
     </section>
-  )
-}
+  );
+};
 
 export default CalendarContainer;

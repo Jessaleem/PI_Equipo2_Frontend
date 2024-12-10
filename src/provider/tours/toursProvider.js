@@ -92,6 +92,18 @@ export const deleteTour = async (tourId) => {
     }
   } catch (error) {
     console.error("Error en la eliminación del tour:", error);
+  }
+};
+export const getAvailableDatesByTourId = async (tourId) => {
+  try {
+    const response = await fetch(`${API}/tour/${tourId}/fechas-disponibles`);
+    if (!response.ok) {
+      throw new Error("Error al obtener las fechas disponibles");
+    }
+    const dates = await response.json();
+    return dates;
+  } catch (error) {
+    console.error("Error al obtener las fechas disponibles:", error);
     throw error;
   }
 };

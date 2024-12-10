@@ -36,7 +36,15 @@ const Header = () => {
     setShowConfirmationModal(false);
     dispatch({ type: 'USER_LOGGED_OUT' });
     dispatch({ type: 'CLOSE_LOGIN_MODAL' });
+    localStorage.removeItem('userData');
+    dispatch({ type: 'REMOVE_ALL_FAV'})
+    // VACIA LISTA DE FAVORITOS
+    
+
   };
+  const handleFav = () => {
+    navigate('/favorites');
+};
 
   return (
     <header className='fixed-top'>
@@ -76,6 +84,12 @@ const Header = () => {
               <Avatar props={userInformation} />
               <Button
                 backgroundColor='#ACF2EB'
+                value='Favoritos'                
+                onClick={handleFav}
+              />
+              {/* <Link to='/Favorites'>Favoritos</Link> */}
+              <Button
+                backgroundColor='#ACF2EB'
                 value='Cerrar Sesión'
                 onClick={openConfirmationModal}
               />
@@ -87,7 +101,16 @@ const Header = () => {
               />
             </div>
           ) : (
-            <section>
+            <section style={{display:'flex'}}>
+              <div style={{margin: '0px 30px'}}>
+                <Button
+                  backgroundColor='#ACF2EB'
+                  value='Favoritos' 
+                  // className='buttonFav'  
+                  // style = {{margin: '0px 30px'}}             
+                  onClick={handleFav}
+                />
+              </div>              
               <Button
                 backgroundColor='#ACF2EB'
                 value='Registrarse'

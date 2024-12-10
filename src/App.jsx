@@ -13,6 +13,7 @@ import LoginModal from "./Pages/Log-in/Login";
 import UserList from "./Pages/admin/userList/UserList";
 import AddProduct from "./Pages/admin/addProduct/AddProduct";
 import ToursList from "./Pages/admin/tour/ToursList";
+import Favs from "./Pages/favs/Favs";
 import PageCategoriaProductos from "./Components/PageCategoriaProductos";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
             path="/categoria/:categoria"
             element={<PageCategoriaProductos />}
           />
+          <Route path="/favorites" element={<Favs />} />
         </Routes>
         <Footer />
       </div>
