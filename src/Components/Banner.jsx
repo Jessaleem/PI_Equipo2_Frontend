@@ -64,13 +64,8 @@ const Banner = () => {
           <h3
             style={{ color: '#0A3E42', fontSize: '25px', fontWeight: 'bold' }}
           >
-            ¡Encuentra tu siguiente aventura!
+            ¡Busca Encuentra y Reserva tu siguiente aventura!
           </h3>
-          <p style={{ color: ' #0A3E42', fontSize: '20px' }}>
-            Encuentra tu próximo destino con nuestra herramienta de búsqueda de
-            tours. Desde aventuras en la naturaleza hasta exploraciones urbanas,
-            tenemos el tour perfecto para ti
-          </p>
         </div>
         <div className='d-flex flex-column flex-lg-row gap-4 me-md-5 me-lg-5 align-items-center justify-content-center full-height'>
           <div>
@@ -82,7 +77,7 @@ const Banner = () => {
             />
           </div>
           <div
-            className='d-flex flex-column justify-content-end'
+            className='d-flex flex-column justify-content-center'
             style={{ height: '100%' }}
           >
             <div className='d-flex gap-2 align-items-end'>
@@ -93,7 +88,7 @@ const Banner = () => {
                 isError={isError}
               />
               <button
-                style={{ height: '40px', width: '50px' }}
+                style={{ height: '62px', width: '50px' }}
                 onClick={handleSearch}
                 className='btn search py-2 pe-4'
               />
