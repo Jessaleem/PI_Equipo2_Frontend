@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Rating from "./Rating";
 import Experiencias from "./Experiencias";
 import { Link } from "react-router-dom";
@@ -7,20 +7,19 @@ import { useQuery } from "@tanstack/react-query";
 import { getTourById } from "../provider/tours/toursProvider";
 import CalendarContainer from "./detailCalendar";
 import { useGeneralContext } from "../context/useGeneralContext";
-import Swal from "sweetalert2";
 
 const TourDetailSection = ({ id }) => {
   const { state, dispatch } = useGeneralContext();
-  const isFav = state.favs.find((fav) => fav.id == id)
-  
+  const isFav = state.favs.find((fav) => fav.id == id);
+
   const { data } = useQuery({
     queryKey: ["tour", id],
     queryFn: () => getTourById({ tourId: id }),
   });
 
-  const addFav = ()=>{
-    dispatch({type: isFav ? "REMOVE_FAV" : "ADD_FAV", payload: data})
-  }
+  const addFav = () => {
+    dispatch({ type: isFav ? "REMOVE_FAV" : "ADD_FAV", payload: data });
+  };
 
   return (
     <div className="d-flex flex-column gap-3">
@@ -43,41 +42,51 @@ const TourDetailSection = ({ id }) => {
             alt="data-photo"
           />
         </div>
-        <div 
+        <div
           style={{
-            alignItems:'center'
+            alignItems: "center",
           }}
-          className="d-flex justify-content-center">
-          
-          <div
-                class="icon-container">
-                    <button 
-                    class="icon"
-                    onClick={addFav} 
-                    style={{
-                        color: 'white',
-                        borderRadius: '50%',
-                        padding: '0.5rem',
-                        background: 'rgb(0,0,0,0)',
-                        border: 'none',
-                        cursor: 'pointer'
-                    }}
-                    >     
-                    {isFav ? 
-                    <span style={{
-                        fontSize: '35px',
-                    }}>&#10084;</span>
-                    :
-                    <span style={{
-                        fontSize: '35px',
-                        fontWeight: 'bold',
-                        color: 'black',
-                        opacity: '0.5'
-                    }}>&#10084;</span>  
-                } </button>
-                <span class="tooltip1">{isFav ? "Quitar de favoritos" : "Agregar a favoritos"}</span>
-                </div>
-                
+          className="d-flex justify-content-center"
+        >
+          <div class="icon-container">
+            <button
+              class="icon"
+              onClick={addFav}
+              style={{
+                color: "white",
+                borderRadius: "50%",
+                padding: "0.5rem",
+                background: "rgb(0,0,0,0)",
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              {isFav ? (
+                <span
+                  style={{
+                    fontSize: "35px",
+                  }}
+                >
+                  &#10084;
+                </span>
+              ) : (
+                <span
+                  style={{
+                    fontSize: "35px",
+                    fontWeight: "bold",
+                    color: "black",
+                    opacity: "0.5",
+                  }}
+                >
+                  &#10084;
+                </span>
+              )}{" "}
+            </button>
+            <span class="tooltip1">
+              {isFav ? "Quitar de favoritos" : "Agregar a favoritos"}
+            </span>
+          </div>
+
           <Rating />
         </div>
         <div className="d-flex justify-content-center">
@@ -91,8 +100,35 @@ const TourDetailSection = ({ id }) => {
       <section>
         <CalendarContainer id={id} />
       </section>
+      <section className="extraInfo w-max-1280">
+        <h2 className="my-5">Infomacion Adicional</h2>
+        <div className="w-100">
+          <section className="mx-auto  border-2 border-danger text-start d-flex flex-column row-gap-4 flex-wrap justify-content-between">
+            <p className="m-0 fs-5 border-2 border-warning">
+              Ciudad: {data?.city}
+            </p>
+            <p className="m-0 fs-5 border-2 border-warning">
+              Pais: {data?.country}
+            </p>
+            <p className="m-0 fs-5 border-2 border-warning">
+              Categoria: {data?.category.name}
+            </p>
+            <p className="m-0 fs-5 border-2 border-warning">
+              Precio: {data?.price}
+            </p>
+            <p className="m-0 fs-5 border-2 border-warning">
+              Cupos: {data?.slots}
+            </p>
+            <p className="m-0 fs-5 border-2 border-warning">
+              Apto para niños: {data?.suitableForChildren ? "SI" : "NO"}
+            </p>
+            <p className="m-0 fs-5 border-2 border-warning">
+              Recomendaciones: {data?.recommendations}
+            </p>
+          </section>
+        </div>
+      </section>
       <Experiencias />
-      
     </div>
   );
 };

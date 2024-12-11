@@ -1,11 +1,10 @@
 import { API } from "../provider/api/api";
 
-
 export async function login(auth) {
   const options = {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(auth),
   };
@@ -29,14 +28,13 @@ export const register = async (data) => {
     password: data.contrasena,
   };
   const options = {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
   };
   try {
-
     const response = await fetch(`${API}/users`, options);
 
     const data = await response.json();
