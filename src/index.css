@@ -874,7 +874,7 @@ header {
 
 @media (min-width: 724px){
   .body-content{
-    margin-top: 106px;
+    margin-top: 50px;
   }
   .container-navbar{
     justify-content: space-between!important;
