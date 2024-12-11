@@ -894,7 +894,7 @@ header {
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 50vh;
+  max-width: 70vw;
 }
 
 .error-icon {
@@ -904,8 +904,8 @@ header {
 }
 
 .error-modal {
-  position: absolute;
-  width: 400px;
+  position: fixed;
+  width: 50vw;
   right: 50%;
   bottom: 50%;
   top: 50%;
@@ -917,7 +917,7 @@ header {
 }
 
 .error-modal-overlay {
-  position: fixed;
+  position:fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -932,6 +932,36 @@ header {
 .error-icon {
   font-size: 48px;
   color: red;
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 768px) {
+  .error-modal {
+    width: 100%; /* Ajuste del ancho del modal en dispositivos móviles */
+    top: 60vh; /* Ajuste de la distancia desde el top para no tapar el header */
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 100%; /* Evitar que el modal se desborde hacia abajo */
+   /* overflow-y: auto; /* Agregar scroll si el contenido excede la altura */
+  }
+
+  .error-container {
+    padding: 5vh 5vh /* Reducción de padding en dispositivos móviles */
+  }
+
+  .error-icon {
+    font-size: 40px; /* Ajuste del tamaño del icono para pantallas pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .error-modal {
+    width: 100%; /* Ajuste del ancho del modal en dispositivos móviles */
+    top: 60vh; 
+  }
+  .error-icon {
+    font-size: 36px; /* Asegura que el icono no sea demasiado grande en pantallas pequeñas */
+  }
 }
 
 .detalles-reserva-main {
