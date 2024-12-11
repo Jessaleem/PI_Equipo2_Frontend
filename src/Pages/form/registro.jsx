@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { register } from '../../services/auth';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
@@ -15,6 +15,7 @@ const Register = () => {
   const [error, setError] = useState({});
   const [contacto, setContacto] = useState(initailState);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [countdown, setCountdown] = useState(10);
 
   const fields = [
     { name: 'nombre', label: 'Nombre', placeholder: 'Ingrese su nombre', type: 'text' },
@@ -82,6 +83,22 @@ const Register = () => {
     }
   };
 
+  useEffect(() => {
+    if (isSubmitted) {
+      const timer = setInterval(() => {
+        setCountdown((prev) => prev - 1);
+      }, 1000);
+
+      if (countdown === 0) {
+        clearInterval(timer);
+        navigate(`/`); // Redirige al home después de la cuenta regresiva
+      }
+
+      return () => clearInterval(timer); // Limpia el intervalo al desmontar
+    }
+  }, [isSubmitted, countdown, navigate]);
+
+
   if (isSubmitted) {
     return (
       <div className="success-message">
@@ -95,6 +112,7 @@ const Register = () => {
             Ahora puedes iniciar sesión y disfrutar de nuestros servicios. 
             Si tienes alguna pregunta, no dudes en contactarnos.
           </p>
+          <p>Serás redirigido al inicio en {countdown} segundos...</p>
         </div>
       </div>
     );
