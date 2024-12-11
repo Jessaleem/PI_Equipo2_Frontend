@@ -4,6 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './detailCalendar.css';
 import { getAvailableDatesByTourId } from '../../provider/tours/toursProvider';
 import { useQuery } from '@tanstack/react-query';
+import { parseISO } from 'date-fns';
 
 const DetailCalendar = ({ id }) => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -28,15 +29,25 @@ const DetailCalendar = ({ id }) => {
     queryFn: () => getAvailableDatesByTourId(id),
     enabled: !!id,
   });
+  console.log("Available Dates:",availableDates)
   
   if (isLoading) return <p>Cargando fechas disponibles...</p>;
 
-  const parsedAvailableDates = availableDates.map((dateObj) => ({
-    id: dateObj.id,
-    // date: new Date(dateObj.fechaDisponible),
-    date: new Date(dateObj.fecha),
+  const parsedAvailableDates = availableDates.map((dateObj) => {
+    const utcDate = new Date(dateObj.fecha);
+    
+    // Agregar 12 horas para compensar el desfase de la zona horaria local
+    utcDate.setHours(utcDate.getHours() + 12);
+    
+    return {
+      id: dateObj.id,
+      isoDate: dateObj.fecha, // Mantener el formato ISO original
+      date: utcDate, // Utilizar el ajuste con las horas adicionales
+    };
+  });
 
-  }));
+
+  console.log("Parse Available Dates:",parsedAvailableDates)
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
