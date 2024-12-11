@@ -96,7 +96,7 @@ export const deleteTour = async (tourId) => {
 };
 export const getAvailableDatesByTourId = async (tourId) => {
   try {
-    const response = await fetch(`${API}/tour/${tourId}/fechas-disponibles`);
+    const response = await fetch(`${API}/tour/${tourId}/fechas`);
     if (!response.ok) {
       throw new Error("Error al obtener las fechas disponibles");
     }
