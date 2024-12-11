@@ -104,7 +104,7 @@ button:focus-visible {
 }
 
 .search {
-  background-image: url('@assets/search.svg');
+  background-image: url("@assets/search.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -128,7 +128,7 @@ button:focus-visible {
 
 .bienvenida {
   color: #136060;
-  font-family: 'Jomhuria', sans-serif;
+  font-family: "Jomhuria", sans-serif;
   font-size: 58px;
   margin-bottom: -25px;
 }
@@ -318,7 +318,7 @@ button:focus-visible {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Configura 2 columnas */
   grid-auto-rows: minmax(200px, auto); /* Ajusta la altura mínima */
-  gap: 20px; /* Espacio entre tarjetas */
+  gap: 50px; /* Espacio entre tarjetas */
   justify-content: center; /* Centra las tarjetas en el contenedor */
   max-width: 1280px;
   margin: 0 auto;
@@ -363,7 +363,7 @@ button:focus-visible {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Configura 2 columnas */
   grid-auto-rows: minmax(200px, auto); /* Ajusta la altura mínima */
-  gap: 20px; /* Espacio entre tarjetas */
+  gap: 50px; /* Espacio entre tarjetas */
   justify-content: center; /* Centra las tarjetas en el contenedor */
   max-width: 1280px;
   margin: 0 auto;
@@ -473,10 +473,10 @@ button:focus-visible {
   width: 50vw;
 }
 
-.form-container input[type='text'],
-.form-container input[type='tel'],
-.form-container input[type='email'],
-.form-container input[type='password'] {
+.form-container input[type="text"],
+.form-container input[type="tel"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
   padding: 1vw;
   margin-bottom: 15px;
   border: 1px solid var(--primary);
@@ -486,7 +486,7 @@ button:focus-visible {
   color: var(--info);
 }
 
-.form-container input[type='submit'] {
+.form-container input[type="submit"] {
   padding: 10px 20px;
   background-color: var(--success);
   color: var(--light);
@@ -504,19 +504,19 @@ button:focus-visible {
   cursor: pointer;
 }
 
-.form-container input[type='submit']:hover {
+.form-container input[type="submit"]:hover {
   background-color: var(--primary);
   color: var(--light);
 }
 
-.form-container input[type='text'],
-.form-container input[type='tel'],
-.form-container input[type='email'],
-.form-container input[type='password'] {
+.form-container input[type="text"],
+.form-container input[type="tel"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
   font-size: 1rem;
 }
 
-.filtro-busqueda input[type='text'] {
+.filtro-busqueda input[type="text"] {
   font-size: 0.85rem;
 }
 
@@ -643,4 +643,60 @@ header {
   margin-bottom: 0px;
   color: var(--primary);
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  text-align: center;
+}
+
+
+.icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip1 {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 100%; 
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.icon-container:hover .tooltip1 {
+  visibility: visible;
+  opacity: 1;
+}
+
+.buttonFav{
+  margin: 0px 30px !important;
+}
+
+.tourDestacado{
+  margin-top: 2.5rem;
+}
+.imgPreGroup{
+  margin: 15px;
+}
+
+/*  */
+.categoriaLink {
+  transition: all ease-in-out 0.3s;
+}
+
+.categoriaLink:hover {
+  transform: scale(1.1);
 }

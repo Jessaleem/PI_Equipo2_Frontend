@@ -50,7 +50,7 @@
   border-color: #0b4040;
   border-style: solid;
   border-width: 3px 3px 0 0;
-  content: "";
+  content: '';
   display: block;
   height: 9px;
   position: absolute;
@@ -60,7 +60,7 @@
 
 /* General: aplicar un color de fondo consistente para fechas destacadas */
 .react-datepicker__day--highlighted {
-  background-color: rgba(0, 255, 0, 0.5);
+  background-color: rgba(0, 255, 0, 0.5) !important;
   color: black;
   border-radius: 50% !important;
 }
@@ -86,43 +86,6 @@
   border-radius: 50% !important;
 }
 
-.calendar-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; 
-  margin: 20px auto; 
-  max-width: 900px;
-}
-
 .react-datepicker {
-  width: 100%; 
-}
-
-@media (max-width: 768px) {
-  .calendar-container {
-    max-width: 100%; 
-    padding: 10px;
-  }
-
-  .react-datepicker {
-    width: 100%; 
-  }
-
-  .react-datepicker__month-container {
-    width: 100%; 
-  }
-
-  .react-datepicker__navigation {
-    width: 25px; 
-    height: 25px;
-  }
-
-  .react-datepicker__navigation--previous {
-    left: -35px;
-  }
-  
-  .react-datepicker__navigation--next {
-    right: -35px;
-  }
+  width: 100%;
 }
