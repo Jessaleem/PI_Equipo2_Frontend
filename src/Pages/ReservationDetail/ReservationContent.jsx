@@ -69,6 +69,7 @@ const ReservationContent =  () => {
         </div>
       </section>
       <button className="reservar-btn" style={{marginTop: 'auto', marginBottom: 'auto'}}>Reservar</button>
+      <p>change</p>
     </div>
     
   </div>
