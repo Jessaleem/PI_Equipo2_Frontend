@@ -6,6 +6,10 @@ const TourCardN = ({id, tour}) => {
     const isFav = state.favs.some((fav) => fav.id == id)
     const addFav = ()=>{
         console.log("boton apretado")
+        if (!tour) {
+            console.error("El objeto 'tour' es undefined o inválido.");
+            return;
+        }
         dispatch({type: isFav ? "REMOVE_FAV" : "ADD_FAV", payload: tour})
         }
     return (
