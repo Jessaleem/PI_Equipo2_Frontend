@@ -14,6 +14,7 @@ import UserList from './Pages/admin/userList/UserList';
 import AddProduct from './Pages/admin/addProduct/AddProduct';
 import ToursList from './Pages/admin/tour/ToursList';
 import Favs from './Pages/favs/Favs';
+import PageCategoriaProductos from './Components/PageCategoriaProductos';
 import ReservationDetail from './Pages/ReservationDetail/ReservationDetail';
 
 function App() {
@@ -49,6 +50,10 @@ function App() {
           <Route
             path='/admin/tours'
             element={<ToursList />}
+          />
+          <Route
+            path='/categoria/:categoria'
+            element={<PageCategoriaProductos />}
           />
           <Route
             path='/favorites'

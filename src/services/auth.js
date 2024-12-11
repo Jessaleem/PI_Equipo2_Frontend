@@ -10,7 +10,6 @@ export async function login(auth) {
   };
   try {
     const response = await fetch(
-      `http://18.221.24.139:8080/api/v1/auth/login`,
       `${API}/auth/login`,
 
       options

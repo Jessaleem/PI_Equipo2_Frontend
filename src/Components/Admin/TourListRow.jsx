@@ -1,11 +1,16 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { updateTourCategory } from "../../provider/tours/toursProvider";
+import {
+  updateTourCategory,
+  deleteTour,
+} from "../../provider/tours/toursProvider";
 import { getCategory } from "../../provider/category/categoryProvider";
+import Swal from "sweetalert2";
 
 const TourListRow = ({ tour }) => {
   const [tourId, setTourId] = useState();
   const [categoryId, setCategoryId] = useState();
+  const queryClient = useQueryClient();
 
   const handleTypeChange = (tourId, selectCategoryId) => {
     setTourId(tourId);
@@ -19,6 +24,48 @@ const TourListRow = ({ tour }) => {
   const mutation = useMutation({
     mutationFn: updateTourCategory,
   });
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteTour,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["tour"] });
+
+      Swal.fire({
+        icon: "success",
+        title: "Tour Eliminado",
+        text: `El tour "${tour.name}" ha sido eliminado exitosamente.`,
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Aceptar",
+      });
+    },
+    onError: (error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.message || `No se pudo eliminar el tour "${tour.name}".`,
+        confirmButtonColor: "#d33",
+        confirmButtonText: "Cerrar",
+      });
+    },
+    retry: 0,
+  });
+
+  const handleDeleteTour = () => {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: `Vas a eliminar el tour "${tour.name}". No podrás revertir esta acción.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteMutation.mutate(tour.id);
+      }
+    });
+  };
 
   return (
     <tr key={tour.id}>
@@ -40,7 +87,7 @@ const TourListRow = ({ tour }) => {
           ))}
         </select>
       </td>
-      <td>
+      <td className="d-flex gap-3 justify-content-center">
         <button
           style={{
             backgroundColor: `${mutation.isPending ? "white" : "#136060"}`,
@@ -58,6 +105,13 @@ const TourListRow = ({ tour }) => {
           ) : (
             "Actualizar"
           )}
+        </button>
+        <button
+          className="bg-danger"
+          style={{ width: "110px" }}
+          onClick={handleDeleteTour}
+        >
+          Eliminar
         </button>
       </td>
     </tr>

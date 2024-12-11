@@ -6,7 +6,7 @@ import { getAllTours } from "../../provider/tours/toursProvider";
 import { useQuery } from "@tanstack/react-query";
 import { getAllCharacteristics } from "../../provider/characteristics/characteristicsProvider";
 import { addCharacteristicsToTour } from "../../provider/tours/toursProvider";
-import icon from '@assets/icon.svg';
+import icon from "@assets/icon.svg";
 import { uploadImage } from "../../provider/uploadImg/uploadImage";
 
 const AddProductForm = ({ dataCategory }) => {
@@ -42,12 +42,14 @@ const AddProductForm = ({ dataCategory }) => {
 
   // Seleccionar imagen, previsualización y modificación de imagen
 
-	const [images, setImages] = useState([]);
+  const [images, setImages] = useState([]);
   const [previews, setPreviews] = useState([]);
 
   const handleDeleteImage = (index) => {
     setImages((prevImages) => prevImages.filter((image, i) => i !== index));
-    setPreviews((prevPreviews) => prevPreviews.filter((preview, i) => i !== index));
+    setPreviews((prevPreviews) =>
+      prevPreviews.filter((preview, i) => i !== index)
+    );
   };
 
   const [dragged, setDragged] = useState(false);
@@ -77,18 +79,19 @@ const AddProductForm = ({ dataCategory }) => {
     setPreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
   };
 
-// subir imagen
+  // subir imagen
 
-  let urlObtenida = ""
+  let urlObtenida = "";
 
   const handleUploadImages = async () => {
     try {
-      const uploadedImages = await Promise.all(images.map((image) => uploadImage(image)));
-      console.log("Imágenes subidas:", uploadedImages);      
-      urlObtenida = String(uploadedImages[0][0].url)
-      console.log(urlObtenida)
-      return urlObtenida
-      
+      const uploadedImages = await Promise.all(
+        images.map((image) => uploadImage(image))
+      );
+      console.log("Imágenes subidas:", uploadedImages);
+      urlObtenida = String(uploadedImages[0][0].url);
+      console.log(urlObtenida);
+      return urlObtenida;
     } catch (error) {
       console.error("Error al subir imágenes:", error);
       Swal.fire({
@@ -99,9 +102,8 @@ const AddProductForm = ({ dataCategory }) => {
       });
     }
   };
-  
-  const onSubmit = async (formData) => {
 
+  const onSubmit = async (formData) => {
     try {
       const selectedCharacteristics = Object.keys(
         formData.characteristics || {}
@@ -121,8 +123,8 @@ const AddProductForm = ({ dataCategory }) => {
       const newTourName = formData.name.trim().toLowerCase();
 
       // Verificar si el tour ya existe en la lista (ignorando mayúsculas y espacios)
-      if (data.some){
-        const existingTour = data.some(        
+      if (data.some) {
+        const existingTour = data.some(
           (tour) => tour.name.trim().toLowerCase() === newTourName
         );
         if (existingTour) {
@@ -133,10 +135,9 @@ const AddProductForm = ({ dataCategory }) => {
             confirmButtonText: "Aceptar",
           });
           return;
-        }  
-      }     
+        }
+      }
 
-      
       // Convertir experienceDate a formato ISO
       const baseDate = new Date(formData.experienceDate);
 
@@ -158,9 +159,7 @@ const AddProductForm = ({ dataCategory }) => {
           confirmButtonText: "Aceptar",
         });
         return;
-  
-      }
-      else if (images.length > 1){
+      } else if (images.length > 1) {
         Swal.fire({
           icon: "warning",
           title: "Advertencia",
@@ -187,7 +186,16 @@ const AddProductForm = ({ dataCategory }) => {
         slots: parseInt(formData.slots, 10),
         categoryId: parseInt(formData.category_id, 10),
       };
-      console.log(tourData)
+      console.log("caracteristicas", characteristics.data);
+      Swal.fire({
+        title: "Creando tour...",
+        text: "Por favor, espere un momento.",
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+      console.log(tourData);
       // console.log("caracteristicas", characteristics.data);
 
       const createdTour = await postTour(tourData);
@@ -196,11 +204,11 @@ const AddProductForm = ({ dataCategory }) => {
         await addCharacteristicsToTour(createdTour.id, selectedCharacteristics);
       }
 
+      Swal.close();
       Swal.fire({
         icon: "success",
         title: "¡Tour creado exitosamente!",
         text: "El tour ha sido añadido correctamente.",
-        confirmButtonText: "Aceptar",
       });
 
       reset();
@@ -271,131 +279,140 @@ const AddProductForm = ({ dataCategory }) => {
           <label className="form-label fs-5" htmlFor="imagen">
             Imagen:
           </label>
-        
-          <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-          }}>
 
-      
           <div
             style={{
-              backgroundColor: dragged ? '#ccc' : '#ddd',
-              border: '2px dashed #aaa',
-              borderRadius: '8px',
-              width: '-webkit-fill-available',
-              height: 'min-content',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              cursor: 'pointer',
-              fontWeight:'600',
-              color:'#0b4040',
-              padding:'15px'
-            }}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-            onClick={() => {
-              const input = document.getElementById('file-input');
-              if (input) {
-                input.click();
-              }
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
           >
-            {previews.length === 0 ? 'Arrastra y suelta la imagen aquí o haz click para seleccionar' : (
-              
-              <div style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'center'
-              }}>
-                {previews.map((preview, index) => (              
-                  <div key={index} style={{
-                    position: 'relative'
+            <div
+              style={{
+                backgroundColor: dragged ? "#ccc" : "#ddd",
+                border: "2px dashed #aaa",
+                borderRadius: "8px",
+                width: "-webkit-fill-available",
+                height: "min-content",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                cursor: "pointer",
+                fontWeight: "600",
+                color: "#0b4040",
+                padding: "15px",
+              }}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              onClick={() => {
+                const input = document.getElementById("file-input");
+                if (input) {
+                  input.click();
+                }
+              }}
+            >
+              {previews.length === 0 ? (
+                "Arrastra y suelta la imagen aquí o haz click para seleccionar"
+              ) : (
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
                   }}
-                  className="imgPreGroup"
-                  >
-                    <img src={preview} alt="Image preview" 
-                    style={{
-                      width: '300px',
-                      height: '300px',
-                      objectFit: 'cover',
-                      borderRadius: '10px'
-                    }}
-                    />
+                >
+                  {previews.map((preview, index) => (
                     <div
+                      key={index}
                       style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                      }}                  
-                    >
-                    <button
-                      onClick={(e) => {
-                        handleDeleteImage(index);
-                        e.stopPropagation()}}
-                      style={{
-                        position: 'absolute',
-                        top: '5px',
-                        right: '5px',
-                        width: '35px',
-                        height: '35px',
-                        borderRadius: '50%',
-                        backgroundColor: '#ff0000',
-                        color: '#fff',
-                        border: 'none',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        padding: '0px',
-                        fontSize:'20px',           
-                      }}                  
-                      type="button"
-                      onMouseOver={(e) => {
-                        e.target.style.backgroundColor = '#cc0000';
+                        position: "relative",
                       }}
-                      onMouseOut={(e) => {
-                        e.target.style.backgroundColor = '#ff0000';
-                      }}
+                      className="imgPreGroup"
                     >
-                      X
-                    </button>
+                      <img
+                        src={preview}
+                        alt="Image preview"
+                        style={{
+                          width: "300px",
+                          height: "300px",
+                          objectFit: "cover",
+                          borderRadius: "10px",
+                        }}
+                      />
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <button
+                          onClick={(e) => {
+                            handleDeleteImage(index);
+                            e.stopPropagation();
+                          }}
+                          style={{
+                            position: "absolute",
+                            top: "5px",
+                            right: "5px",
+                            width: "35px",
+                            height: "35px",
+                            borderRadius: "50%",
+                            backgroundColor: "#ff0000",
+                            color: "#fff",
+                            border: "none",
+                            cursor: "pointer",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            padding: "0px",
+                            fontSize: "20px",
+                          }}
+                          type="button"
+                          onMouseOver={(e) => {
+                            e.target.style.backgroundColor = "#cc0000";
+                          }}
+                          onMouseOut={(e) => {
+                            e.target.style.backgroundColor = "#ff0000";
+                          }}
+                        >
+                          X
+                        </button>
+                      </div>
+                      <div
+                        style={{
+                          position: "absolute",
+                          bottom: "0",
+                          left: "0",
+                          width: "100%",
+                          padding: "5px",
+                          backgroundColor: "rgba(0, 0, 0, 0.5)",
+                          color: "#fff",
+                          fontSize: "12px",
+                          textAlign: "center",
+                          borderRadius: "0px 0px 10px 10px",
+                        }}
+                      >
+                        Imagen {index + 1}
+                      </div>
                     </div>
-                    <div style={{
-                      position: 'absolute',
-                      bottom: '0',
-                      left: '0',
-                      width: '100%',
-                      padding: '5px',
-                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                      color: '#fff',
-                      fontSize: '12px',
-                      textAlign: 'center',
-                      borderRadius: '0px 0px 10px 10px'
-                    }}>
-                      Imagen {index + 1}
-                    </div>
-                  </div>             
-                ))}
-              </div>
-            )}
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <input
+              id="file-input"
+              type="file"
+              multiple
+              style={{
+                display: "none",
+              }}
+              onChange={handleFileChange}
+            />
           </div>
-
-          <input
-            id="file-input"
-            type="file"
-            multiple
-            style={{
-              display: 'none'
-            }}
-            onChange={handleFileChange}
-          />
         </div>
-
-    </div>
 
         <div className="mb-3">
           <label className="form-label fs-5" htmlFor="duracion">
