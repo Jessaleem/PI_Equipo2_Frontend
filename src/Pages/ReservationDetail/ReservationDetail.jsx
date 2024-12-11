@@ -3,12 +3,12 @@ import Modal from "react-modal";
 import { useMutation } from '@tanstack/react-query';
 
 import { useGeneralContext } from "../../context/useGeneralContext";
+import ReservationContent  from "./ReservationContent"
 
 const ReservationDetail = () => {
   const { state } = useGeneralContext();
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
-  console.log("reservationDetails", state.reservationDetails);
 
   const mutation = useMutation({
     onError: (error) => {
@@ -28,7 +28,8 @@ const ReservationDetail = () => {
 
   
   return (
-    <div >ReservationDetail</div>
+    <ReservationContent />
+
     //<div className='form-container p-0 min-vh-100'>
     //  <p>ReservationDetail</p>
     //  <Modal
