@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { postTour } from "../../provider/category/categoryProvider";
 import { getAllTours } from "../../provider/tours/toursProvider";
@@ -13,12 +13,21 @@ const AddProductForm = ({ dataCategory }) => {
   const {
     register,
     handleSubmit,
+    control,
     setValue,
     watch,
     reset,
     formState: { errors },
-    trigger,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      experienceDates: [{ date: "" }],
+    },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "experienceDates",
+  });
 
   const [characteristicsError, setCharacteristicsError] = useState(false);
 
@@ -33,12 +42,6 @@ const AddProductForm = ({ dataCategory }) => {
     queryKey: ["characteristic"],
     queryFn: () => getAllCharacteristics(),
   });
-
-  const handleExperienceDateChange = (e) => {
-    const inputDate = e.target.value;
-    const isoDate = new Date(inputDate).toISOString();
-    setValue("experienceDate", isoDate);
-  };
 
   // Seleccionar imagen, previsualización y modificación de imagen
 
@@ -138,8 +141,13 @@ const AddProductForm = ({ dataCategory }) => {
         }
       }
 
-      // Convertir experienceDate a formato ISO
-      const baseDate = new Date(formData.experienceDate);
+      const experienceDates = formData.experienceDates
+        .map((ed) => ed.date)
+        .filter((date) => date !== "")
+        .map((date) => new Date(date).toISOString().split("T")[0]);
+
+      // Usar la primera fecha para startTime y endTime
+      const baseDate = new Date(formData.experienceDates[0].date);
 
       // Crear fechas completas para startTime y endTime
       const startDateTime = new Date(baseDate);
@@ -179,7 +187,7 @@ const AddProductForm = ({ dataCategory }) => {
         country: formData.country.trim(),
         city: formData.city.trim(),
         suitableForChildren: formData.suitableForChildren === "si",
-        experienceDate: baseDate.toISOString().split("T")[0],
+        experienceDates: experienceDates,
         startTime: startDateTime.toISOString(),
         endTime: endDateTime.toISOString(),
         price: parseFloat(formData.price),
@@ -474,21 +482,36 @@ const AddProductForm = ({ dataCategory }) => {
         </div>
 
         <div className="mb-3">
-          <label className="form-label fs-5" htmlFor="fecha">
-            Fecha:
-          </label>
-          <input
-            type="date"
-            value={watch("experienceDate")?.split("T")[0] || ""}
-            onChange={handleExperienceDateChange}
-            {...register("experienceDate", {
-              required: "La fecha es obligatoria",
-            })}
-            className="form-control"
-          />
-          {errors.experienceDate && (
-            <p className="text-danger">{errors.experienceDate.message}</p>
-          )}
+          <label className="form-label fs-5">Fechas de Experiencia:</label>
+          {fields.map((item, index) => (
+            <div key={item.id} className="d-flex align-items-center mb-2">
+              <input
+                type="date"
+                {...register(`experienceDates[${index}].date`, {
+                  required: "La fecha es obligatoria",
+                })}
+                className="form-control me-2"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => remove(index)}
+                className="btn btn-danger me-2"
+                disabled={fields.length === 1}
+              >
+                -
+              </button>
+              {index === fields.length - 1 && (
+                <button
+                  type="button"
+                  onClick={() => append({ date: "" })}
+                  className="btn btn-primary"
+                >
+                  +
+                </button>
+              )}
+            </div>
+          ))}
         </div>
 
         <div className="mb-3">

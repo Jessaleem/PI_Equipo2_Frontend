@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { register } from '../../services/auth';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import Modal from 'react-modal';
+
+
 const initailState = {
   nombre: '',
   apellido: '',
@@ -15,6 +18,10 @@ const Register = () => {
   const [error, setError] = useState({});
   const [contacto, setContacto] = useState(initailState);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [registrationError, setRegistrationError] = useState('');
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+
+  const [countdown, setCountdown] = useState(10);
 
   const fields = [
     { name: 'nombre', label: 'Nombre', placeholder: 'Ingrese su nombre', type: 'text' },
@@ -35,7 +42,22 @@ const Register = () => {
 
   const mutation = useMutation({
     mutationFn: register,
+    onSuccess: () => {
+      setIsSubmitted(true);
+      setContacto(initailState);
+      setRegistrationError('');
+    },
+    onError: (error) => {
+      if (error.response && error.response.data && error.response.data.message) {
+        setRegistrationError(error.response.data.message);
+      } else {
+        setRegistrationError('Falló en el Registro!');
+      }
+      setIsErrorModalOpen(true);
+    },
   });
+
+
   const validateField  = (field) => {
     const value = contacto[field.name];
     let errorMessage = '';
@@ -81,6 +103,27 @@ const Register = () => {
       });
     }
   };
+  
+  const closeErrorModal = () => {
+    setIsErrorModalOpen(false);
+    setRegistrationError('');
+  };
+
+  useEffect(() => {
+    if (isSubmitted) {
+      const timer = setInterval(() => {
+        setCountdown((prev) => prev - 1);
+      }, 1000);
+
+      if (countdown === 0) {
+        clearInterval(timer);
+        navigate(`/`); // Redirige al home después de la cuenta regresiva
+      }
+
+      return () => clearInterval(timer); // Limpia el intervalo al desmontar
+    }
+  }, [isSubmitted, countdown, navigate]);
+
 
   if (isSubmitted) {
     return (
@@ -95,6 +138,7 @@ const Register = () => {
             Ahora puedes iniciar sesión y disfrutar de nuestros servicios. 
             Si tienes alguna pregunta, no dudes en contactarnos.
           </p>
+          <p>Serás redirigido al inicio en {countdown} segundos...</p>
         </div>
       </div>
     );
@@ -139,6 +183,28 @@ const Register = () => {
           )}
         </div>
       </form>
+
+      <Modal
+        isOpen={isErrorModalOpen}
+        onRequestClose={closeErrorModal}
+        contentLabel="Error Modal"
+        className="error-modal error-message"
+        overlayClassName="error-modal-overlay"
+      >
+        <div className="error-container error-container">
+          <div className="error-icon error-icon">
+            ❌
+          </div>
+          <h2>{registrationError}</h2>
+          <h3>El correo ya existe</h3>
+          <p>
+            
+            Por favor, verifica los datos ingresados y vuelve a intentarlo.
+            Si el problema persiste, no dudes en contactarnos.
+          </p>
+          <button onClick={closeErrorModal}>Cerrar</button>
+        </div>
+      </Modal>
     </div>
   );
 };

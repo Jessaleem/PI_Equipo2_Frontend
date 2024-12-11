@@ -11,7 +11,6 @@ export async function login(auth) {
   try {
     const response = await fetch(
       `${API}/auth/login`,
-
       options
     );
     const data = await response.json();
@@ -37,9 +36,15 @@ export const register = async (data) => {
   try {
     const response = await fetch(`${API}/users`, options);
 
-    const data = await response.json();
-    return data;
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Error desconocido');
+    }
+    
+    return await response.json();
+
   } catch (error) {
-    console.error(error);
+    console.error('Error en la solicitud:', error);
+    throw error;
   }
 };

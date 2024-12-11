@@ -57,7 +57,6 @@ const TourDetailSection = ({ id }) => {
         <div className=''>
           <img
             className='detail-img'
-            style={{ maxWidth: '100%' }}
             src={data?.image}
             alt='data-photo'
           />
@@ -123,6 +122,7 @@ const TourDetailSection = ({ id }) => {
       </div>
       <ReservationModal
         id={id}
+        data={data}
         show={show}
         setShow={setShow}
         navigate={navigate}
@@ -133,28 +133,28 @@ const TourDetailSection = ({ id }) => {
       </section>
       <section className='extraInfo w-max-1280'>
         <h2 className='my-5'>Infomacion Adicional</h2>
-        <div className='w-100'>
+        <div className='w-100 p-3'>
           <section className='mx-auto  border-2 border-danger text-start d-flex flex-column row-gap-4 flex-wrap justify-content-between'>
             <p className='m-0 fs-5 border-2 border-warning'>
-              Ciudad: {data?.city}
+              <b>Ciudad:</b> {data?.city}
             </p>
             <p className='m-0 fs-5 border-2 border-warning'>
-              Pais: {data?.country}
+              <b>Pais:</b> {data?.country}
             </p>
             <p className='m-0 fs-5 border-2 border-warning'>
-              Categoria: {data?.category.name}
+              <b>Categoria:</b> {data?.category.name}
             </p>
             <p className='m-0 fs-5 border-2 border-warning'>
-              Precio: {data?.price}
+              <b>Precio:</b> {data?.price}
             </p>
             <p className='m-0 fs-5 border-2 border-warning'>
-              Cupos: {data?.slots}
+              <b>Cupos:</b> {data?.slots}
             </p>
             <p className='m-0 fs-5 border-2 border-warning'>
-              Apto para niños: {data?.suitableForChildren ? 'SI' : 'NO'}
+              <b>Apto para niños:</b> {data?.suitableForChildren ? 'SI' : 'NO'}
             </p>
             <p className='m-0 fs-5 border-2 border-warning'>
-              Recomendaciones: {data?.recommendations}
+              <b>Recomendaciones:</b> {data?.recommendations}
             </p>
           </section>
         </div>

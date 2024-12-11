@@ -1,3 +1,4 @@
+import {forwardRef} from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from './Button';
@@ -6,7 +7,8 @@ import logo from '@assets/logo_with_text.svg';
 import Avatar from './Avatar';
 import ConfirmationModal from './ConfirmationModal';
 
-const Header = () => {
+const Header = forwardRef((props,ref) => {
+  console.log(ref)
   const { dispatch, setAbrirModal, state } = useGeneralContext();
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [showAdminDropdown, setShowAdminDropdown] = useState(false);
@@ -47,12 +49,12 @@ const Header = () => {
 };
 
   return (
-    <header className='fixed-top'>
+    <header className='fixed-top' ref={ref}>
       <nav
         className='navbar navbar-light px-5'
         style={{ backgroundColor: '#0B4040' }}
       >
-        <div className='container-fluid'>
+        <div className='container-fluid container-navbar'>
           <Link to={`/`}>
             <img
               src={logo}
@@ -101,7 +103,7 @@ const Header = () => {
               />
             </div>
           ) : (
-            <section style={{display:'flex'}}>
+            <section className='header-btn'> 
               <div style={{margin: '0px 30px'}}>
                 <Button
                   backgroundColor='#ACF2EB'
@@ -130,6 +132,6 @@ const Header = () => {
       </nav>
     </header>
   );
-};
+});
 
 export default Header;

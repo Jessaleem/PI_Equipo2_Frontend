@@ -51,7 +51,8 @@ const Banner = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        height: '500px',
+        paddingTop: '2rem',
+        paddingBottom: '2rem',
       }}
     >
       <Lema />
