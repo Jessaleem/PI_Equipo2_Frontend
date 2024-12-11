@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import Rating from './Rating';
 import Experiencias from './Experiencias';
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,6 +11,10 @@ import ReservationModal from './reservation/ReservationModal';
 import Swal from 'sweetalert2';
 
 const TourDetailSection = ({ id }) => {
+  useEffect(() => {
+    // Desplazar al top cuando se accede al detalle del tour
+    window.scrollTo(0, 0);
+  }, []); // [] asegura que solo se ejecute una vez al montar el componente
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const { state, dispatch } = useGeneralContext();
