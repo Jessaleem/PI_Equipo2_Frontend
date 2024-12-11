@@ -1,27 +1,34 @@
 import React from "react";
 import { categoriaData } from "../utils/categoriaData";
 import CategoriaCard from "./CategoriaCard";
+import { useQuery } from "@tanstack/react-query";
+import { getCategory } from "../provider/category/categoryProvider";
 
 const Categorias = () => {
+  const { data } = useQuery({
+		queryKey: ["category"],
+		queryFn: () => getCategory(),
+		staleTime: Infinity,
+		cacheTime: Infinity,
+	});
+
+  const categoriasLimpias = data?.map((categ) => ({
+    ...categ,
+    name: categ.name.trim(),
+  }));
+
   return (
-    <>
-      <h2 className="py-4 m-0 fw-bold" style={{ backgroundColor: "#A7F2CF75" }}>
-        Categorías
-      </h2>
-      <div className="bg-categorias px-5">
-        <div className="d-flex justify-content-around flex-wrap w-max-1280 overflow-hidden gap-4">
-          {categoriaData.map((categoria) => {
-            return (
-              <CategoriaCard
-                key={categoria.id}
-                imagen={categoria.imagen}
-                categoria={categoria.categoria}
-              />
-            );
-          })}
+    <section className="categories-section">
+      <div className="categories-container">
+        <h2 className="section-title">Explorar por Categorías</h2>
+        
+        <div className="categories-grid">
+          {categoriasLimpias?.map(category => (
+            <CategoriaCard key={category.id} {...category} />
+          ))}
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

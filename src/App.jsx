@@ -14,6 +14,8 @@ import UserList from './Pages/admin/userList/UserList';
 import AddProduct from './Pages/admin/addProduct/AddProduct';
 import ToursList from './Pages/admin/tour/ToursList';
 import Favs from './Pages/favs/Favs';
+import AddCategory from './Pages/admin/addCategory/AddCategory';
+import CategoryDetail from './Pages/CategoryDetail/CategoryDetail';
 
 function App() {
   return (
@@ -50,8 +52,16 @@ function App() {
             element={<ToursList />}
           />
           <Route
+            path='/admin/addCategory'
+            element={<AddCategory />}
+          />
+          <Route
             path='/favorites'
             element={<Favs />}
+          />
+          <Route
+            path='/category/:id'
+            element={<CategoryDetail />}
           />
         </Routes>
         <Footer />

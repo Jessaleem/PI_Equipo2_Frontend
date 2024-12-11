@@ -81,3 +81,65 @@ export const getAvailableDatesByTourId = async (tourId) => {
     throw error;
   }
 };
+
+export const getTourByCategory = async (categoryId) => {
+  try {
+    
+    const response = await fetch(`${API}/tour?category=${categoryId}`);
+    const tour = await response.json();
+    console.log(tour)
+    if (!response.ok) {
+      throw new Error('Error los tours de la categoría indicada');
+    }    
+    return tour;
+  } catch (error) {
+    console.error('Error al obtener los tours de la categoría indicada:', error);
+    throw error;
+  }
+};
+
+export const postTour = async (tourData) => {
+  try {
+    const response = await fetch(`${API}/tour`, {
+      method: 'POST',
+      body: JSON.stringify(tourData),
+      headers: {
+        'Content-Type': 'application/json', // Asegúrate de enviar los datos en formato JSON
+      },
+    });
+
+    if (!response.ok) {
+      const errorResponse = await response.text();
+      console.error('Error en la creación del tour:', errorResponse);
+      throw new Error(`Error al crear el tour. Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error al crear el tour:', error);
+    throw error;
+  }
+};
+
+
+export const deleteTour = async(tourId) => {
+  try {
+    const response = await fetch(`${API}/tour/${tourId}`,{
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json', 
+      },
+    });        
+    if (!response.ok) {
+      const errorData = await response.json(); 
+      throw new Error(errorData.message || 'Error al eliminar el tour');
+    }
+
+    console.log('Tour eliminado exitosamente');
+    // return response.status === 204 ? null : await response.json(); 
+  } catch (error) {
+    console.error('Error al eliminar el tour:', error);
+    throw error; 
+  }
+};

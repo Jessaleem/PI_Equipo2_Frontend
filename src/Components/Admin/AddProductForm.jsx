@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { postTour } from "../../provider/category/categoryProvider";
-import { getAllTours } from "../../provider/tours/toursProvider";
+import { getAllTours, postTour } from "../../provider/tours/toursProvider";
 import { useQuery } from "@tanstack/react-query";
 import { getAllCharacteristics } from "../../provider/characteristics/characteristicsProvider";
 import { addCharacteristicsToTour } from "../../provider/tours/toursProvider";
@@ -204,6 +203,8 @@ const AddProductForm = ({ dataCategory }) => {
       });
 
       reset();
+      setImages([]);
+      setPreviews([]);
     } catch (error) {
       console.error("Error al agregar el tour:", error.response?.data || error);
 

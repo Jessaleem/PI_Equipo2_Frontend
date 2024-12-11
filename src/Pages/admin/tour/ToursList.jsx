@@ -10,7 +10,7 @@ const ToursList = () => {
   const { state } = useGeneralContext();
   const loggedUser = state.isLoggedIn;
   const userInformation = state.userData;
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ['tour'],
     queryFn: () => getAllTours(),
     staleTime: Infinity,
@@ -24,6 +24,12 @@ const ToursList = () => {
     }
   }, [userInformation, loggedUser]);
 
+  const refreshTours = async () => {
+    await refetch(); // Vuelve a cargar los datos desde la API
+  };
+
+  const sortedData = data?.slice().sort((a, b) => a.name.localeCompare(b.name)) || [];
+
   if (loggedUser && userInformation.type != 3)
     return (
       <div className='min-vh-100 p-2'>
@@ -31,6 +37,9 @@ const ToursList = () => {
           className='container'
           style={{ marginTop: 50 }}
         >
+          <h1 style={{marginBottom:'30px'}}
+            >Lista de Tours
+            </h1>
           <table
             className='table table-bordered'
             style={{ maxWidth: '' }}
@@ -49,6 +58,7 @@ const ToursList = () => {
                 <TourListRow
                   tour={tour}
                   key={tour.id}
+                  refreshTours={refreshTours} 
                 />
               ))}
             </tbody>

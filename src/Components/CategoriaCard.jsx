@@ -1,20 +1,20 @@
 import PropTypes from 'prop-types';
 
-const CategoriaCard = ({ imagen, categoria }) => {
+const CategoriaCard = ({ id, name, description='', image ='' }) => {
   return (
-    <div className="py-5" style={{ minHeight: "15rem", maxHeight: "15rem" }}>
+    <a href={`/category/${id}`} className="category-card">
       <img
-        src={imagen}
-        className="rounded-circle shadow-card-categoria object-fit-cover"
-        style={{
-          maxHeight: "15rem",
-          maxWidth: "15rem",
-          height: "100%",
-          width: "100%",
-        }}
+        src={image}
+        alt={name}
+        className="category-image"
       />
-      <h3 className="py-5 text-capitalize">{categoria}</h3>
-    </div>
+      <div className="gradient-overlay" />
+      <div className="category-content">
+        <h3 className="category-title">{name}</h3>
+        <p className="category-desc">{description}</p>
+      </div>
+    </a>
+
   );
 };
 

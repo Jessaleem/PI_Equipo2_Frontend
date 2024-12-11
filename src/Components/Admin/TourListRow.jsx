@@ -1,15 +1,18 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { updateTourCategory } from "../../provider/tours/toursProvider";
+import { deleteTour, updateTourCategory } from "../../provider/tours/toursProvider";
 import { getCategory } from "../../provider/category/categoryProvider";
+import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
 
-const TourListRow = ({ tour }) => {
+const TourListRow = ({ tour, refreshTours }) => {
   const [tourId, setTourId] = useState();
   const [categoryId, setCategoryId] = useState();
 
   const handleTypeChange = (tourId, selectCategoryId) => {
     setTourId(tourId);
     setCategoryId(selectCategoryId);
+    
   };
 
   const { data: categoryData } = useQuery({
@@ -20,9 +23,60 @@ const TourListRow = ({ tour }) => {
     mutationFn: updateTourCategory,
   });
 
+  // const navigate = useNavigate();
+  // const linkTour = (tourID) => {
+  //   navigate('/register');
+  // };
+
+  const handleDeleteTour = async (tourId) => {
+    const result = await Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Esta acción eliminará el tour de forma permanente.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
+    console.log(tourId)
+    
+    if (result.isConfirmed) {
+      try {
+        await deleteTour(tourId);
+        console.log(`Eliminando tour con ID: ${tourId}`);
+        // Simulación de éxito
+        Swal.fire({
+          icon: "success",
+          title: "¡Eliminado!",
+          text: "El tour ha sido eliminado correctamente.",
+          confirmButtonText: "Aceptar",
+        });
+        refreshTours();
+
+      } catch (error) {
+        // Manejo de errores
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Hubo un problema al intentar eliminar el tour.",
+          confirmButtonText: "Aceptar",
+        });
+        console.error("Error:", error);
+      }
+    }
+
+  };
+
   return (
-    <tr key={tour.id}>
-      <td scope="row">{tour.name}</td>
+    <tr key={tour.id} style={{verticalAlign:'middle'}}>
+      <td scope="row">
+        <span className="tour-list-item">
+        <Link to={`/tour/${tour.id}`}>        
+          {tour.name}
+        </Link>  
+        </span>      
+        </td>
       <td>{tour.country}</td>
       <td>{tour.city}</td>
       <td>
@@ -49,6 +103,7 @@ const TourListRow = ({ tour }) => {
           }}
           onClick={() => {
             mutation.mutate({ tourId, categoryId });
+            refreshTours();
           }}
         >
           {mutation.isPending ? (
@@ -59,6 +114,14 @@ const TourListRow = ({ tour }) => {
             "Actualizar"
           )}
         </button>
+        <button
+        style={{
+          backgroundColor: "black",
+          width: "110px",
+          border: "2px solid black",          
+        }}
+        onClick={() => handleDeleteTour(tour.id)} 
+        >Eliminar</button>
       </td>
     </tr>
   );

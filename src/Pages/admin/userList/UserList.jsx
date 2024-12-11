@@ -26,6 +26,9 @@ const UserList = () => {
           className='container'
           style={{ marginTop: 50 }}
         >
+          <h1 style={{marginBottom:'30px'}}
+            >Lista de usuarios
+            </h1>
           <table
             className='table table-bordered'
             style={{ maxWidth: '' }}

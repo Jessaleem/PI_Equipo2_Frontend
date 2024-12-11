@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from './Button';
 import { useGeneralContext } from '../context/useGeneralContext';
@@ -12,6 +12,25 @@ const Header = () => {
   const [showAdminDropdown, setShowAdminDropdown] = useState(false);
   const loggedUser = state.isLoggedIn;
   const navigate = useNavigate();
+
+  const dropdownRef = useRef(null);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      // Si el clic no ocurre dentro del menú, cerrar el dropdown
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowAdminDropdown(false);
+      }
+    }
+
+    // Agregar el evento al document
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Limpiar el evento al desmontar el componente
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
 
   const openLoginModal = () => {
     dispatch({ type: 'OPEN_LOGIN_MODAL' });
@@ -64,7 +83,7 @@ const Header = () => {
           {loggedUser ? (
             <div className='header-logged-user'>
               {loggedUser && userInformation.type != '3' && (
-                <div className='admin-dropdown'>
+                <div className='admin-dropdown' ref={dropdownRef}>
                   <button
                     className='admin-dropdown-button'
                     onClick={() => setShowAdminDropdown(!showAdminDropdown)}
@@ -73,9 +92,10 @@ const Header = () => {
                   </button>
                   {showAdminDropdown && (
                     <div className='admin-dropdown-menu'>
-                      <Link to='/admin/users'>Lista de usuarios</Link>
-                      <Link to='/admin/addProduct'>Agregar producto</Link>
-                      <Link to='/admin/tours'>Lista de productos</Link>
+                      <Link to='/admin/users' onClick={() => setShowAdminDropdown(false)}>Lista de usuarios</Link>
+                      <Link to='/admin/addProduct' onClick={() => setShowAdminDropdown(false)}>Agregar producto</Link>
+                      <Link to='/admin/tours' onClick={() => setShowAdminDropdown(false)}>Lista de productos</Link>
+                      <Link to='/admin/addCategory' onClick={() => setShowAdminDropdown(false)}>Agregar categoría</Link>
                     </div>
                   )}
                 </div>
