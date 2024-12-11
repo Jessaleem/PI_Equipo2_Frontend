@@ -14,7 +14,7 @@ const SelectedCalendar = ({ id, selectedDate, setSelectedDate }) => {
 
   const parsedAvailableDates = availableDates.map((dateObj) => ({
     id: dateObj.id,
-    date: new Date(dateObj.fechaDisponible),
+    date: new Date(dateObj.fecha),
   }));
 
   const handleDateChange = (date) => {
