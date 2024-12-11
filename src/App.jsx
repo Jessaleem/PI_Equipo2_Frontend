@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header';
@@ -16,15 +17,38 @@ import ToursList from './Pages/admin/tour/ToursList';
 import Favs from './Pages/favs/Favs';
 import PageCategoriaProductos from './Components/PageCategoriaProductos';
 import ReservationDetail from './Pages/ReservationDetail/ReservationDetail';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 function App() {
+  const headerRef = useRef(null);
+  const mainRef = useRef(null);
+
+  useEffect(() => {
+    const adjustMainMargin = () => {
+      if (headerRef.current && mainRef.current) {
+        const headerHeight = headerRef.current.offsetHeight;
+        mainRef.current.style.marginTop = `${headerHeight}px`;
+      }
+    };
+
+    adjustMainMargin();
+
+    window.addEventListener('resize', adjustMainMargin);
+
+    return () => {
+      window.removeEventListener('resize', adjustMainMargin);
+    };
+  }, []);
+
+    
   return (
     <GeneralProvider>
-      <Header />
+      <Header ref={headerRef} />
       <LoginModal />
       <div
-        className='body-content'
-        style={{ paddingTop: '100px' }}
+        ref={mainRef}
       >
         <Routes>
           <Route

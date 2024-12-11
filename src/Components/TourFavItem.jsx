@@ -23,7 +23,7 @@ const TourFavItem = ({tourC}) => {
     return (
     <>
     <div>
-        <div style={{
+        <div className='tour-favorite' style={{
                 display: 'flex',
                 height: 'auto',
                 width: '100%',
@@ -31,22 +31,8 @@ const TourFavItem = ({tourC}) => {
                 justifyContent: 'center',
                 margin:'25px 0px'
                 }}>
-            <div style={{
-                    display: 'flex',
-                    width: '100%',
-                    maxWidth: '800px',
-                    borderRadius: '10px',
-                    backgroundColor: 'white',
-                    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)'
-            }}>
-                <div style={{
-                    display: 'flex',
-                    width: '33.33%',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    padding: '20px',
-                    minHeight: '100px',
-                }}>
+            <div className='tour-favorite-container'>
+                <div className='tour-favorite-image'>
                     <img
                         src={tourC.image}
                         style={{
@@ -55,14 +41,8 @@ const TourFavItem = ({tourC}) => {
                         alt={`Imagen de ${tourC.name}`}
                     />                    
                 </div>
-            <div 
-                style={{
-                    display: 'flex',
-                    width: '66.66%',
-                    flexDirection: 'column',
-                    padding: '20px',
-                    cursor: 'pointer'
-                }}
+            <div className='tour-favorite-content'
+
                 onClick = {handleTour}
                 >
             <h2 style={{

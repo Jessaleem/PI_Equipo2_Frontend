@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { register } from '../../services/auth';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import Modal from 'react-modal';
+
+
 const initailState = {
   nombre: '',
   apellido: '',
@@ -15,6 +18,9 @@ const Register = () => {
   const [error, setError] = useState({});
   const [contacto, setContacto] = useState(initailState);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [registrationError, setRegistrationError] = useState('');
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+
   const [countdown, setCountdown] = useState(10);
 
   const fields = [
@@ -36,7 +42,22 @@ const Register = () => {
 
   const mutation = useMutation({
     mutationFn: register,
+    onSuccess: () => {
+      setIsSubmitted(true);
+      setContacto(initailState);
+      setRegistrationError('');
+    },
+    onError: (error) => {
+      if (error.response && error.response.data && error.response.data.message) {
+        setRegistrationError(error.response.data.message);
+      } else {
+        setRegistrationError('Falló en el Registro!');
+      }
+      setIsErrorModalOpen(true);
+    },
   });
+
+
   const validateField  = (field) => {
     const value = contacto[field.name];
     let errorMessage = '';
@@ -81,6 +102,11 @@ const Register = () => {
         },
       });
     }
+  };
+  
+  const closeErrorModal = () => {
+    setIsErrorModalOpen(false);
+    setRegistrationError('');
   };
 
   useEffect(() => {
@@ -157,6 +183,28 @@ const Register = () => {
           )}
         </div>
       </form>
+
+      <Modal
+        isOpen={isErrorModalOpen}
+        onRequestClose={closeErrorModal}
+        contentLabel="Error Modal"
+        className="error-modal error-message"
+        overlayClassName="error-modal-overlay"
+      >
+        <div className="error-container error-container">
+          <div className="error-icon error-icon">
+            ❌
+          </div>
+          <h2>{registrationError}</h2>
+          <h3>El correo ya existe</h3>
+          <p>
+            
+            Por favor, verifica los datos ingresados y vuelve a intentarlo.
+            Si el problema persiste, no dudes en contactarnos.
+          </p>
+          <button onClick={closeErrorModal}>Cerrar</button>
+        </div>
+      </Modal>
     </div>
   );
 };
