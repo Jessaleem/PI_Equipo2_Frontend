@@ -28,12 +28,14 @@ const DetailCalendar = ({ id }) => {
     queryFn: () => getAvailableDatesByTourId(id),
     enabled: !!id,
   });
-
+  
   if (isLoading) return <p>Cargando fechas disponibles...</p>;
 
   const parsedAvailableDates = availableDates.map((dateObj) => ({
     id: dateObj.id,
-    date: new Date(dateObj.fechaDisponible),
+    // date: new Date(dateObj.fechaDisponible),
+    date: new Date(dateObj.fecha),
+
   }));
 
   const handleDateChange = (date) => {
