@@ -997,3 +997,13 @@ header {
   background-color: #f2b6d2;
   border-radius: 20px;
 }
+
+.admin-dropdown {
+  display: none; /* Oculta por defecto */
+}
+
+@media (min-width: 780px){
+  .admin-dropdown {
+    display: block; /* Oculta por defecto */
+  }
+}
