@@ -1,3 +1,5 @@
+import { API } from '../provider/api/api';
+
 export async function login(auth) {
   const options = {
     method: 'POST',
