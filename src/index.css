@@ -933,3 +933,23 @@ header {
   font-size: 48px;
   color: red;
 }
+
+.detalles-reserva-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 5px;
+  padding: 15px 25px ;
+  background-color: rgb(204, 204, 204); 
+}
+
+.detalles-reserva-secondary {
+  padding: 15px 25px ;
+  background-color: rgb(204, 204, 204);
+  width: 100%;
+}
+
+.detalles-reserva-user {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}

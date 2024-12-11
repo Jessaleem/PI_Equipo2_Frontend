@@ -5,7 +5,7 @@ import { useGeneralContext } from '../../context/useGeneralContext';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
-const ReservationModal = ({ show, id, setShow }) => {
+const ReservationModal = ({ show, id, setShow, data }) => {
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const { dispatch } = useGeneralContext();
@@ -16,7 +16,7 @@ const ReservationModal = ({ show, id, setShow }) => {
     if (selectedDate != null) {
       dispatch({
         type: 'RESERVATION_DETAILS',
-        payload: { tourId: id, dateSelected: selectedDate },
+        payload: { tourId: id, dateSelected: selectedDate, data: data },
       });
       setShow(false);
       navigate('/reservationDetail');
