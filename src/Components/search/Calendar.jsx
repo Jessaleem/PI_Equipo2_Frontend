@@ -11,7 +11,7 @@ const Calendar = ({ rangeStart, setRangeStart, rangeEnd, setRangeEnd }) => {
   };
 
   return (
-    <div className=' custom-datepicker-container d-flex flex-row z-5 gap-2'>
+    <div className='custom-datepicker-container d-flex flex-column flex-sm-row flex-md-row z-5 gap-1'>
       <div className='d-flex flex-column m-0 m-0 align-items-start'>
         <p
           className='m-0 px-2'
