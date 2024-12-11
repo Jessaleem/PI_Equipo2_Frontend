@@ -28,9 +28,7 @@ const DetailCalendar = ({ id }) => {
     queryFn: () => getAvailableDatesByTourId(id),
     enabled: !!id,
   });
-  console.log("Reivsar data que se obtiene:")
-  console.log(availableDates)
-  console.log("verificado")
+  
   if (isLoading) return <p>Cargando fechas disponibles...</p>;
 
   const parsedAvailableDates = availableDates.map((dateObj) => ({
@@ -39,9 +37,6 @@ const DetailCalendar = ({ id }) => {
     date: new Date(dateObj.fecha),
 
   }));
-  console.log("Reivsar data que se transforma:")
-  console.log(parsedAvailableDates)
-  console.log("?")
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
