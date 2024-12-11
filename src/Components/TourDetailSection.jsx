@@ -122,6 +122,7 @@ const TourDetailSection = ({ id }) => {
       </div>
       <ReservationModal
         id={id}
+        data={data}
         show={show}
         setShow={setShow}
         navigate={navigate}
