@@ -1,12 +1,24 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useGeneralContext } from '../context/useGeneralContext';
+import Swal from 'sweetalert2';
 
 const TourCard = ({ imagen, nombre, id, tourC }) => {
   const { state, dispatch } = useGeneralContext();
   const isFav = state.favs.find((fav) => fav.id == id);
+  
+  const isLogged = state.isLoggedIn;
   const addFav = () => {
-    dispatch({ type: isFav ? 'REMOVE_FAV' : 'ADD_FAV', payload: tourC });
+    if (isLogged === false){
+      console.log("No puede agregar a favoritos si no está logueado")
+      Swal.fire({
+        title: "No se puede agregar a favoritos sin estar logueado.",        
+    });
+      return
+    } else {
+      dispatch({ type: isFav ? 'REMOVE_FAV' : 'ADD_FAV', payload: tourC });
+    }
+    // dispatch({ type: isFav ? 'REMOVE_FAV' : 'ADD_FAV', payload: tourC });
   };
   return (
     <div
