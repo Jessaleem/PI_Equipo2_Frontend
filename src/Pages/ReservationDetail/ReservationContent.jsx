@@ -12,17 +12,12 @@ const ReservationContent =  () => {
   const {data, dateSelected, tourId} = reservationDetails;
   const navigate = useNavigate();
 
-  console.log("availableDates", availableDates);
-  console.log("dateSelected", dateSelected);
-
   const dateFound = availableDates.find((availableDate) => {
     const isoAvailableDate = new Date(availableDate.fecha).toISOString().split('T')[0];
-    const isoDateSelected = new Date(dateSelected+1).toISOString().split('T')[0];
-    console.log("isoDateSelected", isoDateSelected);
+    const isoDateSelected = new Date(dateSelected).toISOString().split('T')[0];
     return isoAvailableDate === isoDateSelected;
   });
 
-  console.log("dateFound", dateFound);
   
   const availableVacancies = dateFound ? dateFound.cuposRestantes : 10;
 
@@ -50,16 +45,13 @@ const ReservationContent =  () => {
       type: 'RESERVATION_DETAILS',
       payload: { tourId, dateSelected, data: data, cantidadPersonas: cantidadPersonas },
     });
-    console.log(state.reservationDetails);
   }
 
   const handleDeleteReservation = () => {
-    console.log('delete');
     dispatch({type:'RESERVATION_DETAILS', payload: {}});
     navigate(-1);
   }
 
-  console.log(state.reservationDetails);
 
   return (
   <div style={{marginBottom: '50px'}}>

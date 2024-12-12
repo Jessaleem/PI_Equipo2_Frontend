@@ -12,8 +12,6 @@ const SelectedCalendar = ({ id, selectedDate, setSelectedDate }) => {
     enabled: !!id,
   });
 
-  console.log("availableDates", availableDates);
-
   const {dispatch, state} = useGeneralContext();
   const prevAvailableDates = state.availableDates;
 
@@ -28,10 +26,19 @@ const SelectedCalendar = ({ id, selectedDate, setSelectedDate }) => {
 
   if (isLoading) return <p>Cargando fechas disponibles...</p>;
 
-  const parsedAvailableDates = availableDates.map((dateObj) => ({
-    id: dateObj.id,
-    date: new Date(dateObj.fecha),
-  }));
+
+  const parsedAvailableDates = availableDates.map((dateObj) => {
+    const utcDate = new Date(dateObj.fecha);
+    
+    // Agregar 12 horas para compensar el desfase de la zona horaria local
+    utcDate.setHours(utcDate.getHours() + 12);
+    
+    return {
+      id: dateObj.id,
+      isoDate: dateObj.fecha, // Mantener el formato ISO original
+      date: utcDate, // Utilizar el ajuste con las horas adicionales
+    };
+  });
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
