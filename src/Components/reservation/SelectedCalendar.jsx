@@ -49,7 +49,7 @@ const SelectedCalendar = ({ id, selectedDate, setSelectedDate }) => {
     );
 
     if (selected) {
-      console.log(`ID de fecha_experiencia seleccionada: ${selected.id}`);
+      dispatch({ type: 'SELECTED_DATE', payload: selected.id });
     }
   };
 

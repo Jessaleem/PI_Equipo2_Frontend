@@ -12,6 +12,7 @@ export const initialState = {
   tourFavs: [], // ver si es necesario
   reservationDetails: {},
   availableDates: [],
+  idSelectedDate: 0,
 };
 
 export const reducer = (state, action) => {
@@ -60,6 +61,9 @@ export const reducer = (state, action) => {
       return { ...state, reservationDetails: action.payload };
     case 'AVAILABLE_DATES':
       return { ...state, availableDates: action.payload };
+    case 'SELECTED_DATE':
+    return { ...state, idSelectedDate: action.payload };
+
     default:
       return state;
   }

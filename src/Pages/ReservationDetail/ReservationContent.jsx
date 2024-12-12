@@ -50,7 +50,7 @@ const ReservationContent =  ({ onConfirm }) => {
       type: 'RESERVATION_DETAILS',
       payload: { tourId, dateSelected, data: data, cantidadPersonas: cantidadPersonas },
     });
-    onConfirm(tourId, cantidadPersonas); // Pasar tourId y cantidadPersonas a la función onConfirm
+    onConfirm(data, cantidadPersonas); // Pasar tourId y cantidadPersonas a la función onConfirm
   };
 
   return (
