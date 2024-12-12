@@ -48,8 +48,7 @@ const ReservationContent =  () => {
   }
 
   const handleDeleteReservation = () => {
-    dispatch({type:'RESERVATION_DETAILS', payload: {}});
-    navigate(-1);
+    navigate('/');
   }
 
 
