@@ -3,7 +3,7 @@ import { useGeneralContext } from "@context/useGeneralContext";
 import {IconCircleMinus, IconCirclePlus, IconTrash} from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 
-const ReservationContent =  () => {
+const ReservationContent =  ({ onConfirm }) => {
   const [cantidadPersonas, setCantidadPersonas] = useState(1);
   const { state, dispatch } = useGeneralContext();
   const reservationDetails = state.reservationDetails;
@@ -20,6 +20,7 @@ const ReservationContent =  () => {
 
   
   const availableVacancies = dateFound ? dateFound.cuposRestantes : 10;
+
 
   const formattedDate = new Date(dateSelected).toLocaleDateString('es-ES', {
     day: 'numeric',
@@ -39,18 +40,18 @@ const ReservationContent =  () => {
     }
   };
 
+  const handleDeleteReservation = () => {
+    navigate('/');
+  }
+
   const handleReservationBtn = (e) => {
     e.preventDefault();
     dispatch({
       type: 'RESERVATION_DETAILS',
       payload: { tourId, dateSelected, data: data, cantidadPersonas: cantidadPersonas },
     });
-  }
-
-  const handleDeleteReservation = () => {
-    navigate('/');
-  }
-
+    onConfirm(tourId, cantidadPersonas); // Pasar tourId y cantidadPersonas a la función onConfirm
+  };
 
   return (
   <div style={{marginBottom: '50px'}}>
@@ -106,7 +107,9 @@ const ReservationContent =  () => {
           </div>
         </div>
       </section>
-      <button className="reservar-btn" style={{marginTop: 'auto', marginBottom: 'auto'}} type='button' onClick={handleReservationBtn}>Reservar</button>
+      <button className="reservar-btn" style={{marginTop: 'auto', marginBottom: 'auto'}} onClick={handleReservationBtn}>
+        Reservar
+      </button>
     </div>
     
   </div>
