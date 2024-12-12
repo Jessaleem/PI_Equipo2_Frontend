@@ -4,16 +4,20 @@ import { useMutation } from '@tanstack/react-query';
 import { useGeneralContext } from "../../context/useGeneralContext";
 import ReservationContent  from "./ReservationContent"
 import { API } from '../../provider/api/api';
+import { useNavigate } from 'react-router-dom';
+
 
 const ReservationDetail = () => {
   const { state,dispatch } = useGeneralContext();
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); 
 
-  console.log("State:")
-  console.log(state)
-  const handleReservationConfirmation = async () => {
+
+  const fechaExperienciaId = state.idSelectedDate;
+
+  const handleReservationConfirmation = async (data, cantidadPersonas) => {
     try {
       const response = await fetch(`${API}/reserva`, {
         method: 'POST',
@@ -21,10 +25,9 @@ const ReservationDetail = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          cantidadPersonas: state.userData.id,
+          cantidadPersonas: cantidadPersonas,
           usuarioId: state.userData.id,
-          fechaExperienciaId: 294,
-          reservationDetails: state.reservationDetails.id,
+          fechaExperienciaId: fechaExperienciaId,
         }),
       });
 
@@ -33,11 +36,7 @@ const ReservationDetail = () => {
       }
 
       const data = await response.json();
-      console.log("Data:")
-      console.log(data);
       if (data) {
-        console.log("Success:")
-        console.log(data.success);
         setIsSuccessModalOpen(true);
       } else {
         setErrorMessage(data.message || 'Falló en la reserva');
@@ -56,6 +55,7 @@ const ReservationDetail = () => {
 
   const closeSuccessModal = () => {
     setIsSuccessModalOpen(false);
+    navigate('/');
   };
 
 
