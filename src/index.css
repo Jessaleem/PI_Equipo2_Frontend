@@ -970,6 +970,7 @@ header {
   gap: 5px;
   padding: 15px 25px ;
   background-color: rgb(204, 204, 204); 
+  width: 100%;
 }
 
 .detalles-reserva-secondary {

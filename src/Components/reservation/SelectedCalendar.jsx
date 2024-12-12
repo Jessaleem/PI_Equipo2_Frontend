@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useGeneralContext } from "@context/useGeneralContext";
 import DatePicker from 'react-datepicker';
 import './selectedCalendar.css';
+
 
 const SelectedCalendar = ({ id, selectedDate, setSelectedDate }) => {
   const { data: availableDates = [], isLoading } = useQuery({
@@ -9,6 +11,20 @@ const SelectedCalendar = ({ id, selectedDate, setSelectedDate }) => {
     queryFn: () => getAvailableDatesByTourId(id),
     enabled: !!id,
   });
+
+  console.log("availableDates", availableDates);
+
+  const {dispatch, state} = useGeneralContext();
+  const prevAvailableDates = state.availableDates;
+
+  useEffect(() => {
+    if (
+      availableDates &&
+      JSON.stringify(availableDates) !== JSON.stringify(prevAvailableDates)
+    ) {
+      dispatch({ type: 'AVAILABLE_DATES', payload: availableDates });
+    }
+  }, [availableDates, dispatch]);
 
   if (isLoading) return <p>Cargando fechas disponibles...</p>;
 
