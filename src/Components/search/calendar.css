@@ -1,0 +1,10 @@
+.react-datepicker__input-container input {
+  text-align: center;
+  background-color: #d9d9d9;
+  border: none;
+}
+
+.react-datepicker__input-container input:focus {
+  outline: none;
+  border: none;
+}

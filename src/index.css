@@ -970,6 +970,7 @@ header {
   gap: 5px;
   padding: 15px 25px ;
   background-color: rgb(204, 204, 204); 
+  width: 100%;
 }
 
 .detalles-reserva-secondary {
@@ -982,4 +983,28 @@ header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+}
+
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b4040;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #f2b6d2;
+  border-radius: 20px;
+}
+
+.admin-dropdown {
+  display: none; /* Oculta por defecto */
+}
+
+@media (min-width: 780px){
+  .admin-dropdown {
+    display: block; /* Oculta por defecto */
+  }
 }
