@@ -9,9 +9,18 @@ const SearchBar = ({ setSearchTerm, data, searchTerm }) => {
   const dataToShow = Array.isArray(data) ? data.slice(0, 7) : [];
 
   return (
-    <div className='search-input d-flex flex-column'>
+    <div
+      className='search-input d-flex flex-column'
+      style={{ position: 'relative' }}
+    >
       <input
-        style={{ backgroundColor: 'white', color: 'black', height: '40px' }}
+        style={{
+          backgroundColor: 'white',
+          color: 'black',
+          height: '62px',
+          width: '300px',
+          border: '2px solid #0A3E42',
+        }}
         type='text'
         placeholder='Buscar'
         value={searchTerm}
@@ -23,8 +32,15 @@ const SearchBar = ({ setSearchTerm, data, searchTerm }) => {
       )}
       {data && (
         <ul
-          className='border z-2'
-          style={{ backgroundColor: 'white', listStyleType: 'none' }}
+          className='border overflow-auto'
+          style={{
+            backgroundColor: 'white',
+            listStyleType: 'none',
+            maxWidth: '360px',
+            maxHeight: '150px',
+            position: 'absolute',
+            top: '75px',
+          }}
         >
           {searchTerm &&
             dataToShow?.map((result) => (
@@ -36,6 +52,11 @@ const SearchBar = ({ setSearchTerm, data, searchTerm }) => {
                 <li
                   key={result.id}
                   className='p-2 border-b'
+                  style={{
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
                 >
                   {`${result.name}-${result.country}`}
                 </li>
