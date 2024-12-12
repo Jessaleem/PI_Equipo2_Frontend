@@ -11,6 +11,7 @@ export const initialState = {
   favs: lsFavs,
   tourFavs: [], // ver si es necesario
   reservationDetails: {},
+  availableDates: [],
 };
 
 export const reducer = (state, action) => {
@@ -57,6 +58,8 @@ export const reducer = (state, action) => {
       return { ...state, favs: [] };
     case 'RESERVATION_DETAILS':
       return { ...state, reservationDetails: action.payload };
+    case 'AVAILABLE_DATES':
+      return { ...state, availableDates: action.payload };
     default:
       return state;
   }

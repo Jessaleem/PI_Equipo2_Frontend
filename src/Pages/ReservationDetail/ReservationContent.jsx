@@ -1,18 +1,57 @@
+import { useState } from 'react';
 import { useGeneralContext } from "@context/useGeneralContext";
 import {IconCircleMinus, IconCirclePlus, IconTrash} from '@tabler/icons-react';
+import { useNavigate } from 'react-router-dom';
 
 const ReservationContent =  () => {
-
-  const { state } = useGeneralContext();
+  const [cantidadPersonas, setCantidadPersonas] = useState(1);
+  const { state, dispatch } = useGeneralContext();
   const reservationDetails = state.reservationDetails;
   const userData = state.userData;
-  const {data, dateSelected} = reservationDetails;
+  const availableDates = state.availableDates;
+  const {data, dateSelected, tourId} = reservationDetails;
+  const navigate = useNavigate();
+
+  const dateFound = availableDates.find((availableDate) => {
+    const isoAvailableDate = new Date(availableDate.fecha).toISOString().split('T')[0];
+    const isoDateSelected = new Date(dateSelected).toISOString().split('T')[0];
+    return isoAvailableDate === isoDateSelected;
+  });
+
+  
+  const availableVacancies = dateFound ? dateFound.cuposRestantes : 10;
 
   const formattedDate = new Date(dateSelected).toLocaleDateString('es-ES', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
   });
+
+  const handleDecrement = () => {
+    if (cantidadPersonas > 1) {
+      setCantidadPersonas(cantidadPersonas - 1);
+    }
+  };
+
+  const handleIncrement = () => {
+    if (cantidadPersonas < availableVacancies ) {
+      setCantidadPersonas(cantidadPersonas + 1);
+    }
+  };
+
+  const handleReservationBtn = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: 'RESERVATION_DETAILS',
+      payload: { tourId, dateSelected, data: data, cantidadPersonas: cantidadPersonas },
+    });
+  }
+
+  const handleDeleteReservation = () => {
+    dispatch({type:'RESERVATION_DETAILS', payload: {}});
+    navigate(-1);
+  }
+
 
   return (
   <div style={{marginBottom: '50px'}}>
@@ -44,31 +83,31 @@ const ReservationContent =  () => {
         </div>
         <div>
           <p style={{fontWeight:'500'}}>Cantidad de personas</p>
-          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center',  height: '80%', gap: '20px'}}>
-            <IconCircleMinus style={{marginBottom:'16px'}} />
-            <p>1</p>
-            <IconCirclePlus style={{marginBottom:'16px'}}/>
+          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center',  height: '80%', gap: '10px'}}>
+            <IconCircleMinus style={{marginBottom:'16px', cursor: 'pointer', marginRight: '10px'}} onClick={handleDecrement}/>
+            <p style={{userSelect: 'none'}}>{cantidadPersonas}</p>
+            <IconCirclePlus style={{marginBottom:'16px', cursor: 'pointer', marginLeft: '10px'}} onClick={handleIncrement}/>
           </div>
         </div>
-        <div style={{marginTop: 'auto', marginBottom: 'auto'}}>
-          <IconTrash />
+        <div style={{marginTop: 'auto', marginBottom: 'auto'}} onClick={handleDeleteReservation}>
+          <IconTrash style={{cursor: 'pointer'}}/>
         </div>
 
       </section>
       <section className="detalles-reserva-secondary">
-        <p style={{fontWeight:'500', marginBottom:'20px'}}>Datos del titular</p>
+        <p style={{fontWeight:'500', marginBottom:'20px', userSelect: 'none'}}>Datos del titular</p>
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
           <div className="detalles-reserva-user">
-            <p style={{textAlign: 'right'}}>Nombre Completo:</p>
-            <p style={{textAlign: 'left'}}>{userData.name}</p>
+            <p style={{textAlign: 'right', userSelect: 'none'}}>Nombre Completo:</p>
+            <p style={{textAlign: 'left', userSelect: 'none'}}>{userData.name}</p>
           </div>
           <div className="detalles-reserva-user">
-            <p style={{textAlign: 'right'}}>Correo Electrónico:</p>
-            <p style={{textAlign: 'left'}}>{userData.email}</p>
+            <p style={{textAlign: 'right', userSelect: 'none'}}>Correo Electrónico:</p>
+            <p style={{textAlign: 'left', userSelect: 'none'}}>{userData.email}</p>
           </div>
         </div>
       </section>
-      <button className="reservar-btn" style={{marginTop: 'auto', marginBottom: 'auto'}}>Reservar</button>
+      <button className="reservar-btn" style={{marginTop: 'auto', marginBottom: 'auto'}} type='button' onClick={handleReservationBtn}>Reservar</button>
     </div>
     
   </div>

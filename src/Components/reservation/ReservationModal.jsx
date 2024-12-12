@@ -20,6 +20,7 @@ const ReservationModal = ({ show, id, setShow, data }) => {
       });
       setShow(false);
       navigate('/reservationDetail');
+      window.scrollTo(0, 0)
     } else {
       setShow(false);
       Swal.fire({
